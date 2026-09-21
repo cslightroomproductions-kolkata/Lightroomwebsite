@@ -1,43 +1,33 @@
 const crypto = require("crypto");
-const fs = require("fs");
-const path = require("path");
-const vm = require("vm");
 const { json, supabaseFetch } = require("./_supabase");
 
-function readPackages() {
-  const filePath = path.join(
-    process.cwd(),
-    "assets",
-    "packages.js"
-  );
+// =====================================================
+// CANONICAL WEDDING PACKAGES
+// Server does NOT depend on packages.js anymore.
+// =====================================================
 
-  if (!fs.existsSync(filePath)) {
-    throw new Error("Package file not found: assets/packages.js");
-  }
+const PACKAGES = {
+  "Shubh Aarambh": 34999,
+  "Mangal Milan": 44999,
+  "Rajsi Vivaah": 54999,
+  "Royal Utsav": 64999,
+  "Swarna Mahotsav": 74999,
+  "Maharaja Signature": 84999,
+  "Imperial Dynasty": 99999,
+  "Raj Mahal Elite": 124999,
+  "Crown Legacy": 149999,
 
-  const source = fs.readFileSync(filePath, "utf8");
+  "Royal Sangam": 89999,
+  "Maharaja Sangam": 109999,
+  "Rajwada Heritage": 129999,
+  "Imperial Vivaah": 149999,
+  "Maharani Collection": 174999,
+  "Royal Dynasty": 199999
+};
 
-  const context = {};
-  vm.runInNewContext(
-    `${source}\nPACKAGE_GROUPS;`,
-    context
-  );
-
-  return context.PACKAGE_GROUPS;
-}
-
-function allPackages() {
-  const groups = readPackages();
-
-  return Object.values(groups)
-    .flat()
-    .filter(
-      (pkg) =>
-        pkg &&
-        typeof pkg.name === "string" &&
-        typeof pkg.price === "number"
-    );
-}
+// =====================================================
+// HELPERS
+// =====================================================
 
 function clean(value, max = 1000) {
   return String(value ?? "")
@@ -46,33 +36,61 @@ function clean(value, max = 1000) {
 }
 
 function validDate(value) {
-  return /^\d{4}-\d{2}-\d{2}$/.test(String(value));
+  return /^\d{4}-\d{2}-\d{2}$/.test(
+    String(value)
+  );
 }
 
-function rupees(value) {
-  return Math.round(Number(value) * 100) / 100;
+function money(value) {
+  return Math.round(
+    Number(value) * 100
+  ) / 100;
 }
+
+// =====================================================
+// HANDLER
+// =====================================================
 
 module.exports = async function handler(req, res) {
+
+  // Always return JSON
+  res.setHeader(
+    "Content-Type",
+    "application/json; charset=utf-8"
+  );
+
+  res.setHeader(
+    "Cache-Control",
+    "no-store"
+  );
+
+  if (req.method === "OPTIONS") {
+    return res.status(200).json({
+      success: true
+    });
+  }
+
   if (req.method !== "POST") {
-    return json(res, 405, {
+    return res.status(405).json({
       success: false,
       error: "Method not allowed"
     });
   }
 
   try {
-    // --------------------------------------------------
-    // ENVIRONMENT
-    // --------------------------------------------------
+
+    // =================================================
+    // ENVIRONMENT CHECK
+    // =================================================
 
     if (
       !process.env.RAZORPAY_KEY_ID ||
       !process.env.RAZORPAY_KEY_SECRET
     ) {
-      return json(res, 500, {
+      return res.status(500).json({
         success: false,
-        error: "Razorpay environment variables are missing."
+        error:
+          "Razorpay environment variables are missing."
       });
     }
 
@@ -80,46 +98,56 @@ module.exports = async function handler(req, res) {
       !process.env.SUPABASE_URL ||
       !process.env.SUPABASE_SERVICE_ROLE_KEY
     ) {
-      return json(res, 500, {
+      return res.status(500).json({
         success: false,
-        error: "Supabase server environment variables are missing."
+        error:
+          "Supabase server environment variables are missing."
       });
     }
 
-    // --------------------------------------------------
-    // REQUEST
-    // --------------------------------------------------
+    // =================================================
+    // REQUEST BODY
+    // =================================================
 
-    const payload =
-      typeof req.body === "string"
-        ? JSON.parse(req.body)
-        : req.body || {};
+    let payload = req.body;
 
-    // --------------------------------------------------
+    if (typeof payload === "string") {
+      try {
+        payload = JSON.parse(payload);
+      } catch {
+        return res.status(400).json({
+          success: false,
+          error: "Invalid JSON request."
+        });
+      }
+    }
+
+    payload = payload || {};
+
+    // =================================================
     // PACKAGE
-    // --------------------------------------------------
+    // =================================================
 
     const packageName = clean(
       payload.package?.name,
-      120
+      150
     );
 
-    const packages = allPackages();
+    const packagePrice =
+      PACKAGES[packageName];
 
-    const pkg = packages.find(
-      (item) => item.name === packageName
-    );
-
-    if (!pkg) {
-      return json(res, 400, {
+    if (!packagePrice) {
+      return res.status(400).json({
         success: false,
-        error: "Invalid wedding package."
+        error:
+          "Invalid wedding package: " +
+          packageName
       });
     }
 
-    // --------------------------------------------------
+    // =================================================
     // DATES
-    // --------------------------------------------------
+    // =================================================
 
     const start = clean(
       payload.dates?.start,
@@ -133,73 +161,108 @@ module.exports = async function handler(req, res) {
 
     if (
       !validDate(start) ||
-      !validDate(end) ||
-      start > end
+      !validDate(end)
     ) {
-      return json(res, 400, {
+      return res.status(400).json({
         success: false,
         error:
-          "Please select a valid event start and end date."
+          "Please select valid wedding dates."
       });
     }
 
-    // --------------------------------------------------
+    if (start > end) {
+      return res.status(400).json({
+        success: false,
+        error:
+          "End date cannot be before start date."
+      });
+    }
+
+    // =================================================
     // CUSTOMER
-    // --------------------------------------------------
+    // =================================================
 
     const bride = clean(
       payload.client?.bride,
-      120
+      150
     );
 
     const groom = clean(
       payload.client?.groom,
-      120
+      150
     );
 
     const phone = clean(
       payload.client?.phone,
-      30
+      40
     );
 
     const email = clean(
       payload.client?.email,
-      160
+      180
     );
 
-    // --------------------------------------------------
+    if (
+      !bride ||
+      !phone ||
+      !email
+    ) {
+      return res.status(400).json({
+        success: false,
+        error:
+          "Please complete the customer details."
+      });
+    }
+
+    // =================================================
     // VENUE
-    // --------------------------------------------------
+    // =================================================
 
     const venue = clean(
       payload.venue?.name,
-      200
+      250
     );
 
     const city = clean(
       payload.venue?.city,
-      100
+      120
     );
 
     const address = clean(
       payload.venue?.address,
-      1200
+      1500
     );
 
-    // --------------------------------------------------
+    if (
+      !venue ||
+      !city ||
+      !address
+    ) {
+      return res.status(400).json({
+        success: false,
+        error:
+          "Please complete the venue details."
+      });
+    }
+
+    // =================================================
     // FUNCTIONS
-    // --------------------------------------------------
+    // =================================================
 
     const functions =
       Array.isArray(payload.functions)
         ? payload.functions
-            .map((item) => clean(item, 250))
+            .map(
+              item =>
+                clean(item, 250)
+            )
+            .filter(Boolean)
             .slice(0, 30)
         : [];
 
-    // --------------------------------------------------
-    // GUESTS
-    // --------------------------------------------------
+    // =================================================
+    // OTHER DETAILS
+    // =================================================
 
     const guests = Math.max(
       0,
@@ -214,79 +277,135 @@ module.exports = async function handler(req, res) {
       1500
     );
 
-    if (
-      !bride ||
-      !phone ||
-      !email ||
-      !venue ||
-      !city ||
-      !address
-    ) {
-      return json(res, 400, {
-        success: false,
-        error:
-          "Please complete the customer and venue details."
-      });
-    }
-
-    // --------------------------------------------------
+    // =================================================
     // PAYMENT TYPE
     //
     // advance = 30%
     // full    = 100%
-    // --------------------------------------------------
+    // =================================================
 
     const paymentType =
       payload.paymentType === "full"
         ? "full"
         : "advance";
 
-    // --------------------------------------------------
+    // =================================================
     // PAYMENT CALCULATION
-    // --------------------------------------------------
+    // =================================================
 
-    const total = rupees(pkg.price);
+    const total =
+      money(packagePrice);
 
-    const advance = rupees(
-      total * 0.30
-    );
+    const advance =
+      money(total * 0.30);
 
-    const eventEnd = rupees(
-      total * 0.50
-    );
+    const eventEnd =
+      money(total * 0.50);
 
-    const deliverables = rupees(
-      total - advance - eventEnd
-    );
+    const deliverables =
+      money(
+        total -
+        advance -
+        eventEnd
+      );
 
-    const balance = rupees(
-      total - advance
-    );
+    const remainingBalance =
+      money(
+        total -
+        advance
+      );
 
-    const payableAmount =
+    const payableNow =
       paymentType === "full"
         ? total
         : advance;
 
-    // --------------------------------------------------
+    // =================================================
     // BOOKING ID
-    // --------------------------------------------------
+    // =================================================
 
     const bookingId =
-      `LPW-${new Date().getFullYear()}-` +
+      "LPW-" +
+      new Date()
+        .getFullYear() +
+      "-" +
       crypto
         .randomBytes(4)
         .toString("hex")
         .toUpperCase();
 
-    // --------------------------------------------------
-    // DIRECT SUPABASE INSERT
+    // =================================================
+    // CREATE SUPABASE BOOKING
     //
     // IMPORTANT:
-    // There is NO date conflict check.
+    // NO DATE CONFLICT CHECK.
     //
-    // Multiple bookings on the same date are allowed.
-    // --------------------------------------------------
+    // Multiple bookings on same date are allowed.
+    // =================================================
+
+    const bookingData = {
+
+      booking_id:
+        bookingId,
+
+      customer_name:
+        bride,
+
+      customer_phone:
+        phone,
+
+      customer_email:
+        email,
+
+      package_name:
+        packageName,
+
+      package_price:
+        total,
+
+      wedding_start_date:
+        start,
+
+      wedding_end_date:
+        end,
+
+      functions:
+        functions.join(" • "),
+
+      venue_name:
+        venue,
+
+      venue_address:
+        address,
+
+      city:
+        city,
+
+      guest_count:
+        guests || null,
+
+      special_requirements:
+        requirements,
+
+      advance_amount:
+        advance,
+
+      balance_amount:
+        paymentType === "full"
+          ? 0
+          : remainingBalance,
+
+      payment_status:
+        "pending",
+
+      booking_status:
+        "pending"
+    };
+
+    console.log(
+      "Creating wedding booking:",
+      bookingId
+    );
 
     const bookingResponse =
       await supabaseFetch(
@@ -295,81 +414,49 @@ module.exports = async function handler(req, res) {
           method: "POST",
 
           headers: {
-            Prefer: "return=representation"
+            Prefer:
+              "return=representation"
           },
 
-          body: JSON.stringify({
-            booking_id: bookingId,
-
-            customer_name: bride,
-
-            customer_phone: phone,
-
-            customer_email: email,
-
-            package_name: pkg.name,
-
-            package_price: total,
-
-            wedding_start_date: start,
-
-            wedding_end_date: end,
-
-            functions:
-              functions.join(" • "),
-
-            venue_name: venue,
-
-            venue_address: address,
-
-            city,
-
-            guest_count:
-              guests || null,
-
-            special_requirements:
-              requirements,
-
-            advance_amount:
-              advance,
-
-            balance_amount:
-              paymentType === "full"
-                ? 0
-                : balance,
-
-            payment_status:
-              "pending",
-
-            booking_status:
-              "pending"
-          }
+          body:
+            JSON.stringify(
+              bookingData
+            )
         }
       );
 
     const booking =
-      Array.isArray(bookingResponse)
+      Array.isArray(
+        bookingResponse
+      )
         ? bookingResponse[0]
         : bookingResponse;
 
-    if (!booking?.booking_id) {
-      throw new Error(
-        "Booking could not be created in Supabase."
+    if (
+      !booking ||
+      !booking.booking_id
+    ) {
+      console.error(
+        "Supabase booking response:",
+        bookingResponse
       );
+
+      return res.status(500).json({
+        success: false,
+        error:
+          "Supabase did not create the booking."
+      });
     }
 
-    // --------------------------------------------------
-    // RAZORPAY ORDER
-    // --------------------------------------------------
-
-    const receipt =
-      booking.booking_id
-        .replace(/[^A-Za-z0-9_-]/g, "")
-        .slice(0, 40);
+    // =================================================
+    // CREATE RAZORPAY ORDER
+    // =================================================
 
     const auth =
       Buffer.from(
-        `${process.env.RAZORPAY_KEY_ID}:${process.env.RAZORPAY_KEY_SECRET}`
+        process.env.RAZORPAY_KEY_ID +
+        ":" +
+        process.env.RAZORPAY_KEY_SECRET
       ).toString("base64");
 
     const razorpayResponse =
@@ -383,200 +470,258 @@ module.exports = async function handler(req, res) {
               "application/json",
 
             Authorization:
-              `Basic ${auth}`
+              "Basic " + auth
           },
 
-          body: JSON.stringify({
-            amount:
-              Math.round(
-                payableAmount * 100
-              ),
+          body:
+            JSON.stringify({
 
-            currency: "INR",
+              amount:
+                Math.round(
+                  payableNow * 100
+                ),
 
-            receipt,
+              currency:
+                "INR",
 
-            notes: {
-              source:
-                "Lightroom Productions Wedding Booking",
+              receipt:
+                bookingId
+                  .replace(
+                    /[^A-Za-z0-9_-]/g,
+                    ""
+                  )
+                  .slice(0, 40),
 
-              booking_id:
-                booking.booking_id,
+              notes: {
 
-              package:
-                pkg.name,
+                source:
+                  "Lightroom Productions",
 
-              event_start:
-                start,
+                booking_id:
+                  bookingId,
 
-              event_end:
-                end,
+                package:
+                  packageName,
 
-              payment_type:
-                paymentType,
+                payment_type:
+                  paymentType,
 
-              payment_stage:
-                paymentType === "full"
-                  ? "100_percent_full_payment"
-                  : "30_percent_booking_advance"
-            }
-          })
+                event_start:
+                  start,
+
+                event_end:
+                  end
+
+              }
+
+            })
         }
       );
 
-    const orderText =
+    const razorpayText =
       await razorpayResponse.text();
 
-    let order = {};
+    let razorpayOrder = {};
 
     try {
-      order = orderText
-        ? JSON.parse(orderText)
-        : {};
+      razorpayOrder =
+        razorpayText
+          ? JSON.parse(
+              razorpayText
+            )
+          : {};
     } catch {
-      order = {};
+      razorpayOrder = {};
     }
 
-    if (!razorpayResponse.ok) {
-      return json(
-        res,
-        razorpayResponse.status,
-        {
-          success: false,
-          error:
-            order?.error?.description ||
-            "Razorpay order creation failed."
-        }
+    if (
+      !razorpayResponse.ok ||
+      !razorpayOrder.id
+    ) {
+
+      console.error(
+        "Razorpay error:",
+        razorpayOrder
       );
+
+      return res.status(
+        razorpayResponse.status || 500
+      ).json({
+        success: false,
+        error:
+          razorpayOrder?.error
+            ?.description ||
+          "Razorpay order creation failed."
+      });
     }
 
-    // --------------------------------------------------
+    // =================================================
     // SAVE RAZORPAY ORDER ID
-    // --------------------------------------------------
+    // =================================================
 
     await supabaseFetch(
-      `wedding_bookings?booking_id=eq.${encodeURIComponent(
-        booking.booking_id
-      )}`,
+      "wedding_bookings?booking_id=eq." +
+        encodeURIComponent(
+          bookingId
+        ),
       {
         method: "PATCH",
 
         headers: {
-          Prefer: "return=minimal"
+          Prefer:
+            "return=minimal"
         },
 
-        body: JSON.stringify({
-          razorpay_order_id:
-            order.id,
+        body:
+          JSON.stringify({
 
-          updated_at:
-            new Date().toISOString()
-        })
+            razorpay_order_id:
+              razorpayOrder.id,
+
+            updated_at:
+              new Date().toISOString()
+
+          })
       }
     );
 
-    // --------------------------------------------------
-    // RESPONSE
-    // --------------------------------------------------
+    // =================================================
+    // FINAL RESPONSE
+    // =================================================
 
-    return json(res, 200, {
+    return res.status(200).json({
+
       success: true,
 
       bookingId:
-        booking.booking_id,
+        bookingId,
 
       orderId:
-        order.id,
+        razorpayOrder.id,
 
       amount:
-        order.amount,
+        razorpayOrder.amount,
 
       currency:
-        order.currency,
+        "INR",
 
       packageName:
-        pkg.name,
+        packageName,
 
       packagePrice:
         total,
 
-      paymentType,
+      paymentType:
+        paymentType,
 
-      payableAmount,
+      payableAmount:
+        payableNow,
 
       paymentSchedule: {
-        total,
-        advance,
-        eventEnd,
-        deliverables,
+
+        total:
+          total,
+
+        advance:
+          advance,
+
+        eventEnd:
+          eventEnd,
+
+        deliverables:
+          deliverables,
 
         balance:
           paymentType === "full"
             ? 0
-            : balance
+            : remainingBalance
+
       },
 
       options: {
+
         key:
           process.env.RAZORPAY_KEY_ID,
 
         amount:
-          order.amount,
+          razorpayOrder.amount,
 
         currency:
-          order.currency,
+          "INR",
 
         name:
           "Lightroom Productions",
 
         description:
           paymentType === "full"
-            ? `Full wedding payment — ${pkg.name}`
-            : `Wedding booking advance — ${pkg.name}`,
+            ? "Full Wedding Payment - " +
+              packageName
+            : "Wedding Booking Advance - " +
+              packageName,
 
         order_id:
-          order.id,
+          razorpayOrder.id,
 
         prefill: {
+
           name:
             groom
-              ? `${bride} & ${groom}`
+              ? bride +
+                " & " +
+                groom
               : bride,
 
-          email,
+          email:
+            email,
 
           contact:
             phone
+
         },
 
         notes: {
+
           booking_id:
-            booking.booking_id,
+            bookingId,
 
           package:
-            pkg.name,
+            packageName,
 
           payment_type:
             paymentType
+
         },
 
         theme: {
-          color: "#D4AF37"
+
+          color:
+            "#D4AF37"
+
         }
+
       }
+
     });
 
   } catch (error) {
+
     console.error(
-      "create-booking-order:",
+      "CREATE BOOKING ERROR:",
       error
     );
 
-    return json(res, 500, {
+    // IMPORTANT:
+    // Always return JSON, never an HTML error page.
+    return res.status(500).json({
+
       success: false,
+
       error:
         error?.message ||
         "Unable to create wedding booking."
+
     });
+
   }
+
 };
