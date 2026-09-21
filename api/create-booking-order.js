@@ -210,21 +210,25 @@ module.exports = async (req, res) => {
 
     const total = rupees(pkg.price);
 
-    const advance = rupees(
-      total * 0.30
-    );
+const advance = rupees(total * 0.30);
+const eventEnd = rupees(total * 0.50);
+const deliverables = rupees(
+  total - advance - eventEnd
+);
 
-    const eventEnd = rupees(
-      total * 0.50
-    );
+const balance = rupees(total - advance);
 
-    const deliverables = rupees(
-      total - advance - eventEnd
-    );
+// Customer payment choice
+const paymentType =
+  payload.paymentType === "full"
+    ? "full"
+    : "advance";
 
-    const balance = rupees(
-      total - advance
-    );
+// Amount charged by Razorpay
+const payableAmount =
+  paymentType === "full"
+    ? total
+    : advance;
 
     // --------------------------------------------------
     // BOOKING ID
