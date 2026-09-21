@@ -17,14 +17,19 @@ function readPackages() {
 
   const source = fs.readFileSync(filePath, "utf8");
 
-  return vm.runInNewContext(
+  const context = {};
+  vm.runInNewContext(
     `${source}\nPACKAGE_GROUPS;`,
-    {}
+    context
   );
+
+  return context.PACKAGE_GROUPS;
 }
 
 function allPackages() {
-  return Object.values(readPackages())
+  const groups = readPackages();
+
+  return Object.values(groups)
     .flat()
     .filter(
       (pkg) =>
@@ -48,9 +53,10 @@ function rupees(value) {
   return Math.round(Number(value) * 100) / 100;
 }
 
-module.exports = async (req, res) => {
+module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     return json(res, 405, {
+      success: false,
       error: "Method not allowed"
     });
   }
@@ -65,6 +71,7 @@ module.exports = async (req, res) => {
       !process.env.RAZORPAY_KEY_SECRET
     ) {
       return json(res, 500, {
+        success: false,
         error: "Razorpay environment variables are missing."
       });
     }
@@ -74,6 +81,7 @@ module.exports = async (req, res) => {
       !process.env.SUPABASE_SERVICE_ROLE_KEY
     ) {
       return json(res, 500, {
+        success: false,
         error: "Supabase server environment variables are missing."
       });
     }
@@ -87,17 +95,24 @@ module.exports = async (req, res) => {
         ? JSON.parse(req.body)
         : req.body || {};
 
-    const pkgName = clean(
+    // --------------------------------------------------
+    // PACKAGE
+    // --------------------------------------------------
+
+    const packageName = clean(
       payload.package?.name,
       120
     );
 
-    const pkg = allPackages().find(
-      (item) => item.name === pkgName
+    const packages = allPackages();
+
+    const pkg = packages.find(
+      (item) => item.name === packageName
     );
 
     if (!pkg) {
       return json(res, 400, {
+        success: false,
         error: "Invalid wedding package."
       });
     }
@@ -122,6 +137,7 @@ module.exports = async (req, res) => {
       start > end
     ) {
       return json(res, 400, {
+        success: false,
         error:
           "Please select a valid event start and end date."
       });
@@ -170,12 +186,20 @@ module.exports = async (req, res) => {
       1200
     );
 
+    // --------------------------------------------------
+    // FUNCTIONS
+    // --------------------------------------------------
+
     const functions =
       Array.isArray(payload.functions)
         ? payload.functions
             .map((item) => clean(item, 250))
             .slice(0, 30)
         : [];
+
+    // --------------------------------------------------
+    // GUESTS
+    // --------------------------------------------------
 
     const guests = Math.max(
       0,
@@ -199,36 +223,50 @@ module.exports = async (req, res) => {
       !address
     ) {
       return json(res, 400, {
+        success: false,
         error:
           "Please complete the customer and venue details."
       });
     }
 
     // --------------------------------------------------
-    // PAYMENT
+    // PAYMENT TYPE
+    //
+    // advance = 30%
+    // full    = 100%
+    // --------------------------------------------------
+
+    const paymentType =
+      payload.paymentType === "full"
+        ? "full"
+        : "advance";
+
+    // --------------------------------------------------
+    // PAYMENT CALCULATION
     // --------------------------------------------------
 
     const total = rupees(pkg.price);
 
-const advance = rupees(total * 0.30);
-const eventEnd = rupees(total * 0.50);
-const deliverables = rupees(
-  total - advance - eventEnd
-);
+    const advance = rupees(
+      total * 0.30
+    );
 
-const balance = rupees(total - advance);
+    const eventEnd = rupees(
+      total * 0.50
+    );
 
-// Customer payment choice
-const paymentType =
-  payload.paymentType === "full"
-    ? "full"
-    : "advance";
+    const deliverables = rupees(
+      total - advance - eventEnd
+    );
 
-// Amount charged by Razorpay
-const payableAmount =
-  paymentType === "full"
-    ? total
-    : advance;
+    const balance = rupees(
+      total - advance
+    );
+
+    const payableAmount =
+      paymentType === "full"
+        ? total
+        : advance;
 
     // --------------------------------------------------
     // BOOKING ID
@@ -242,12 +280,12 @@ const payableAmount =
         .toUpperCase();
 
     // --------------------------------------------------
-    // IMPORTANT:
-    // DIRECT INSERT
+    // DIRECT SUPABASE INSERT
     //
-    // There is NO DATE AVAILABILITY CHECK here.
-    // Multiple customers can therefore book
-    // the same wedding date.
+    // IMPORTANT:
+    // There is NO date conflict check.
+    //
+    // Multiple bookings on the same date are allowed.
     // --------------------------------------------------
 
     const bookingResponse =
@@ -296,14 +334,16 @@ const payableAmount =
               advance,
 
             balance_amount:
-              balance,
+              paymentType === "full"
+                ? 0
+                : balance,
 
             payment_status:
               "pending",
 
             booking_status:
               "pending"
-          })
+          }
         }
       );
 
@@ -349,7 +389,7 @@ const payableAmount =
           body: JSON.stringify({
             amount:
               Math.round(
-                advance * 100
+                payableAmount * 100
               ),
 
             currency: "INR",
@@ -372,8 +412,13 @@ const payableAmount =
               event_end:
                 end,
 
+              payment_type:
+                paymentType,
+
               payment_stage:
-                "30_percent_booking_advance"
+                paymentType === "full"
+                  ? "100_percent_full_payment"
+                  : "30_percent_booking_advance"
             }
           })
         }
@@ -397,6 +442,7 @@ const payableAmount =
         res,
         razorpayResponse.status,
         {
+          success: false,
           error:
             order?.error?.description ||
             "Razorpay order creation failed."
@@ -454,10 +500,20 @@ const payableAmount =
       packagePrice:
         total,
 
+      paymentType,
+
+      payableAmount,
+
       paymentSchedule: {
+        total,
         advance,
         eventEnd,
-        deliverables
+        deliverables,
+
+        balance:
+          paymentType === "full"
+            ? 0
+            : balance
       },
 
       options: {
@@ -474,7 +530,9 @@ const payableAmount =
           "Lightroom Productions",
 
         description:
-          `Wedding booking advance — ${pkg.name}`,
+          paymentType === "full"
+            ? `Full wedding payment — ${pkg.name}`
+            : `Wedding booking advance — ${pkg.name}`,
 
         order_id:
           order.id,
@@ -496,7 +554,14 @@ const payableAmount =
             booking.booking_id,
 
           package:
-            pkg.name
+            pkg.name,
+
+          payment_type:
+            paymentType
+        },
+
+        theme: {
+          color: "#D4AF37"
         }
       }
     });
@@ -508,6 +573,7 @@ const payableAmount =
     );
 
     return json(res, 500, {
+      success: false,
       error:
         error?.message ||
         "Unable to create wedding booking."
