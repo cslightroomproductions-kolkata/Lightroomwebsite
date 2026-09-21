@@ -21,10 +21,54 @@
 <section class="section"><div class="wrap booking-grid"><form id="bookingForm" class="checkout-card"><span class="eyebrow">Wedding Capital</span><h2>Reservation details</h2><div class="field"><label>Package</label><select id="selectedPackage" required><option value="">Select a package</option></select></div><div id="packageSummary" class="package-summary"></div><div class="two"><div class="field"><label>Bride / Client name</label><input id="bName" required></div><div class="field"><label>Groom / Co-client name</label><input id="gName"></div></div><div class="two"><div class="field"><label>Phone / WhatsApp</label><input id="bPhone" required></div><div class="field"><label>Email</label><input id="bEmail" type="email" required></div></div><div class="two"><div class="field"><label>Primary event date</label><input id="eventDate" type="date" required></div><div class="field"><label>End date</label><input id="endDate" type="date"></div></div><div class="field"><label>Functions to cover</label><div id="functionChoices" class="check-grid"></div></div><div class="two"><div class="field"><label>Venue name</label><input id="venue" required placeholder="Wedding venue / banquet / resort"></div><div class="field"><label>City</label><input id="city" required placeholder="Kolkata / Hooghly / etc."></div></div><div class="field"><label>Venue address</label><textarea id="venueAddress" required placeholder="Full venue address, landmark and directions"></textarea></div><div class="two"><div class="field"><label>Expected guests</label><input id="guests" type="number" min="1"></div><div class="field"><label>Special requirements</label><input id="requirements" placeholder="Drone, live LED, express delivery, etc."></div></div><div class="pay-note"><b>Book Now + Payment</b><span>The production booking API will create a payment order only after your requested date and package details are submitted. This prevents a simple enquiry-only flow.</span></div><button class="btn gold" type="submit">Book Now & Continue to Payment</button><a class="btn" href="https://wa.me/917044007755" style="margin-left:8px">WhatsApp Studio</a></form><aside class="checkout-card summary"><span class="eyebrow">Your booking</span><h2 id="summaryName">Select a package</h2><div id="summaryEvents" class="event-plan"></div><div class="summary-total"><span>Package price</span><strong id="summaryPrice">₹0</strong></div><div class="booking-trust"><span>✓ Date request captured</span><span>✓ Venue details captured</span><span>✓ Functions mapped by day</span><span>✓ Payment-ready booking</span></div></aside></div></section>
 <nav class="mobile-bottom-nav" aria-label="Mobile navigation"><a href="index.html"><span>⌂</span>Home</a><button type="button" onclick="mobileMenu()"><span>☰</span>Menu</button><a href="shop.html"><span>▣</span>Shop</a><a href="booking.html"><span>◈</span>Book</a><button type="button" data-open-cart><span>🛒</span>Cart <b data-cart-count>0</b></button></nav>
 <footer class="footer"><div class="wrap footgrid"><div><a class="logo" href="index.html"><img class="brand-logo" src="assets/lightroom-logo.png" alt="Lightroom Productions"></a><p>Luxury wedding stories and premium photo products, crafted in India.</p></div><div><h4>Contact</h4><p>WhatsApp: +91 70440 07755</p><p>help.lightroomproductions@gmail.com</p><p>care.lightroomproductions@gmail.com</p></div></div><div class="wrap" style="border-top:1px solid #1c4854;margin-top:35px;padding-top:18px;font-size:10px;color:#88a0a5">© 2026 Lightroom Productions</div></footer>
-<script src="assets/site.js"></script><script src="assets/packages.js"></script><script>
-const sel=document.getElementById('selectedPackage');Object.values(PACKAGE_GROUPS).flat().forEach(p=>{const o=document.createElement('option');o.value=p.name;o.textContent=p.name+' — ₹'+Number(p.price).toLocaleString('en-IN')+' — '+p.days;o.dataset.package=p.name;sel.appendChild(o)});
+<script src="assets/site.js"></script><script src="assets/packages.js"></script><script src="https://checkout.razorpay.com/v1/checkout.js"></script><script>
+const $=id=>document.getElementById(id);
+const sel=$('selectedPackage'), startDate=$('eventDate'), endDate=$('endDate');
+Object.values(PACKAGE_GROUPS).flat().forEach(p=>{const o=document.createElement('option');o.value=p.name;o.textContent=p.name+' — ₹'+Number(p.price).toLocaleString('en-IN')+' — '+p.days;sel.appendChild(o)});
 function getPkg(){return Object.values(PACKAGE_GROUPS).flat().find(p=>p.name===sel.value)}
-function showPkg(){const p=getPkg();const box=document.getElementById('functionChoices');const summary=document.getElementById('packageSummary');if(!p){box.innerHTML='';summary.innerHTML='';document.getElementById('summaryName').textContent='Select a package';document.getElementById('summaryPrice').textContent='₹0';return}document.getElementById('summaryName').textContent=p.name;document.getElementById('summaryPrice').textContent='₹'+Number(p.price).toLocaleString('en-IN');document.getElementById('summaryEvents').innerHTML=p.events.map((e,i)=>`<div><span>${i+1}</span>${esc(e)}</div>`).join('');summary.innerHTML=`<div><b>${esc(p.days)}</b> • ${esc(p.team)}</div><ul>${p.deliverables.slice(0,5).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;box.innerHTML=p.events.map((e,i)=>`<label class="check"><input type="checkbox" value="${esc(e)}" checked> ${esc(e)}</label>`).join('')}
-sel.addEventListener('change',showPkg);const q=new URLSearchParams(location.search).get('package');if(q){sel.value=q;showPkg()}
-document.getElementById('bookingForm').addEventListener('submit',async e=>{e.preventDefault();const p=getPkg();if(!p)return;const functions=[...document.querySelectorAll('#functionChoices input:checked')].map(x=>x.value);const payload={package:{name:p.name,price:p.price,days:p.days},client:{bride:bName.value,groom:gName.value,phone:bPhone.value,email:bEmail.value},dates:{start:eventDate.value,end:endDate.value},functions,venue:{name:venue.value,city:city.value,address:venueAddress.value},guests:guests.value,requirements:requirements.value};try{const r=await fetch('/api/create-booking-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});if(!r.ok)throw new Error('backend');const order=await r.json();if(order.checkoutUrl)location.href=order.checkoutUrl;else if(window.Razorpay&&order.options)new Razorpay(order.options).open();else throw new Error('payment');}catch(err){alert('The booking flow is ready, but the live payment/availability server is not connected yet. Connect the booking API + Razorpay before publishing live bookings. Your date and venue fields are already structured for the backend.')}});
+function money(n){return '₹'+Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2})}
+function showPkg(){
+  const p=getPkg(), box=$('functionChoices'), summary=$('packageSummary');
+  if(!p){box.innerHTML='';summary.innerHTML='';$('summaryName').textContent='Select a package';$('summaryPrice').textContent='₹0';return}
+  const advance=Math.round(p.price*0.30*100)/100, eventEnd=Math.round(p.price*0.50*100)/100, deliverables=Math.round((p.price-advance-eventEnd)*100)/100;
+  $('summaryName').textContent=p.name; $('summaryPrice').textContent=money(p.price);
+  $('summaryEvents').innerHTML=p.events.map((e,i)=>`<div><span>${i+1}</span>${esc(e)}</div>`).join('');
+  summary.innerHTML=`<div><b>${esc(p.days)}</b> • ${esc(p.team)}</div><ul>${p.deliverables.slice(0,5).map(x=>`<li>${esc(x)}</li>`).join('')}</ul><div class="payment-plan"><b>Payment schedule</b><div>30% booking advance: ${money(advance)}</div><div>50% on event ending date: ${money(eventEnd)}</div><div>20% before final deliverables: ${money(deliverables)}</div></div>`;
+  box.innerHTML=p.events.map((e)=>`<label class="check"><input type="checkbox" value="${esc(e)}" checked> ${esc(e)}</label>`).join('');
+}
+sel.addEventListener('change',showPkg);
+const q=new URLSearchParams(location.search).get('package');if(q){sel.value=q;showPkg()}
+startDate.addEventListener('change',()=>{if(!endDate.value||endDate.value<startDate.value)endDate.value=startDate.value});
+async function checkAvailability(start,end){
+  const r=await fetch('/api/check-availability',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({start,end:end||start})});
+  const data=await r.json();
+  if(!r.ok)throw new Error(data.error||'Unable to check availability');
+  return data;
+}
+async function startBooking(){
+  const p=getPkg();
+  if(!p)throw new Error('Please select a wedding package.');
+  const start=startDate.value,end=endDate.value||start;
+  if(!start)throw new Error('Please select your event date.');
+  if(end<start)throw new Error('End date cannot be before the start date.');
+  const availability=await checkAvailability(start,end);
+  if(!availability.available)throw new Error('These dates are already reserved or temporarily held. Please choose different dates.');
+  const functions=[...document.querySelectorAll('#functionChoices input:checked')].map(x=>x.value);
+  const payload={package:{name:p.name},client:{bride:$('bName').value,groom:$('gName').value,phone:$('bPhone').value,email:$('bEmail').value},dates:{start,end},functions,venue:{name:$('venue').value,city:$('city').value,address:$('venueAddress').value},guests:$('guests').value,requirements:$('requirements').value};
+  const r=await fetch('/api/create-booking-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  const data=await r.json();
+  if(!r.ok)throw new Error(data.error||'Unable to create the booking.');
+  if(!window.Razorpay)throw new Error('Razorpay checkout script is not loaded.');
+  const rz=new Razorpay({...data.options,handler:async function(response){
+    try{
+      const vr=await fetch('/api/verify-booking-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({booking_id:data.bookingId,razorpay_order_id:response.razorpay_order_id,razorpay_payment_id:response.razorpay_payment_id,razorpay_signature:response.razorpay_signature})});
+      const result=await vr.json();
+      if(!vr.ok||!result.success)throw new Error(result.error||'Payment verification failed.');
+      location.href='booking-success.html?booking_id='+encodeURIComponent(data.bookingId)+'&payment_id='+encodeURIComponent(response.razorpay_payment_id);
+    }catch(err){console.error(err);alert(err.message||'Payment was received but booking confirmation could not be completed. Please contact the studio immediately.');}
+  }});
+  rz.on('payment.failed',resp=>{console.error(resp.error);alert('Payment failed. Your date hold will expire automatically if the booking is not completed. Please try again.')});
+  rz.open();
+}
+$('bookingForm').addEventListener('submit',async e=>{e.preventDefault();const btn=e.submitter||$('bookingForm').querySelector('button[type=submit]');const original=btn.textContent;btn.disabled=true;btn.textContent='Checking date & opening payment…';try{await startBooking()}catch(err){console.error(err);alert(err.message||'Unable to start booking.')}finally{btn.disabled=false;btn.textContent=original}});
 </script></body></html>
