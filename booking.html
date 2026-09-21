@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<meta name="description" content="Book your Lightroom Productions wedding date with package, functions and venue details.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Book Your Date | Lightroom Productions</title>
+
+<meta name="description" content="Book your Lightroom Productions wedding photography and cinematography package.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +20,10 @@
 
 <body data-page="booking">
 
+<!-- =========================================================
+TOP BAR
+========================================================= -->
+
 <div class="topbar">
   <div class="wrap">
     <span>Wedding Capital • Lightroom Productions</span>
@@ -27,11 +31,16 @@
   </div>
 </div>
 
+
+<!-- =========================================================
+HEADER
+========================================================= -->
+
 <header class="header">
 
   <div class="wrap head1">
 
-    <a class="logo" href="index.html" aria-label="Lightroom Productions">
+    <a class="logo" href="index.html">
       <img
         class="brand-logo"
         src="assets/lightroom-logo.png"
@@ -42,8 +51,8 @@
     <button
       class="hamb"
       type="button"
-      aria-label="Open menu"
       onclick="mobileMenu()"
+      aria-label="Menu"
     >
       ☰
     </button>
@@ -51,6 +60,7 @@
     <div class="search">
       <input
         data-search
+        type="search"
         placeholder="Search wedding packages, frames, albums, gifts..."
       >
       <button type="button">Search</button>
@@ -58,13 +68,13 @@
 
     <div class="head-actions">
 
-      <a class="action book-head" href="booking.html">
-        Booking
+      <a class="action" href="booking.html">
+        BOOKING
         <span>Check your date</span>
       </a>
 
-      <a class="action account-head" href="about.html">
-        Account
+      <a class="action" href="about.html">
+        ACCOUNT
         <span>Studio</span>
       </a>
 
@@ -79,61 +89,85 @@
       </button>
 
     </div>
+
   </div>
+
 
   <div class="menu">
+
     <div class="wrap">
 
-      <a href="index.html">Home</a>
-      <a href="packages.html">Wedding Packages</a>
-      <a href="wedding-photography.html">Photography</a>
-      <a href="wedding-cinematography.html">Cinematography</a>
-      <a href="pre-wedding.html">Pre-Wedding</a>
-      <a href="engagement.html">Engagement</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="shop.html">Vowshot Shop</a>
-      <a href="albums.html">Albums</a>
-      <a href="frames.html">Frames</a>
-      <a href="contact.html">Contact</a>
+      <a href="index.html">HOME</a>
+      <a href="packages.html">WEDDING PACKAGES</a>
+      <a href="wedding-photography.html">PHOTOGRAPHY</a>
+      <a href="wedding-cinematography.html">CINEMATOGRAPHY</a>
+      <a href="pre-wedding.html">PRE-WEDDING</a>
+      <a href="engagement.html">ENGAGEMENT</a>
+      <a href="portfolio.html">PORTFOLIO</a>
+      <a href="shop.html">VOWSHOT SHOP</a>
+      <a href="albums.html">ALBUMS</a>
+      <a href="frames.html">FRAMES</a>
+      <a href="contact.html">CONTACT</a>
 
     </div>
+
   </div>
+
 
   <div class="brand-rail">
 
     <div class="wrap brand-rail-inner">
 
-      <span class="brand-rail-label">OUR BRANDS</span>
+      <span class="brand-rail-label">
+        OUR BRANDS
+      </span>
 
       <a class="subbrand" href="packages.html">
+
         <img
           src="assets/brands/wedding-capital.jpg"
           alt="Wedding Capital"
         >
+
         <span>Wedding Capital</span>
+
       </a>
 
-      <a class="subbrand" href="booking.html?service=baby">
+      <a
+        class="subbrand"
+        href="booking.html?service=baby"
+      >
+
         <img
           src="assets/brands/tinytoons.png"
           alt="TinyToons"
         >
+
         <span>TinyToons</span>
+
       </a>
 
       <a class="subbrand" href="shop.html">
+
         <img
           src="assets/brands/vowshot.jpg"
           alt="Vowshot"
         >
+
         <span>Vowshot</span>
+
       </a>
 
     </div>
+
   </div>
 
 </header>
 
+
+<!-- =========================================================
+PAGE HEADER
+========================================================= -->
 
 <section class="pagehead">
 
@@ -148,9 +182,11 @@
     </h1>
 
     <p style="color:#9db0b6;max-width:820px">
+
       Select your package, event dates, functions and venue.
-      Your booking request and payment are kept together so the studio
-      can confirm your calendar before production begins.
+      Your booking request and payment are kept together so
+      the studio can confirm your calendar before production begins.
+
     </p>
 
   </div>
@@ -158,11 +194,18 @@
 </section>
 
 
+<!-- =========================================================
+BOOKING
+========================================================= -->
+
 <section class="section">
 
   <div class="wrap booking-grid">
 
-    <!-- BOOKING FORM -->
+
+    <!-- =====================================================
+    FORM
+    ====================================================== -->
 
     <form
       id="bookingForm"
@@ -209,7 +252,7 @@
       ></div>
 
 
-      <!-- CLIENT -->
+      <!-- CLIENT NAMES -->
 
       <div class="two">
 
@@ -246,7 +289,7 @@
       </div>
 
 
-      <!-- PHONE EMAIL -->
+      <!-- CONTACT -->
 
       <div class="two">
 
@@ -390,7 +433,7 @@
       </div>
 
 
-      <!-- GUESTS / REQUIREMENTS -->
+      <!-- GUESTS -->
 
       <div class="two">
 
@@ -404,7 +447,6 @@
             id="guests"
             type="number"
             min="1"
-            inputmode="numeric"
           >
 
         </div>
@@ -427,7 +469,7 @@
       </div>
 
 
-      <!-- PAYMENT INFO -->
+      <!-- PAYMENT NOTE -->
 
       <div class="pay-note">
 
@@ -436,9 +478,11 @@
         </b>
 
         <span>
-          A 30% booking advance is required to reserve your wedding date.
-          The remaining 70% is scheduled as 50% on the event ending date
-          and 20% before final deliverables.
+
+          30% advance at booking.
+          50% on the event ending date.
+          20% before final deliverables.
+
         </span>
 
       </div>
@@ -452,16 +496,16 @@
           display:none;
           margin:15px 0;
           padding:14px 16px;
-          border:1px solid rgba(255,255,255,.12);
           border-radius:10px;
-          background:rgba(255,255,255,.03);
+          background:rgba(255,255,255,.04);
+          border:1px solid rgba(212,175,55,.30);
           color:#dce7ea;
           line-height:1.5;
         "
       ></div>
 
 
-      <!-- BUTTON -->
+      <!-- SUBMIT -->
 
       <button
         id="bookingSubmit"
@@ -483,12 +527,14 @@
     </form>
 
 
-    <!-- SUMMARY -->
+    <!-- =====================================================
+    BOOKING SUMMARY
+    ====================================================== -->
 
     <aside class="checkout-card summary">
 
       <span class="eyebrow">
-        Your booking
+        YOUR BOOKING
       </span>
 
       <h2 id="summaryName">
@@ -558,7 +604,9 @@
 </section>
 
 
-<!-- MOBILE NAV -->
+<!-- =========================================================
+MOBILE NAV
+========================================================= -->
 
 <nav
   class="mobile-bottom-nav"
@@ -600,7 +648,9 @@
 </nav>
 
 
-<!-- FOOTER -->
+<!-- =========================================================
+FOOTER
+========================================================= -->
 
 <footer class="footer">
 
@@ -668,152 +718,457 @@
 </footer>
 
 
-<!--
-========================================================
-REQUIRED JAVASCRIPT
-========================================================
--->
+<!-- =========================================================
+SITE JS
+========================================================= -->
 
 <script src="assets/site.js"></script>
-<script src="assets/packages.js"></script>
 
-<!-- RAZORPAY CHECKOUT -->
+
+<!-- =========================================================
+RAZORPAY
+========================================================= -->
+
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 
+<!-- =========================================================
+BOOKING APPLICATION
+========================================================= -->
+
 <script>
 
-/* ======================================================
-   BASIC HELPERS
-====================================================== */
-
-const $ = (id) => document.getElementById(id);
-
-const sel = $("selectedPackage");
-const startDate = $("eventDate");
-const endDate = $("endDate");
-const bookingForm = $("bookingForm");
-const bookingSubmit = $("bookingSubmit");
-const bookingStatus = $("bookingStatus");
+"use strict";
 
 
-/* ======================================================
-   ESCAPE HTML
-====================================================== */
+/* =========================================================
+PACKAGE DATA
+========================================================= */
 
-function escapeHtml(value) {
+const PACKAGE_GROUPS = {
 
-  return String(value ?? "")
-    .replace(/[&<>"']/g, function(match) {
+  singleSide: [
 
-      const map = {
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-      };
+    {
+      name: "Shubh Aarambh",
+      price: 34999,
+      days: "1 Day",
+      team: "Single Side",
+      events: [
+        "Day 1 Wedding + Reception"
+      ],
+      deliverables: [
+        "Wedding Photography",
+        "Wedding Cinematography",
+        "Reception Coverage",
+        "Couple Portraits"
+      ]
+    },
 
-      return map[match];
+
+    {
+      name: "Mangal Milan",
+      price: 44999,
+      days: "1 Day",
+      team: "Single Side",
+      events: [
+        "Wedding + Reception",
+        "Couple Portraits"
+      ],
+      deliverables: [
+        "Wedding Photography",
+        "Wedding Cinematography",
+        "Reception Coverage",
+        "Couple Portraits"
+      ]
+    },
+
+
+    {
+      name: "Rajsi Vivaah",
+      price: 54999,
+      days: "2 Days",
+      team: "Single Side",
+      events: [
+        "Day 1 Haldi / Mehendi",
+        "Day 2 Wedding + Reception"
+      ],
+      deliverables: [
+        "Haldi Photography",
+        "Mehendi Photography",
+        "Wedding Photography",
+        "Wedding Cinematography",
+        "Reception Coverage"
+      ]
+    },
+
+
+    {
+      name: "Royal Utsav",
+      price: 64999,
+      days: "2 Days",
+      team: "Single Side",
+      events: [
+        "Day 1 Pre-Wedding Functions",
+        "Day 2 Wedding + Reception"
+      ],
+      deliverables: [
+        "Pre-Wedding Functions",
+        "Wedding Photography",
+        "Wedding Cinematography",
+        "Reception Coverage",
+        "Couple Portraits"
+      ]
+    },
+
+
+    {
+      name: "Swarna Mahotsav",
+      price: 74999,
+      days: "3 Days",
+      team: "Single Side",
+      events: [
+        "Day 1 Mehendi / Haldi",
+        "Day 2 Wedding",
+        "Day 3 Reception / Post-Wedding"
+      ],
+      deliverables: [
+        "Mehendi Photography",
+        "Haldi Photography",
+        "Wedding Photography",
+        "Reception Photography",
+        "Post-Wedding Coverage"
+      ]
+    },
+
+
+    {
+      name: "Maharaja Signature",
+      price: 84999,
+      days: "3 Days",
+      team: "Single Side",
+      events: [
+        "Day 1 Pre-Wedding Functions",
+        "Day 2 Wedding",
+        "Day 3 Reception"
+      ],
+      deliverables: [
+        "Pre-Wedding Functions",
+        "Wedding Photography",
+        "Wedding Cinematography",
+        "Reception Coverage",
+        "Couple Portraits"
+      ]
+    },
+
+
+    {
+      name: "Imperial Dynasty",
+      price: 99999,
+      days: "3 Days",
+      team: "Single Side",
+      events: [
+        "Day 1 Haldi / Mehendi",
+        "Day 2 Wedding",
+        "Day 3 Reception / Couple Shoot"
+      ],
+      deliverables: [
+        "Haldi Photography",
+        "Mehendi Photography",
+        "Wedding Photography",
+        "Reception Coverage",
+        "Couple Shoot"
+      ]
+    },
+
+
+    {
+      name: "Raj Mahal Elite",
+      price: 124999,
+      days: "3 Days",
+      team: "Single Side",
+      events: [
+        "Day 1 Pre-Wedding Functions",
+        "Day 2 Wedding",
+        "Day 3 Reception + Couple Story"
+      ],
+      deliverables: [
+        "Pre-Wedding Coverage",
+        "Wedding Photography",
+        "Wedding Cinematography",
+        "Reception Coverage",
+        "Couple Story"
+      ]
+    },
+
+
+    {
+      name: "Crown Legacy",
+      price: 149999,
+      days: "4 Days",
+      team: "Single Side",
+      events: [
+        "Day 1 Mehendi",
+        "Day 2 Haldi",
+        "Day 3 Wedding",
+        "Day 4 Reception / Couple Shoot"
+      ],
+      deliverables: [
+        "Mehendi Coverage",
+        "Haldi Coverage",
+        "Wedding Photography",
+        "Reception Coverage",
+        "Couple Shoot"
+      ]
+    }
+
+  ],
+
+
+  bothSide: [
+
+    {
+      name: "Royal Sangam",
+      price: 89999,
+      days: "2 Days",
+      team: "Both Side",
+      events: [
+        "Day 1 Bride + Groom Side Functions",
+        "Day 2 Wedding + Reception"
+      ],
+      deliverables: [
+        "Bride Side Coverage",
+        "Groom Side Coverage",
+        "Wedding Photography",
+        "Wedding Cinematography",
+        "Reception Coverage"
+      ]
+    },
+
+
+    {
+      name: "Maharaja Sangam",
+      price: 109999,
+      days: "3 Days",
+      team: "Both Side",
+      events: [
+        "Day 1 Bride Side",
+        "Day 2 Groom Side",
+        "Day 3 Wedding / Reception"
+      ],
+      deliverables: [
+        "Bride Side Coverage",
+        "Groom Side Coverage",
+        "Wedding Photography",
+        "Wedding Cinematography",
+        "Reception Coverage"
+      ]
+    },
+
+
+    {
+      name: "Rajwada Heritage",
+      price: 129999,
+      days: "3 Days",
+      team: "Both Side",
+      events: [
+        "Day 1 Bride Side",
+        "Day 2 Groom Side",
+        "Day 3 Wedding + Reception"
+      ],
+      deliverables: [
+        "Bride Side Coverage",
+        "Groom Side Coverage",
+        "Wedding Photography",
+        "Wedding Cinematography",
+        "Reception Coverage"
+      ]
+    },
+
+
+    {
+      name: "Imperial Vivaah",
+      price: 149999,
+      days: "3 Days",
+      team: "Both Side",
+      events: [
+        "Day 1 Bride Side",
+        "Day 2 Groom Side",
+        "Day 3 Wedding / Reception"
+      ],
+      deliverables: [
+        "Bride Side Coverage",
+        "Groom Side Coverage",
+        "Wedding Photography",
+        "Wedding Cinematography",
+        "Reception Coverage"
+      ]
+    },
+
+
+    {
+      name: "Maharani Collection",
+      price: 174999,
+      days: "3 Days",
+      team: "Both Side",
+      events: [
+        "Day 1 Bride Side",
+        "Day 2 Groom Side",
+        "Day 3 Wedding + Reception"
+      ],
+      deliverables: [
+        "Bride Side Coverage",
+        "Groom Side Coverage",
+        "Wedding Photography",
+        "Wedding Cinematography",
+        "Editorial Couple Coverage"
+      ]
+    },
+
+
+    {
+      name: "Royal Dynasty",
+      price: 199999,
+      days: "4 Days",
+      team: "Both Side",
+      events: [
+        "Day 1 Bride Events",
+        "Day 2 Groom Events",
+        "Day 3 Wedding",
+        "Day 4 Reception / Grand Celebration"
+      ],
+      deliverables: [
+        "Bride Side Coverage",
+        "Groom Side Coverage",
+        "Wedding Photography",
+        "Wedding Cinematography",
+        "Grand Celebration Coverage"
+      ]
+    }
+
+  ]
+
+};
+
+
+/* =========================================================
+ELEMENTS
+========================================================= */
+
+const packageSelect =
+  document.getElementById("selectedPackage");
+
+const bookingForm =
+  document.getElementById("bookingForm");
+
+const submitButton =
+  document.getElementById("bookingSubmit");
+
+const statusBox =
+  document.getElementById("bookingStatus");
+
+const eventDate =
+  document.getElementById("eventDate");
+
+const endDate =
+  document.getElementById("endDate");
+
+
+/* =========================================================
+PACKAGE HELPERS
+========================================================= */
+
+function getAllPackages() {
+
+  return Object
+    .values(PACKAGE_GROUPS)
+    .flat();
+
+}
+
+
+function getSelectedPackage() {
+
+  return getAllPackages()
+    .find(function(packageItem) {
+
+      return packageItem.name ===
+        packageSelect.value;
 
     });
 
 }
 
 
-/* ======================================================
-   MONEY FORMAT
-====================================================== */
+/* =========================================================
+HTML ESCAPE
+========================================================= */
 
-function money(value) {
+function escapeHTML(value) {
 
-  return "₹" + Number(value || 0).toLocaleString(
-    "en-IN",
-    {
-      maximumFractionDigits: 2
-    }
-  );
+  return String(value ?? "")
+    .replace(/[&<>"']/g, function(character) {
 
-}
+      return {
 
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
 
-/* ======================================================
-   GET ALL PACKAGES
-====================================================== */
+      }[character];
 
-function getAllPackages() {
-
-  if (
-    typeof PACKAGE_GROUPS === "undefined" ||
-    !PACKAGE_GROUPS
-  ) {
-
-    console.error("PACKAGE_GROUPS is not available.");
-
-    return [];
-
-  }
-
-  return Object.values(PACKAGE_GROUPS).flat();
+    });
 
 }
 
 
-/* ======================================================
-   LOAD PACKAGE DROPDOWN
-====================================================== */
+/* =========================================================
+MONEY
+========================================================= */
 
-getAllPackages().forEach(function(packageItem) {
+function formatMoney(value) {
 
-  const option = document.createElement("option");
-
-  option.value = packageItem.name;
-
-  option.textContent =
-    packageItem.name +
-    " — " +
-    money(packageItem.price) +
-    " — " +
-    packageItem.days;
-
-  sel.appendChild(option);
-
-});
-
-
-/* ======================================================
-   FIND SELECTED PACKAGE
-====================================================== */
-
-function getPkg() {
-
-  return getAllPackages().find(function(packageItem) {
-
-    return packageItem.name === sel.value;
-
-  });
+  return "₹" +
+    Number(value || 0)
+      .toLocaleString(
+        "en-IN",
+        {
+          maximumFractionDigits: 2
+        }
+      );
 
 }
 
 
-/* ======================================================
-   SHOW STATUS
-====================================================== */
+/* =========================================================
+STATUS
+========================================================= */
 
-function showStatus(message, type) {
+function setStatus(message, type) {
 
-  bookingStatus.style.display = "block";
+  statusBox.style.display =
+    "block";
 
-  bookingStatus.textContent = message;
+  statusBox.textContent =
+    message;
+
 
   if (type === "error") {
 
-    bookingStatus.style.borderColor =
-      "rgba(255,80,80,.35)";
+    statusBox.style.color =
+      "#ffb5b5";
+
+    statusBox.style.borderColor =
+      "rgba(255,70,70,.45)";
 
   } else {
 
-    bookingStatus.style.borderColor =
+    statusBox.style.color =
+      "#dce7ea";
+
+    statusBox.style.borderColor =
       "rgba(212,175,55,.35)";
 
   }
@@ -821,49 +1176,104 @@ function showStatus(message, type) {
 }
 
 
-/* ======================================================
-   HIDE STATUS
-====================================================== */
+/* =========================================================
+LOAD DROPDOWN
+========================================================= */
 
-function hideStatus() {
+function populatePackageDropdown() {
 
-  bookingStatus.style.display = "none";
+  packageSelect.innerHTML =
+    '<option value="">Select a package</option>';
 
-  bookingStatus.textContent = "";
+
+  getAllPackages()
+    .forEach(function(packageItem) {
+
+      const option =
+        document.createElement("option");
+
+
+      option.value =
+        packageItem.name;
+
+
+      option.textContent =
+        packageItem.name +
+        " — " +
+        formatMoney(packageItem.price) +
+        " — " +
+        packageItem.days;
+
+
+      packageSelect.appendChild(
+        option
+      );
+
+    });
 
 }
 
 
-/* ======================================================
-   SHOW PACKAGE
-====================================================== */
+/* =========================================================
+DISPLAY PACKAGE
+========================================================= */
 
-function showPkg() {
+function updatePackageDisplay() {
 
-  const packageItem = getPkg();
+  const packageItem =
+    getSelectedPackage();
 
-  const functionBox = $("functionChoices");
 
-  const summary = $("packageSummary");
+  const packageSummary =
+    document.getElementById(
+      "packageSummary"
+    );
 
-  const paymentSchedule = $("paymentSchedule");
+  const functionChoices =
+    document.getElementById(
+      "functionChoices"
+    );
+
+  const summaryName =
+    document.getElementById(
+      "summaryName"
+    );
+
+  const summaryPrice =
+    document.getElementById(
+      "summaryPrice"
+    );
+
+  const summaryEvents =
+    document.getElementById(
+      "summaryEvents"
+    );
+
+  const paymentSchedule =
+    document.getElementById(
+      "paymentSchedule"
+    );
 
 
   if (!packageItem) {
 
-    functionBox.innerHTML = "";
+    packageSummary.innerHTML =
+      "";
 
-    summary.innerHTML = "";
+    functionChoices.innerHTML =
+      "";
 
-    $("summaryName").textContent =
+    summaryName.textContent =
       "Select a package";
 
-    $("summaryPrice").textContent =
+    summaryPrice.textContent =
       "₹0";
 
-    $("summaryEvents").innerHTML = "";
+    summaryEvents.innerHTML =
+      "";
 
-    paymentSchedule.innerHTML = "";
+    paymentSchedule.innerHTML =
+      "";
 
     return;
 
@@ -871,90 +1281,74 @@ function showPkg() {
 
 
   const total =
-    Number(packageItem.price || 0);
+    Number(packageItem.price);
 
 
   const advance =
-    Math.round(total * 0.30 * 100) / 100;
-
-
-  const eventEnd =
-    Math.round(total * 0.50 * 100) / 100;
-
-
-  const deliverables =
     Math.round(
-      (total - advance - eventEnd) * 100
+      total * 0.30 * 100
     ) / 100;
 
 
-  $("summaryName").textContent =
+  const eventPayment =
+    Math.round(
+      total * 0.50 * 100
+    ) / 100;
+
+
+  const finalPayment =
+    Math.round(
+      total * 0.20 * 100
+    ) / 100;
+
+
+  summaryName.textContent =
     packageItem.name;
 
 
-  $("summaryPrice").textContent =
-    money(total);
+  summaryPrice.textContent =
+    formatMoney(total);
 
 
   /* EVENT PLAN */
 
-  if (
-    Array.isArray(packageItem.events)
-  ) {
+  summaryEvents.innerHTML =
+    packageItem.events
+      .map(function(eventName, index) {
 
-    $("summaryEvents").innerHTML =
-      packageItem.events
-        .map(function(eventName, index) {
+        return `
+          <div>
+            <span>${index + 1}</span>
+            ${escapeHTML(eventName)}
+          </div>
+        `;
 
-          return `
-            <div>
-              <span>${index + 1}</span>
-              ${escapeHtml(eventName)}
-            </div>
-          `;
-
-        })
-        .join("");
-
-  } else {
-
-    $("summaryEvents").innerHTML = "";
-
-  }
+      })
+      .join("");
 
 
-  /* PACKAGE DETAILS */
+  /* PACKAGE SUMMARY */
 
-  const deliverablesList =
-    Array.isArray(packageItem.deliverables)
-      ? packageItem.deliverables
-      : [];
-
-
-  summary.innerHTML = `
+  packageSummary.innerHTML = `
 
     <div>
       <b>
-        ${escapeHtml(packageItem.days || "")}
+        ${escapeHTML(packageItem.days)}
       </b>
 
-      ${
-        packageItem.team
-          ? " • " + escapeHtml(packageItem.team)
-          : ""
-      }
-
+      •
+      ${escapeHTML(packageItem.team)}
     </div>
 
     <ul>
 
-      ${deliverablesList
+      ${packageItem.deliverables
         .slice(0, 5)
         .map(function(item) {
 
           return `
             <li>
-              ${escapeHtml(item)}
+              ${escapeHTML(item)}
             </li>
           `;
 
@@ -966,153 +1360,173 @@ function showPkg() {
   `;
 
 
-  /* PAYMENT PLAN */
+  /* FUNCTIONS */
+
+  functionChoices.innerHTML =
+    packageItem.events
+      .map(function(eventName) {
+
+        return `
+
+          <label class="check">
+
+            <input
+              type="checkbox"
+              value="${escapeHTML(eventName)}"
+              checked
+            >
+
+            ${escapeHTML(eventName)}
+
+          </label>
+
+        `;
+
+      })
+      .join("");
+
+
+  /* PAYMENT SCHEDULE */
 
   paymentSchedule.innerHTML = `
 
-    <div style="font-weight:700;margin-bottom:7px;">
+    <div
+      style="
+        font-weight:700;
+        margin-bottom:8px;
+      "
+    >
       Payment Schedule
     </div>
 
-    <div>
-      <span style="opacity:.75;">
-        30% Booking Advance
-      </span>
 
-      <strong style="float:right;">
-        ${money(advance)}
+    <div>
+      30% Booking Advance
+
+      <strong style="float:right">
+        ${formatMoney(advance)}
       </strong>
     </div>
 
-    <div>
-      <span style="opacity:.75;">
-        50% on Event Ending Date
-      </span>
 
-      <strong style="float:right;">
-        ${money(eventEnd)}
+    <div>
+      50% on Event Ending Date
+
+      <strong style="float:right">
+        ${formatMoney(eventPayment)}
       </strong>
     </div>
 
-    <div>
-      <span style="opacity:.75;">
-        20% Before Final Deliverables
-      </span>
 
-      <strong style="float:right;">
-        ${money(deliverables)}
+    <div>
+      20% Before Final Deliverables
+
+      <strong style="float:right">
+        ${formatMoney(finalPayment)}
       </strong>
     </div>
+
 
     <div
       style="
-        border-top:1px solid rgba(255,255,255,.1);
+        border-top:1px solid rgba(255,255,255,.12);
         margin-top:10px;
         padding-top:10px;
       "
     >
-      <span style="opacity:.75;">
-        Total Package
-      </span>
 
-      <strong style="float:right;">
-        ${money(total)}
+      Total Package
+
+      <strong style="float:right">
+        ${formatMoney(total)}
       </strong>
+
     </div>
 
   `;
 
-
-  /* FUNCTION CHECKBOXES */
-
-  if (
-    Array.isArray(packageItem.events)
-  ) {
-
-    functionBox.innerHTML =
-      packageItem.events
-        .map(function(eventName) {
-
-          return `
-
-            <label class="check">
-
-              <input
-                type="checkbox"
-                value="${escapeHtml(eventName)}"
-                checked
-              >
-
-              ${escapeHtml(eventName)}
-
-            </label>
-
-          `;
-
-        })
-        .join("");
-
-  } else {
-
-    functionBox.innerHTML = "";
-
-  }
-
 }
 
 
-/* ======================================================
-   PACKAGE CHANGE
-====================================================== */
+/* =========================================================
+PACKAGE CHANGE
+========================================================= */
 
-sel.addEventListener(
+packageSelect.addEventListener(
   "change",
   function() {
 
-    hideStatus();
-
-    showPkg();
+    updatePackageDisplay();
 
   }
 );
 
 
-/* ======================================================
-   PACKAGE FROM URL
-   Example:
-   booking.html?package=Royal%20Utsav
-====================================================== */
+/* =========================================================
+URL PACKAGE
+========================================================= */
 
-const urlPackage =
-  new URLSearchParams(
-    window.location.search
-  ).get("package");
+function loadPackageFromURL() {
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
 
 
-if (urlPackage) {
+  const requestedPackage =
+    params.get("package");
 
-  sel.value = urlPackage;
 
-  showPkg();
+  if (!requestedPackage) {
+
+    return;
+
+  }
+
+
+  const packageItem =
+    getAllPackages()
+      .find(function(item) {
+
+        return (
+          item.name.toLowerCase() ===
+          requestedPackage.toLowerCase()
+        );
+
+      });
+
+
+  if (packageItem) {
+
+    packageSelect.value =
+      packageItem.name;
+
+    updatePackageDisplay();
+
+  }
 
 }
 
 
-/* ======================================================
-   DATE DEFAULTS
-====================================================== */
+/* =========================================================
+END DATE
+========================================================= */
 
-startDate.addEventListener(
+eventDate.addEventListener(
   "change",
   function() {
 
     if (
-      !endDate.value ||
-      endDate.value < startDate.value
+      eventDate.value &&
+      (
+        !endDate.value ||
+        endDate.value < eventDate.value
+      )
     ) {
 
       endDate.value =
-        startDate.value;
+        eventDate.value;
 
     }
 
@@ -1120,9 +1534,9 @@ startDate.addEventListener(
 );
 
 
-/* ======================================================
-   CHECK DATE AVAILABILITY
-====================================================== */
+/* =========================================================
+CHECK AVAILABILITY
+========================================================= */
 
 async function checkAvailability(
   start,
@@ -1133,6 +1547,7 @@ async function checkAvailability(
     await fetch(
       "/api/check-availability",
       {
+
         method: "POST",
 
         headers: {
@@ -1141,14 +1556,20 @@ async function checkAvailability(
         },
 
         body: JSON.stringify({
+
           start: start,
-          end: end || start
+
+          end:
+            end || start
+
         })
+
       }
     );
 
 
-  let data = {};
+  let data;
+
 
   try {
 
@@ -1158,7 +1579,7 @@ async function checkAvailability(
   } catch (error) {
 
     throw new Error(
-      "The availability server returned an invalid response."
+      "Availability server returned an invalid response."
     );
 
   }
@@ -1179,13 +1600,14 @@ async function checkAvailability(
 }
 
 
-/* ======================================================
-   CREATE WEDDING BOOKING + RAZORPAY ORDER
-====================================================== */
+/* =========================================================
+CREATE BOOKING ORDER
+========================================================= */
 
-async function createBooking() {
+async function createBookingOrder() {
 
-  const packageItem = getPkg();
+  const packageItem =
+    getSelectedPackage();
 
 
   if (!packageItem) {
@@ -1198,7 +1620,7 @@ async function createBooking() {
 
 
   const start =
-    startDate.value;
+    eventDate.value;
 
 
   const end =
@@ -1208,30 +1630,25 @@ async function createBooking() {
   if (!start) {
 
     throw new Error(
-      "Please select your event date."
+      "Please select your primary event date."
     );
 
   }
 
 
-  if (
-    end &&
-    end < start
-  ) {
+  if (end < start) {
 
     throw new Error(
-      "End date cannot be before the start date."
+      "End date cannot be before the primary event date."
     );
 
   }
 
 
-  /* --------------------------------------------------
-     CHECK DATE AVAILABILITY
-  -------------------------------------------------- */
+  /* CHECK AVAILABILITY */
 
-  showStatus(
-    "Checking your requested wedding dates...",
+  setStatus(
+    "Checking wedding date availability...",
     "info"
   );
 
@@ -1243,40 +1660,47 @@ async function createBooking() {
     );
 
 
-  if (!availability.available) {
+  if (
+    availability &&
+    availability.available === false
+  ) {
 
     throw new Error(
-      "These dates are already reserved or temporarily held. Please choose different dates."
+      "This wedding date is already reserved. Please select another date."
     );
 
   }
 
 
-  /* --------------------------------------------------
-     SELECTED FUNCTIONS
-  -------------------------------------------------- */
+  /* FUNCTIONS */
 
   const functions =
     Array.from(
       document.querySelectorAll(
         "#functionChoices input:checked"
       )
-    ).map(function(input) {
+    )
+    .map(function(input) {
 
       return input.value;
 
     });
 
 
-  /* --------------------------------------------------
-     BOOKING PAYLOAD
-  -------------------------------------------------- */
+  /* PAYLOAD */
 
   const payload = {
 
     package: {
 
-      name: packageItem.name
+      name:
+        packageItem.name,
+
+      price:
+        packageItem.price,
+
+      days:
+        packageItem.days
 
     },
 
@@ -1284,59 +1708,86 @@ async function createBooking() {
     client: {
 
       bride:
-        $("bName").value.trim(),
+        document
+          .getElementById("bName")
+          .value
+          .trim(),
 
       groom:
-        $("gName").value.trim(),
+        document
+          .getElementById("gName")
+          .value
+          .trim(),
 
       phone:
-        $("bPhone").value.trim(),
+        document
+          .getElementById("bPhone")
+          .value
+          .trim(),
 
       email:
-        $("bEmail").value.trim()
+        document
+          .getElementById("bEmail")
+          .value
+          .trim()
 
     },
 
 
     dates: {
 
-      start: start,
+      start:
+        start,
 
-      end: end
+      end:
+        end
 
     },
 
 
-    functions: functions,
+    functions:
+      functions,
 
 
     venue: {
 
       name:
-        $("venue").value.trim(),
+        document
+          .getElementById("venue")
+          .value
+          .trim(),
 
       city:
-        $("city").value.trim(),
+        document
+          .getElementById("city")
+          .value
+          .trim(),
 
       address:
-        $("venueAddress").value.trim()
+        document
+          .getElementById("venueAddress")
+          .value
+          .trim()
 
     },
 
 
     guests:
-      $("guests").value,
+      document
+        .getElementById("guests")
+        .value,
 
 
     requirements:
-      $("requirements").value.trim()
+      document
+        .getElementById("requirements")
+        .value
+        .trim()
 
   };
 
 
-  /* --------------------------------------------------
-     BASIC VALIDATION
-  -------------------------------------------------- */
+  /* VALIDATION */
 
   if (!payload.client.bride) {
 
@@ -1386,17 +1837,15 @@ async function createBooking() {
   if (!payload.venue.address) {
 
     throw new Error(
-      "Please enter the complete venue address."
+      "Please enter the venue address."
     );
 
   }
 
 
-  /* --------------------------------------------------
-     CREATE BACKEND ORDER
-  -------------------------------------------------- */
+  /* CREATE BACKEND ORDER */
 
-  showStatus(
+  setStatus(
     "Creating your booking and payment order...",
     "info"
   );
@@ -1406,6 +1855,7 @@ async function createBooking() {
     await fetch(
       "/api/create-booking-order",
       {
+
         method: "POST",
 
         headers: {
@@ -1415,11 +1865,13 @@ async function createBooking() {
 
         body:
           JSON.stringify(payload)
+
       }
     );
 
 
-  let data = {};
+  let data;
+
 
   try {
 
@@ -1429,7 +1881,7 @@ async function createBooking() {
   } catch (error) {
 
     throw new Error(
-      "The booking server returned an invalid response."
+      "Booking server returned an invalid response."
     );
 
   }
@@ -1439,7 +1891,7 @@ async function createBooking() {
 
     throw new Error(
       data.error ||
-      "Unable to create the wedding booking."
+      "Unable to create the booking."
     );
 
   }
@@ -1457,15 +1909,13 @@ async function createBooking() {
   if (!data.options) {
 
     throw new Error(
-      "Razorpay payment options were not returned."
+      "Razorpay payment information was not returned."
     );
 
   }
 
 
-  /* --------------------------------------------------
-     CHECK RAZORPAY SCRIPT
-  -------------------------------------------------- */
+  /* RAZORPAY */
 
   if (
     typeof window.Razorpay ===
@@ -1473,57 +1923,39 @@ async function createBooking() {
   ) {
 
     throw new Error(
-      "Razorpay Checkout could not be loaded. Please refresh the page and try again."
+      "Razorpay Checkout could not be loaded. Please refresh the page."
     );
 
   }
 
 
-  /* --------------------------------------------------
-     PAYMENT INFORMATION
-  -------------------------------------------------- */
-
-  const paymentAmount =
-    Number(data.amount || 0) / 100;
-
-
-  showStatus(
-    "Booking created. Opening secure Razorpay checkout for " +
-    money(paymentAmount) +
-    " advance...",
+  setStatus(
+    "Opening secure Razorpay checkout...",
     "info"
   );
 
-
-  /* --------------------------------------------------
-     RAZORPAY OPTIONS
-  -------------------------------------------------- */
 
   const razorpayOptions = {
 
     ...data.options,
 
 
-    /* PAYMENT SUCCESS */
-
     handler:
-      async function(paymentResponse) {
+      async function(payment) {
 
         try {
 
-          showStatus(
-            "Payment received. Verifying your payment and confirming the wedding date...",
+          setStatus(
+            "Payment received. Verifying payment and confirming your booking...",
             "info"
           );
-
-
-          bookingSubmit.disabled = true;
 
 
           const verificationResponse =
             await fetch(
               "/api/verify-booking-payment",
               {
+
                 method: "POST",
 
                 headers: {
@@ -1538,20 +1970,22 @@ async function createBooking() {
                       data.bookingId,
 
                     razorpay_order_id:
-                      paymentResponse.razorpay_order_id,
+                      payment.razorpay_order_id,
 
                     razorpay_payment_id:
-                      paymentResponse.razorpay_payment_id,
+                      payment.razorpay_payment_id,
 
                     razorpay_signature:
-                      paymentResponse.razorpay_signature
+                      payment.razorpay_signature
 
                   })
+
               }
             );
 
 
-          let verificationData = {};
+          let verificationData;
+
 
           try {
 
@@ -1561,7 +1995,7 @@ async function createBooking() {
           } catch (error) {
 
             throw new Error(
-              "Payment verification server returned an invalid response."
+              "Payment verification returned an invalid response."
             );
 
           }
@@ -1580,17 +2014,9 @@ async function createBooking() {
           }
 
 
-          /* ------------------------------------------
-             SUCCESS
-          ------------------------------------------ */
+          /* SUCCESS */
 
-          showStatus(
-            "Payment verified successfully. Your wedding booking is confirmed.",
-            "success"
-          );
-
-
-          const successUrl =
+          window.location.href =
             "booking-success.html" +
             "?booking_id=" +
             encodeURIComponent(
@@ -1598,55 +2024,58 @@ async function createBooking() {
             ) +
             "&payment_id=" +
             encodeURIComponent(
-              paymentResponse.razorpay_payment_id
+              payment.razorpay_payment_id
             );
 
-
-          window.location.href =
-            successUrl;
-
-        } catch (verificationError) {
+        } catch (error) {
 
           console.error(
             "Payment verification error:",
-            verificationError
+            error
           );
 
 
-          bookingSubmit.disabled = false;
-
-
-          showStatus(
-            verificationError.message ||
-            "Payment was received, but booking confirmation could not be completed.",
+          setStatus(
+            error.message ||
+            "Payment verification failed.",
             "error"
           );
 
 
           alert(
-            "Payment was received, but we could not complete the booking confirmation.\n\n" +
+            "Payment was received, but booking confirmation failed.\n\n" +
             "Booking ID: " +
             data.bookingId +
             "\n\n" +
-            "Please contact Lightroom Productions immediately and provide this Booking ID."
+            "Please contact Lightroom Productions."
           );
+
+
+          submitButton.disabled =
+            false;
+
+          submitButton.textContent =
+            "Book Now & Continue to Payment";
 
         }
 
       },
 
 
-    /* PAYMENT FAILED */
-
     modal: {
 
       ondismiss:
         function() {
 
-          bookingSubmit.disabled = false;
+          submitButton.disabled =
+            false;
 
-          showStatus(
-            "Payment window closed. Your date hold will expire automatically if the booking is not completed.",
+          submitButton.textContent =
+            "Book Now & Continue to Payment";
+
+
+          setStatus(
+            "Payment window was closed. The booking was not paid.",
             "error"
           );
 
@@ -1657,19 +2086,11 @@ async function createBooking() {
   };
 
 
-  /* --------------------------------------------------
-     CREATE RAZORPAY WINDOW
-  -------------------------------------------------- */
-
   const razorpay =
     new window.Razorpay(
       razorpayOptions
     );
 
-
-  /* --------------------------------------------------
-     RAZORPAY ERROR EVENT
-  -------------------------------------------------- */
 
   razorpay.on(
     "payment.failed",
@@ -1681,26 +2102,22 @@ async function createBooking() {
       );
 
 
-      bookingSubmit.disabled = false;
+      submitButton.disabled =
+        false;
+
+      submitButton.textContent =
+        "Book Now & Continue to Payment";
 
 
-      let errorMessage =
-        "Payment failed. Please try again.";
-
-
-      if (
+      const errorMessage =
         response &&
         response.error &&
         response.error.description
-      ) {
-
-        errorMessage =
-          response.error.description;
-
-      }
+          ? response.error.description
+          : "Payment failed. Please try again.";
 
 
-      showStatus(
+      setStatus(
         errorMessage,
         "error"
       );
@@ -1709,18 +2126,14 @@ async function createBooking() {
   );
 
 
-  /* --------------------------------------------------
-     OPEN RAZORPAY
-  -------------------------------------------------- */
-
   razorpay.open();
 
 }
 
 
-/* ======================================================
-   FORM SUBMISSION
-====================================================== */
+/* =========================================================
+FORM SUBMIT
+========================================================= */
 
 bookingForm.addEventListener(
   "submit",
@@ -1729,14 +2142,7 @@ bookingForm.addEventListener(
     event.preventDefault();
 
 
-    hideStatus();
-
-
-    /* Native browser validation */
-
-    if (
-      !bookingForm.checkValidity()
-    ) {
+    if (!bookingForm.checkValidity()) {
 
       bookingForm.reportValidity();
 
@@ -1745,21 +2151,17 @@ bookingForm.addEventListener(
     }
 
 
-    const originalText =
-      bookingSubmit.textContent;
-
-
-    bookingSubmit.disabled =
+    submitButton.disabled =
       true;
 
 
-    bookingSubmit.textContent =
-      "Checking date & opening payment…";
+    submitButton.textContent =
+      "Checking availability...";
 
 
     try {
 
-      await createBooking();
+      await createBookingOrder();
 
     } catch (error) {
 
@@ -1769,36 +2171,38 @@ bookingForm.addEventListener(
       );
 
 
-      showStatus(
+      setStatus(
         error.message ||
-        "Unable to start the wedding booking.",
+        "Unable to start booking.",
         "error"
       );
 
 
       alert(
         error.message ||
-        "Unable to start the wedding booking."
+        "Unable to start booking."
       );
 
 
-      bookingSubmit.disabled =
+      submitButton.disabled =
         false;
 
 
-      bookingSubmit.textContent =
-        originalText;
+      submitButton.textContent =
+        "Book Now & Continue to Payment";
 
     }
 
   });
 
 
-/* ======================================================
-   INITIAL PACKAGE
-====================================================== */
+/* =========================================================
+INITIALIZE
+========================================================= */
 
-showPkg();
+populatePackageDropdown();
+
+loadPackageFromURL();
 
 </script>
 
