@@ -1,1 +1,339 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Booking Confirmed | Lightroom Productions</title><link rel="stylesheet" href="assets/style.css"><link rel="stylesheet" href="assets/futuristic.css"><link rel="stylesheet" href="assets/marketplace.css"></head><body><section class="section"><div class="wrap" style="max-width:760px;text-align:center;padding-top:90px"><div class="checkout-card"><span class="eyebrow">Wedding Booking Confirmed</span><h1>Your date is reserved.</h1><p class="muted">Thank you for booking Lightroom Productions. Your 30% booking advance has been verified and your requested wedding dates are now marked as confirmed.</p><div class="summary-total" style="margin:28px 0"><span>Booking ID</span><strong id="bookingId">—</strong></div><p class="muted">Payment schedule: <b>30%</b> at booking • <b>50%</b> on the event ending date • <b>20%</b> before final deliverables.</p><p class="muted">Our studio team can now follow up with the remaining production and payment details.</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><a class="btn gold" href="index.html">Back to Home</a><a class="btn" href="https://wa.me/917044007755">WhatsApp Studio</a></div></div></div></section><script>const q=new URLSearchParams(location.search);document.getElementById('bookingId').textContent=q.get('booking_id')||'Confirmed';</script></body></html>
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Booking Confirmed | Lightroom Productions
+  </title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="assets/style.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="assets/futuristic.css"
+  >
+
+  <style>
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(212,175,55,.12),
+          transparent 40%
+        ),
+        #050505;
+      color: #fff;
+      font-family: Inter, sans-serif;
+    }
+
+    .success-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 18px;
+    }
+
+    .success-card {
+      width: min(680px, 100%);
+      padding: 45px 30px;
+      text-align: center;
+      border: 1px solid rgba(212,175,55,.3);
+      border-radius: 24px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.05),
+          rgba(255,255,255,.015)
+        );
+      box-shadow:
+        0 30px 100px rgba(0,0,0,.55);
+    }
+
+    .success-icon {
+      width: 78px;
+      height: 78px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 2px solid #d4af37;
+      color: #d4af37;
+      font-size: 38px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(42px, 7vw, 64px);
+      color: #d4af37;
+    }
+
+    .subtitle {
+      margin: 12px auto 30px;
+      max-width: 540px;
+      color: #a9b5b8;
+      line-height: 1.7;
+    }
+
+    .details {
+      margin: 25px 0;
+      padding: 20px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.035);
+      text-align: left;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .row:last-child {
+      border-bottom: 0;
+    }
+
+    .label {
+      color: #8fa2a6;
+    }
+
+    .value {
+      color: #fff;
+      text-align: right;
+      word-break: break-word;
+    }
+
+    .paid {
+      color: #d4af37;
+      font-weight: 700;
+    }
+
+    .actions {
+      margin-top: 25px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 9px;
+      text-decoration: none;
+      border: 1px solid rgba(212,175,55,.4);
+      color: #d4af37;
+    }
+
+    .btn.gold {
+      background: #d4af37;
+      color: #050505;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <main class="success-wrap">
+
+    <section class="success-card">
+
+      <div class="success-icon">
+        ✓
+      </div>
+
+      <h1>
+        Booking Confirmed
+      </h1>
+
+      <p class="subtitle">
+        Thank you for booking Lightroom Productions.
+        Your payment has been verified and your wedding
+        booking has been confirmed.
+      </p>
+
+      <div class="details">
+
+        <div class="row">
+
+          <span class="label">
+            Booking ID
+          </span>
+
+          <strong
+            class="value"
+            id="bookingId"
+          >
+            —
+          </strong>
+
+        </div>
+
+        <div class="row">
+
+          <span class="label">
+            Payment ID
+          </span>
+
+          <strong
+            class="value"
+            id="paymentId"
+          >
+            —
+          </strong>
+
+        </div>
+
+        <div class="row">
+
+          <span class="label">
+            Payment Type
+          </span>
+
+          <strong
+            class="value paid"
+            id="paymentType"
+          >
+            —
+          </strong>
+
+        </div>
+
+        <div class="row">
+
+          <span class="label">
+            Amount Paid
+          </span>
+
+          <strong
+            class="value paid"
+            id="amount"
+          >
+            —
+          </strong>
+
+        </div>
+
+      </div>
+
+      <p
+        style="
+          color:#91a2a6;
+          font-size:13px;
+          line-height:1.6
+        "
+      >
+        Our studio team will contact you regarding the
+        wedding schedule, production planning and remaining
+        payment schedule where applicable.
+      </p>
+
+      <div class="actions">
+
+        <a
+          class="btn gold"
+          href="index.html"
+        >
+          Back to Home
+        </a>
+
+        <a
+          class="btn"
+          href="booking.html"
+        >
+          Make Another Booking
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const bookingId =
+      params.get("booking_id") ||
+      "—";
+
+    const paymentId =
+      params.get("payment_id") ||
+      "—";
+
+    const paymentType =
+      params.get("payment_type") ||
+      "—";
+
+    const amount =
+      Number(
+        params.get("amount") || 0
+      );
+
+    document.getElementById(
+      "bookingId"
+    ).textContent =
+      bookingId;
+
+    document.getElementById(
+      "paymentId"
+    ).textContent =
+      paymentId;
+
+    document.getElementById(
+      "paymentType"
+    ).textContent =
+      paymentType === "full"
+        ? "Full Payment — 100%"
+        : "Booking Advance — 30%";
+
+    document.getElementById(
+      "amount"
+    ).textContent =
+      "₹" +
+      amount.toLocaleString(
+        "en-IN",
+        {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        }
+      );
+
+  </script>
+
+</body>
+
+</html>
