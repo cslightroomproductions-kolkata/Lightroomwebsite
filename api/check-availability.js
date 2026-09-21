@@ -1,595 +1,164 @@
-/**
- * Lightroom Productions
- * Wedding Date Availability API
- *
- * Endpoint:
- * POST /api/check-availability
- *
- * Checks whether the requested wedding dates overlap
- * with an existing booking in Supabase.
- */
-
 module.exports = async function handler(req, res) {
-
-  /* =====================================================
-     ALWAYS RETURN JSON
-  ===================================================== */
-
-  res.setHeader(
-    "Content-Type",
-    "application/json; charset=utf-8"
-  );
-
-  res.setHeader(
-    "Cache-Control",
-    "no-store, no-cache, must-revalidate"
-  );
-
-
-  /* =====================================================
-     CORS
-  ===================================================== */
-
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "*"
-  );
-
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS"
-  );
-
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Content-Type"
-  );
-
-
-  /* =====================================================
-     OPTIONS
-  ===================================================== */
+  res.setHeader("Content-Type", "application/json");
+  res.setHeader("Cache-Control", "no-store");
 
   if (req.method === "OPTIONS") {
-
-    return res.status(200).json({
-      success: true
-    });
-
+    return res.status(200).json({ success: true });
   }
-
-
-  /* =====================================================
-     GET = API HEALTH CHECK
-  ===================================================== */
 
   if (req.method === "GET") {
-
     return res.status(200).json({
-
       success: true,
-
-      service:
-        "Lightroom Productions Wedding Availability API",
-
-      status:
-        "online",
-
-      timestamp:
-        new Date().toISOString()
-
+      service: "Lightroom Productions Wedding Availability API",
+      status: "online",
+      timestamp: new Date().toISOString()
     });
-
   }
-
-
-  /* =====================================================
-     ONLY POST FOR ACTUAL AVAILABILITY CHECK
-  ===================================================== */
 
   if (req.method !== "POST") {
-
     return res.status(405).json({
-
       success: false,
-
-      error:
-        "Method not allowed. Use POST."
-
+      error: "Method not allowed"
     });
-
   }
-
 
   try {
+    const body = req.body || {};
 
-    /* ===================================================
-       ENVIRONMENT VARIABLES
-    =================================================== */
-
-    const SUPABASE_URL =
-      process.env.SUPABASE_URL;
-
-    const SUPABASE_SERVICE_ROLE_KEY =
-      process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-
-    if (!SUPABASE_URL) {
-
-      console.error(
-        "Missing SUPABASE_URL"
-      );
-
-      return res.status(500).json({
-
-        success: false,
-
-        error:
-          "SUPABASE_URL is not configured on Vercel."
-
-      });
-
-    }
-
-
-    if (!SUPABASE_SERVICE_ROLE_KEY) {
-
-      console.error(
-        "Missing SUPABASE_SERVICE_ROLE_KEY"
-      );
-
-      return res.status(500).json({
-
-        success: false,
-
-        error:
-          "SUPABASE_SERVICE_ROLE_KEY is not configured on Vercel."
-
-      });
-
-    }
-
-
-    /* ===================================================
-       REQUEST BODY
-    =================================================== */
-
-    let body = req.body;
-
-
-    if (
-      typeof body === "string"
-    ) {
-
-      try {
-
-        body =
-          JSON.parse(body);
-
-      } catch (error) {
-
-        return res.status(400).json({
-
-          success: false,
-
-          error:
-            "Request body is not valid JSON."
-
-        });
-
-      }
-
-    }
-
-
-    body =
-      body || {};
-
-
-    /* ===================================================
-       ACCEPT MULTIPLE POSSIBLE FIELD NAMES
-    =================================================== */
-
-    const start =
-      body.start ||
-      body.startDate ||
-      body.wedding_start_date ||
-      body.eventDate;
-
-
-    const end =
-      body.end ||
-      body.endDate ||
-      body.wedding_end_date ||
-      body.eventEndDate ||
-      start;
-
-
-    /* ===================================================
-       VALIDATE DATES
-    =================================================== */
+    const start = String(body.start || "").trim();
+    const end = String(body.end || body.start || "").trim();
 
     if (!start) {
-
       return res.status(400).json({
-
         success: false,
-
-        error:
-          "Wedding start date is required."
-
+        error: "Wedding start date is required."
       });
-
     }
 
-
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(start)) {
-
+    if (!end) {
       return res.status(400).json({
-
         success: false,
-
-        error:
-          "Invalid start date. Expected YYYY-MM-DD."
-
+        error: "Wedding end date is required."
       });
-
     }
 
+    // Clean Supabase environment variables
+    let supabaseUrl = String(process.env.SUPABASE_URL || "").trim();
+    let serviceKey = String(
+      process.env.SUPABASE_SERVICE_ROLE_KEY || ""
+    ).trim();
 
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(end)) {
+    // Remove accidental quotes copied into Vercel
+    supabaseUrl = supabaseUrl.replace(/^["']|["']$/g, "");
+    serviceKey = serviceKey.replace(/^["']|["']$/g, "");
 
-      return res.status(400).json({
+    // Remove trailing slash
+    supabaseUrl = supabaseUrl.replace(/\/+$/, "");
 
-        success: false,
-
-        error:
-          "Invalid end date. Expected YYYY-MM-DD."
-
-      });
-
+    if (!supabaseUrl) {
+      throw new Error("SUPABASE_URL is missing in Vercel.");
     }
 
-
-    if (end < start) {
-
-      return res.status(400).json({
-
-        success: false,
-
-        error:
-          "End date cannot be before start date."
-
-      });
-
-    }
-
-
-    /* ===================================================
-       SUPABASE REST API
-       
-       We deliberately use the Supabase REST endpoint
-       directly instead of depending on an npm package.
-       This makes the Vercel function more reliable.
-    =================================================== */
-
-    const supabaseEndpoint =
-      SUPABASE_URL.replace(/\/$/, "") +
-      "/rest/v1/wedding_bookings";
-
-
-    const query =
-      new URLSearchParams({
-
-        select:
-          "id,booking_id,wedding_start_date,wedding_end_date,booking_status",
-
-        wedding_start_date:
-          `lte.${end}`,
-
-        wedding_end_date:
-          `gte.${start}`,
-
-        limit:
-          "100"
-
-      });
-
-
-    const response =
-      await fetch(
-        `${supabaseEndpoint}?${query.toString()}`,
-        {
-
-          method: "GET",
-
-          headers: {
-
-            apikey:
-              SUPABASE_SERVICE_ROLE_KEY,
-
-            Authorization:
-              `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
-
-            Accept:
-              "application/json"
-
-          }
-
-        }
+    if (!serviceKey) {
+      throw new Error(
+        "SUPABASE_SERVICE_ROLE_KEY is missing in Vercel."
       );
+    }
 
-
-    /* ===================================================
-       READ SUPABASE RESPONSE
-    =================================================== */
-
-    const responseText =
-      await response.text();
-
-
-    let rows;
-
+    // Validate Supabase URL
+    let baseUrl;
 
     try {
-
-      rows =
-        responseText
-          ? JSON.parse(responseText)
-          : [];
-
+      baseUrl = new URL(supabaseUrl);
     } catch (error) {
-
-      console.error(
-        "Supabase returned non-JSON:",
-        responseText
+      throw new Error(
+        "SUPABASE_URL is invalid. Check the Vercel environment variable."
       );
-
-      return res.status(502).json({
-
-        success: false,
-
-        error:
-          "Supabase returned an invalid response."
-
-      });
-
     }
 
-
-    /* ===================================================
-       SUPABASE ERROR
-    =================================================== */
-
-    if (!response.ok) {
-
-      console.error(
-        "Supabase availability error:",
-        rows
-      );
-
-
-      return res.status(500).json({
-
-        success: false,
-
-        error:
-          rows &&
-          (
-            rows.message ||
-            rows.error ||
-            rows.hint
-          )
-            ? (
-                rows.message ||
-                rows.error ||
-                rows.hint
-              )
-            : "Unable to query wedding bookings.",
-
-        supabaseStatus:
-          response.status
-
-      });
-
-    }
-
-
-    /* ===================================================
-       ACTIVE BOOKING STATUSES
-       
-       Pending bookings are included because a pending
-       booking can represent a temporary date hold.
-
-       Confirmed bookings are obviously included.
-
-       Hold / reserved / processing are included if they
-       are used by the booking system.
-    =================================================== */
-
-    const activeStatuses = [
-
-      "pending",
-      "confirmed",
-      "hold",
-      "held",
-      "reserved",
-      "processing",
-      "payment_pending"
-
-    ];
-
-
-    /* ===================================================
-       FIND OVERLAPPING ACTIVE BOOKINGS
-    ===================================================== */
-
-    const bookings =
-      Array.isArray(rows)
-        ? rows
-        : [];
-
-
-    const conflictingBookings =
-      bookings.filter(
-        function (booking) {
-
-          const status =
-            String(
-              booking.booking_status || ""
-            ).toLowerCase();
-
-
-          /*
-           * If booking_status is empty, do not treat the
-           * row as an active booking automatically.
-           */
-
-          if (
-            status &&
-            !activeStatuses.includes(status)
-          ) {
-
-            return false;
-
-          }
-
-
-          const bookingStart =
-            booking.wedding_start_date;
-
-
-          const bookingEnd =
-            booking.wedding_end_date ||
-            booking.wedding_start_date;
-
-
-          if (!bookingStart) {
-
-            return false;
-
-          }
-
-
-          /*
-           * Overlap rule:
-           *
-           * Existing Start <= Requested End
-           * AND
-           * Existing End >= Requested Start
-           */
-
-          return (
-            bookingStart <= end &&
-            bookingEnd >= start
-          );
-
-        }
-      );
-
-
-    /* ===================================================
-       AVAILABLE
-    ===================================================== */
-
-    if (
-      conflictingBookings.length === 0
-    ) {
-
-      return res.status(200).json({
-
-        success: true,
-
-        available: true,
-
-        startDate:
-          start,
-
-        endDate:
-          end,
-
-        conflicts: [],
-
-        message:
-          "Wedding date is available."
-
-      });
-
-    }
-
-
-    /* ===================================================
-       NOT AVAILABLE
-    ===================================================== */
-
-    return res.status(200).json({
-
-      success: true,
-
-      available: false,
-
-      startDate:
-        start,
-
-      endDate:
-        end,
-
-      conflicts:
-        conflictingBookings.map(
-          function (booking) {
-
-            return {
-
-              bookingId:
-                booking.booking_id ||
-                null,
-
-              startDate:
-                booking.wedding_start_date,
-
-              endDate:
-                booking.wedding_end_date ||
-                booking.wedding_start_date,
-
-              status:
-                booking.booking_status ||
-                "pending"
-
-            };
-
-          }
-        ),
-
-      message:
-        "The requested wedding date overlaps with an existing booking."
-
-    });
-
-
-  } catch (error) {
-
-    /* ===================================================
-       FINAL ERROR HANDLER
-    ===================================================== */
-
-    console.error(
-      "CHECK AVAILABILITY ERROR:",
-      error
+    // Build Supabase REST URL safely
+    const apiUrl = new URL(
+      "/rest/v1/wedding_bookings",
+      baseUrl
     );
 
+    apiUrl.searchParams.set(
+      "select",
+      "id,booking_id,wedding_start_date,wedding_end_date,booking_status"
+    );
 
-    return res.status(500).json({
+    // Date overlap:
+    // existing start <= requested end
+    // existing end >= requested start
+    apiUrl.searchParams.set(
+      "wedding_start_date",
+      `lte.${end}`
+    );
 
-      success: false,
+    apiUrl.searchParams.set(
+      "wedding_end_date",
+      `gte.${start}`
+    );
 
-      error:
-        error &&
-        error.message
-          ? error.message
-          : "Unable to check wedding date availability."
+    apiUrl.searchParams.set(
+      "booking_status",
+      "in.(pending,confirmed,hold,held,reserved,processing,payment_pending)"
+    );
 
+    apiUrl.searchParams.set("limit", "100");
+
+    const response = await fetch(apiUrl.toString(), {
+      method: "GET",
+      headers: {
+        apikey: serviceKey,
+        Authorization: `Bearer ${serviceKey}`,
+        Accept: "application/json"
+      }
     });
 
-  }
+    const responseText = await response.text();
 
+    let data = [];
+
+    try {
+      data = responseText ? JSON.parse(responseText) : [];
+    } catch {
+      throw new Error(
+        `Supabase returned an invalid response: ${responseText.slice(0, 500)}`
+      );
+    }
+
+    if (!response.ok) {
+      throw new Error(
+        data?.message ||
+        data?.error_description ||
+        data?.hint ||
+        data?.error ||
+        `Supabase request failed with status ${response.status}`
+      );
+    }
+
+    const bookings = Array.isArray(data) ? data : [];
+
+    return res.status(200).json({
+      success: true,
+      available: bookings.length === 0,
+      requestedStart: start,
+      requestedEnd: end,
+      conflictingBookings: bookings.map((booking) => ({
+        booking_id: booking.booking_id,
+        wedding_start_date: booking.wedding_start_date,
+        wedding_end_date: booking.wedding_end_date,
+        booking_status: booking.booking_status
+      }))
+    });
+
+  } catch (error) {
+    console.error("CHECK AVAILABILITY ERROR:", error);
+
+    return res.status(500).json({
+      success: false,
+      error: error?.message || "Unable to check wedding date availability."
+    });
+  }
 };
