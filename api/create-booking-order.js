@@ -2,7 +2,7 @@ const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
-const { json, supabaseRpc, supabaseFetch } = require("./_supabase");
+const { json, supabaseFetch } = require("./_supabase");
 
 function readPackages() {
   const filePath = path.join(
@@ -17,24 +17,14 @@ function readPackages() {
 
   const source = fs.readFileSync(filePath, "utf8");
 
-  // Read the existing PACKAGE_GROUPS object
-  // without requiring packages.js as a Node module.
-  const result = vm.runInNewContext(
+  return vm.runInNewContext(
     `${source}\nPACKAGE_GROUPS;`,
     {}
   );
-
-  if (!result || typeof result !== "object") {
-    throw new Error("Unable to read wedding packages.");
-  }
-
-  return result;
 }
 
 function allPackages() {
-  const groups = readPackages();
-
-  return Object.values(groups)
+  return Object.values(readPackages())
     .flat()
     .filter(
       (pkg) =>
@@ -67,7 +57,7 @@ module.exports = async (req, res) => {
 
   try {
     // --------------------------------------------------
-    // ENVIRONMENT CHECK
+    // ENVIRONMENT
     // --------------------------------------------------
 
     if (
@@ -89,7 +79,7 @@ module.exports = async (req, res) => {
     }
 
     // --------------------------------------------------
-    // REQUEST BODY
+    // REQUEST
     // --------------------------------------------------
 
     const payload =
@@ -102,13 +92,7 @@ module.exports = async (req, res) => {
       120
     );
 
-    // --------------------------------------------------
-    // SERVER-SIDE PACKAGE VALIDATION
-    // --------------------------------------------------
-
-    const packages = allPackages();
-
-    const pkg = packages.find(
+    const pkg = allPackages().find(
       (item) => item.name === pkgName
     );
 
@@ -186,21 +170,12 @@ module.exports = async (req, res) => {
       1200
     );
 
-    // --------------------------------------------------
-    // FUNCTIONS
-    // --------------------------------------------------
-
-    const functions = Array.isArray(
-      payload.functions
-    )
-      ? payload.functions
-          .map((item) => clean(item, 250))
-          .slice(0, 30)
-      : [];
-
-    // --------------------------------------------------
-    // GUESTS / REQUIREMENTS
-    // --------------------------------------------------
+    const functions =
+      Array.isArray(payload.functions)
+        ? payload.functions
+            .map((item) => clean(item, 250))
+            .slice(0, 30)
+        : [];
 
     const guests = Math.max(
       0,
@@ -230,7 +205,7 @@ module.exports = async (req, res) => {
     }
 
     // --------------------------------------------------
-    // PAYMENT CALCULATION
+    // PAYMENT
     // --------------------------------------------------
 
     const total = rupees(pkg.price);
@@ -263,73 +238,84 @@ module.exports = async (req, res) => {
         .toUpperCase();
 
     // --------------------------------------------------
-    // CREATE BOOKING + RESERVE DATES
+    // IMPORTANT:
+    // DIRECT INSERT
+    //
+    // There is NO DATE AVAILABILITY CHECK here.
+    // Multiple customers can therefore book
+    // the same wedding date.
     // --------------------------------------------------
 
-    const rpcResult = await supabaseRpc(
-      "create_wedding_booking",
-      {
-        p_booking_id: bookingId,
+    const bookingResponse =
+      await supabaseFetch(
+        "wedding_bookings",
+        {
+          method: "POST",
 
-        p_customer_name: bride,
+          headers: {
+            Prefer: "return=representation"
+          },
 
-        p_customer_phone: phone,
+          body: JSON.stringify({
+            booking_id: bookingId,
 
-        p_customer_email: email,
+            customer_name: bride,
 
-        p_package_name: pkg.name,
+            customer_phone: phone,
 
-        p_package_price: total,
+            customer_email: email,
 
-        p_wedding_start_date: start,
+            package_name: pkg.name,
 
-        p_wedding_end_date: end,
+            package_price: total,
 
-        p_functions:
-          functions.join(" • "),
+            wedding_start_date: start,
 
-        p_venue_name: venue,
+            wedding_end_date: end,
 
-        p_venue_address: address,
+            functions:
+              functions.join(" • "),
 
-        p_city: city,
+            venue_name: venue,
 
-        p_guest_count:
-          guests || null,
+            venue_address: address,
 
-        p_special_requirements:
-          requirements,
+            city,
 
-        p_advance_amount:
-          advance,
+            guest_count:
+              guests || null,
 
-        p_event_end_amount:
-          eventEnd,
+            special_requirements:
+              requirements,
 
-        p_deliverables_amount:
-          deliverables,
+            advance_amount:
+              advance,
 
-        p_balance_amount:
-          balance,
+            balance_amount:
+              balance,
 
-        p_expires_minutes: 30
-      }
-    );
+            payment_status:
+              "pending",
+
+            booking_status:
+              "pending"
+          })
+        }
+      );
 
     const booking =
-      Array.isArray(rpcResult)
-        ? rpcResult[0]
-        : rpcResult;
+      Array.isArray(bookingResponse)
+        ? bookingResponse[0]
+        : bookingResponse;
 
     if (!booking?.booking_id) {
-      return json(res, 409, {
-        error:
-          "Those dates are currently unavailable. Please choose different dates."
-      });
+      throw new Error(
+        "Booking could not be created in Supabase."
+      );
     }
 
     // --------------------------------------------------
-    // CREATE RAZORPAY ORDER
+    // RAZORPAY ORDER
     // --------------------------------------------------
 
     const receipt =
@@ -392,7 +378,7 @@ module.exports = async (req, res) => {
     const orderText =
       await razorpayResponse.text();
 
-    let order;
+    let order = {};
 
     try {
       order = orderText
@@ -440,7 +426,7 @@ module.exports = async (req, res) => {
     );
 
     // --------------------------------------------------
-    // RETURN CHECKOUT DATA
+    // RESPONSE
     // --------------------------------------------------
 
     return json(res, 200, {
@@ -517,12 +503,7 @@ module.exports = async (req, res) => {
       error
     );
 
-    const status =
-      error?.status === 409
-        ? 409
-        : 500;
-
-    return json(res, status, {
+    return json(res, 500, {
       error:
         error?.message ||
         "Unable to create wedding booking."
