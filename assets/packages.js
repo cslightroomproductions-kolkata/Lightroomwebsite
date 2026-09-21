@@ -67,4 +67,3 @@ const PACKAGE_GROUPS = {
     {name:"Festival Elite",price:74999,days:"Full Production",events:["Festival / large event"],team:"Full production + Drone + Gimbal",deliverables:["Stage + crowd coverage","15-min film","6 reels","Express highlight","USB"]}
   ]
 };
-module.exports = PACKAGE_GROUPS;
