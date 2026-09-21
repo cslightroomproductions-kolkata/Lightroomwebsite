@@ -1,1961 +1,1534 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
 
-<title>Book Your Date | Lightroom Productions</title>
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
 
-<meta name="description" content="Book your Lightroom Productions wedding photography and cinematography package.">
+  <meta
+    name="description"
+    content="Book your Lightroom Productions wedding date with package, functions, venue and secure Razorpay payment."
+  >
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>
+    Book Your Date | Lightroom Productions
+  </title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
 
-<link rel="stylesheet" href="assets/style.css">
-<link rel="stylesheet" href="assets/futuristic.css">
-<link rel="stylesheet" href="assets/marketplace.css">
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="assets/style.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="assets/futuristic.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="assets/marketplace.css"
+  >
+
+  <style>
+
+    /* =========================================
+       PAYMENT OPTIONS
+       ========================================= */
+
+    .payment-choice-box {
+      margin: 24px 0;
+      padding: 20px;
+      border: 1px solid rgba(212,175,55,.35);
+      border-radius: 16px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(212,175,55,.08),
+          rgba(0,0,0,.2)
+        );
+    }
+
+    .payment-choice-box h3 {
+      margin: 0 0 6px;
+      color: #d4af37;
+      font-size: 20px;
+    }
+
+    .payment-choice-subtitle {
+      margin: 0 0 16px;
+      color: #9baeb4;
+      font-size: 13px;
+    }
+
+    .payment-option {
+      display: grid;
+      grid-template-columns: 22px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      margin: 12px 0;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 12px;
+      background: rgba(255,255,255,.025);
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .payment-option:hover {
+      border-color: rgba(212,175,55,.5);
+      background: rgba(212,175,55,.05);
+    }
+
+    .payment-option:has(input:checked) {
+      border-color: #d4af37;
+      box-shadow:
+        0 0 0 1px rgba(212,175,55,.18);
+      background:
+        rgba(212,175,55,.08);
+    }
+
+    .payment-option input {
+      width: 18px;
+      height: 18px;
+      accent-color: #d4af37;
+    }
+
+    .payment-option strong {
+      display: block;
+      color: #fff;
+      font-size: 15px;
+    }
+
+    .payment-option small {
+      display: block;
+      margin-top: 5px;
+      color: #9baeb4;
+      line-height: 1.5;
+    }
+
+    .payment-option b {
+      color: #d4af37;
+      font-size: 18px;
+      white-space: nowrap;
+    }
+
+    .offer-note {
+      margin-top: 12px;
+      padding: 11px 13px;
+      border-radius: 8px;
+      color: #d9c98a;
+      background: rgba(212,175,55,.06);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .selected-payment-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .selected-payment-summary span {
+      color: #a6b7bb;
+      font-size: 13px;
+    }
+
+    .selected-payment-summary strong {
+      color: #fff;
+      font-size: 20px;
+    }
+
+    .status-box {
+      display: none;
+      margin: 14px 0;
+      padding: 13px 15px;
+      border-radius: 9px;
+      border: 1px solid rgba(212,175,55,.25);
+      color: #ddd;
+      background: rgba(212,175,55,.05);
+      font-size: 13px;
+    }
+
+    .status-box.show {
+      display: block;
+    }
+
+    .btn.loading {
+      opacity: .65;
+      pointer-events: none;
+    }
+
+    @media (max-width: 700px) {
+      .payment-option {
+        grid-template-columns: 20px 1fr;
+      }
+
+      .payment-option b {
+        grid-column: 2;
+      }
+
+      .selected-payment-summary {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+  </style>
 </head>
 
 <body data-page="booking">
 
-<!-- =========================================================
-TOP BAR
-========================================================= -->
+  <!-- =========================================
+       TOP BAR
+       ========================================= -->
 
-<div class="topbar">
-  <div class="wrap">
-    <span>Wedding Capital • Lightroom Productions</span>
-    <span>WhatsApp +91 70440 07755</span>
-  </div>
-</div>
-
-
-<!-- =========================================================
-HEADER
-========================================================= -->
-
-<header class="header">
-
-  <div class="wrap head1">
-
-    <a class="logo" href="index.html">
-      <img
-        class="brand-logo"
-        src="assets/lightroom-logo.png"
-        alt="Lightroom Productions"
-      >
-    </a>
-
-    <button
-      class="hamb"
-      type="button"
-      onclick="mobileMenu()"
-      aria-label="Menu"
-    >
-      ☰
-    </button>
-
-    <div class="search">
-      <input
-        data-search
-        type="search"
-        placeholder="Search wedding packages, frames, albums, gifts..."
-      >
-      <button type="button">Search</button>
-    </div>
-
-    <div class="head-actions">
-
-      <a class="action" href="booking.html">
-        BOOKING
-        <span>Check your date</span>
-      </a>
-
-      <a class="action" href="about.html">
-        ACCOUNT
-        <span>Studio</span>
-      </a>
-
-      <button
-        class="action cart-btn"
-        type="button"
-        data-open-cart
-      >
-        Cart
-        <span class="count" data-cart-count>0</span>
-        <span>View cart</span>
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <div class="menu">
-
+  <div class="topbar">
     <div class="wrap">
-
-      <a href="index.html">HOME</a>
-      <a href="packages.html">WEDDING PACKAGES</a>
-      <a href="wedding-photography.html">PHOTOGRAPHY</a>
-      <a href="wedding-cinematography.html">CINEMATOGRAPHY</a>
-      <a href="pre-wedding.html">PRE-WEDDING</a>
-      <a href="engagement.html">ENGAGEMENT</a>
-      <a href="portfolio.html">PORTFOLIO</a>
-      <a href="shop.html">VOWSHOT SHOP</a>
-      <a href="albums.html">ALBUMS</a>
-      <a href="frames.html">FRAMES</a>
-      <a href="contact.html">CONTACT</a>
-
-    </div>
-
-  </div>
-
-
-  <div class="brand-rail">
-
-    <div class="wrap brand-rail-inner">
-
-      <span class="brand-rail-label">
-        OUR BRANDS
+      <span>
+        Wedding Capital • Lightroom Productions
       </span>
 
-      <a class="subbrand" href="packages.html">
-
-        <img
-          src="assets/brands/wedding-capital.jpg"
-          alt="Wedding Capital"
-        >
-
-        <span>Wedding Capital</span>
-
-      </a>
-
-      <a
-        class="subbrand"
-        href="booking.html?service=baby"
-      >
-
-        <img
-          src="assets/brands/tinytoons.png"
-          alt="TinyToons"
-        >
-
-        <span>TinyToons</span>
-
-      </a>
-
-      <a class="subbrand" href="shop.html">
-
-        <img
-          src="assets/brands/vowshot.jpg"
-          alt="Vowshot"
-        >
-
-        <span>Vowshot</span>
-
-      </a>
-
-    </div>
-
-  </div>
-
-</header>
-
-
-<!-- =========================================================
-PAGE HEADER
-========================================================= -->
-
-<section class="pagehead">
-
-  <div class="wrap">
-
-    <div class="crumb">
-      Home / Book Your Date
-    </div>
-
-    <h1>
-      Book your date. Plan every function.
-    </h1>
-
-    <p style="color:#9db0b6;max-width:820px">
-
-      Select your package, event dates, functions and venue.
-      Your booking request and payment are kept together so
-      the studio can confirm your calendar before production begins.
-
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-BOOKING
-========================================================= -->
-
-<section class="section">
-
-  <div class="wrap booking-grid">
-
-
-    <!-- =====================================================
-    FORM
-    ====================================================== -->
-
-    <form
-      id="bookingForm"
-      class="checkout-card"
-      novalidate
-    >
-
-      <span class="eyebrow">
-        Wedding Capital
+      <span>
+        WhatsApp +91 70440 07755
       </span>
-
-      <h2>
-        Reservation details
-      </h2>
-
-
-      <!-- PACKAGE -->
-
-      <div class="field">
-
-        <label for="selectedPackage">
-          Package
-        </label>
-
-        <select
-          id="selectedPackage"
-          required
-        >
-
-          <option value="">
-            Select a package
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <!-- PACKAGE SUMMARY -->
-
-      <div
-        id="packageSummary"
-        class="package-summary"
-      ></div>
-
-
-      <!-- CLIENT NAMES -->
-
-      <div class="two">
-
-        <div class="field">
-
-          <label for="bName">
-            Bride / Client name
-          </label>
-
-          <input
-            id="bName"
-            type="text"
-            autocomplete="name"
-            required
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="gName">
-            Groom / Co-client name
-          </label>
-
-          <input
-            id="gName"
-            type="text"
-            autocomplete="name"
-          >
-
-        </div>
-
-      </div>
-
-
-      <!-- CONTACT -->
-
-      <div class="two">
-
-        <div class="field">
-
-          <label for="bPhone">
-            Phone / WhatsApp
-          </label>
-
-          <input
-            id="bPhone"
-            type="tel"
-            autocomplete="tel"
-            required
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="bEmail">
-            Email
-          </label>
-
-          <input
-            id="bEmail"
-            type="email"
-            autocomplete="email"
-            required
-          >
-
-        </div>
-
-      </div>
-
-
-      <!-- DATES -->
-
-      <div class="two">
-
-        <div class="field">
-
-          <label for="eventDate">
-            Primary event date
-          </label>
-
-          <input
-            id="eventDate"
-            type="date"
-            required
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="endDate">
-            End date
-          </label>
-
-          <input
-            id="endDate"
-            type="date"
-          >
-
-        </div>
-
-      </div>
-
-
-      <!-- FUNCTIONS -->
-
-      <div class="field">
-
-        <label>
-          Functions to cover
-        </label>
-
-        <div
-          id="functionChoices"
-          class="check-grid"
-        ></div>
-
-      </div>
-
-
-      <!-- VENUE -->
-
-      <div class="two">
-
-        <div class="field">
-
-          <label for="venue">
-            Venue name
-          </label>
-
-          <input
-            id="venue"
-            type="text"
-            required
-            placeholder="Wedding venue / banquet / resort"
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="city">
-            City
-          </label>
-
-          <input
-            id="city"
-            type="text"
-            required
-            placeholder="Kolkata / Hooghly / etc."
-          >
-
-        </div>
-
-      </div>
-
-
-      <!-- ADDRESS -->
-
-      <div class="field">
-
-        <label for="venueAddress">
-          Venue address
-        </label>
-
-        <textarea
-          id="venueAddress"
-          required
-          placeholder="Full venue address, landmark and directions"
-        ></textarea>
-
-      </div>
-
-
-      <!-- GUESTS -->
-
-      <div class="two">
-
-        <div class="field">
-
-          <label for="guests">
-            Expected guests
-          </label>
-
-          <input
-            id="guests"
-            type="number"
-            min="1"
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="requirements">
-            Special requirements
-          </label>
-
-          <input
-            id="requirements"
-            type="text"
-            placeholder="Drone, live LED, express delivery, etc."
-          >
-
-        </div>
-
-      </div>
-
-
-      <!-- PAYMENT NOTE -->
-
-      <div class="pay-note">
-
-        <b>
-          Book Now + Payment
-        </b>
-
-        <span>
-
-          30% advance at booking.
-          50% on the event ending date.
-          20% before final deliverables.
-
-        </span>
-
-      </div>
-
-
-      <!-- STATUS -->
-
-      <div
-        id="bookingStatus"
-        style="
-          display:none;
-          margin:15px 0;
-          padding:14px 16px;
-          border-radius:10px;
-          background:rgba(255,255,255,.04);
-          border:1px solid rgba(212,175,55,.30);
-          color:#dce7ea;
-          line-height:1.5;
-        "
-      ></div>
-
-
-      <!-- SUBMIT -->
-
-      <button
-        id="bookingSubmit"
-        class="btn gold"
-        type="submit"
-      >
-        Book Now &amp; Continue to Payment
-      </button>
-
-
-      <a
-        class="btn"
-        href="https://wa.me/917044007755"
-        style="margin-left:8px"
-      >
-        WhatsApp Studio
-      </a>
-
-    </form>
-
-
-    <!-- =====================================================
-    BOOKING SUMMARY
-    ====================================================== -->
-
-    <aside class="checkout-card summary">
-
-      <span class="eyebrow">
-        YOUR BOOKING
-      </span>
-
-      <h2 id="summaryName">
-        Select a package
-      </h2>
-
-      <div
-        id="summaryEvents"
-        class="event-plan"
-      ></div>
-
-
-      <div class="summary-total">
-
-        <span>
-          Package price
-        </span>
-
-        <strong id="summaryPrice">
-          ₹0
-        </strong>
-
-      </div>
-
-
-      <div
-        id="paymentSchedule"
-        style="
-          margin-top:20px;
-          padding:16px;
-          border-radius:12px;
-          background:rgba(255,255,255,.035);
-          border:1px solid rgba(255,255,255,.08);
-          line-height:1.8;
-        "
-      ></div>
-
-
-      <div class="booking-trust">
-
-        <span>
-          ✓ Date availability checked
-        </span>
-
-        <span>
-          ✓ Venue details captured
-        </span>
-
-        <span>
-          ✓ Functions mapped by day
-        </span>
-
-        <span>
-          ✓ 30% advance payment
-        </span>
-
-        <span>
-          ✓ Razorpay secure checkout
-        </span>
-
-      </div>
-
-    </aside>
-
+    </div>
   </div>
 
-</section>
+  <!-- =========================================
+       HEADER
+       ========================================= -->
 
+  <header class="header">
 
-<!-- =========================================================
-MOBILE NAV
-========================================================= -->
-
-<nav
-  class="mobile-bottom-nav"
-  aria-label="Mobile navigation"
->
-
-  <a href="index.html">
-    <span>⌂</span>
-    Home
-  </a>
-
-  <button
-    type="button"
-    onclick="mobileMenu()"
-  >
-    <span>☰</span>
-    Menu
-  </button>
-
-  <a href="shop.html">
-    <span>▣</span>
-    Shop
-  </a>
-
-  <a href="booking.html">
-    <span>◈</span>
-    Book
-  </a>
-
-  <button
-    type="button"
-    data-open-cart
-  >
-    <span>🛒</span>
-    Cart
-    <b data-cart-count>0</b>
-  </button>
-
-</nav>
-
-
-<!-- =========================================================
-FOOTER
-========================================================= -->
-
-<footer class="footer">
-
-  <div class="wrap footgrid">
-
-    <div>
+    <div class="wrap head1">
 
       <a
         class="logo"
         href="index.html"
+        aria-label="Lightroom Productions"
       >
-
         <img
           class="brand-logo"
           src="assets/lightroom-logo.png"
           alt="Lightroom Productions"
         >
-
       </a>
 
-      <p>
-        Luxury wedding stories and premium photo products,
-        crafted in India.
+      <button
+        class="hamb"
+        type="button"
+        aria-label="Open menu"
+        onclick="mobileMenu()"
+      >
+        ☰
+      </button>
+
+      <div class="search">
+        <input
+          data-search
+          placeholder="Search wedding packages, frames, albums, gifts..."
+        >
+
+        <button type="button">
+          Search
+        </button>
+      </div>
+
+      <div class="head-actions">
+
+        <a
+          class="action book-head"
+          href="booking.html"
+        >
+          Booking
+          <span>Check your date</span>
+        </a>
+
+        <a
+          class="action account-head"
+          href="about.html"
+        >
+          Account
+          <span>Studio</span>
+        </a>
+
+        <button
+          class="action cart-btn"
+          data-open-cart
+          type="button"
+        >
+          Cart
+
+          <span
+            class="count"
+            data-cart-count
+          >
+            0
+          </span>
+
+          <span>
+            View cart
+          </span>
+        </button>
+
+      </div>
+    </div>
+
+    <div class="menu">
+      <div class="wrap">
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="packages.html">
+          Wedding Packages
+        </a>
+
+        <a href="wedding-photography.html">
+          Photography
+        </a>
+
+        <a href="wedding-cinematography.html">
+          Cinematography
+        </a>
+
+        <a href="pre-wedding.html">
+          Pre-Wedding
+        </a>
+
+        <a href="engagement.html">
+          Engagement
+        </a>
+
+        <a href="portfolio.html">
+          Portfolio
+        </a>
+
+        <a href="shop.html">
+          Vowshot Shop
+        </a>
+
+        <a href="albums.html">
+          Albums
+        </a>
+
+        <a href="frames.html">
+          Frames
+        </a>
+
+        <a href="contact.html">
+          Contact
+        </a>
+
+      </div>
+    </div>
+
+    <div class="brand-rail">
+
+      <div class="wrap brand-rail-inner">
+
+        <span class="brand-rail-label">
+          OUR BRANDS
+        </span>
+
+        <a
+          class="subbrand"
+          href="packages.html"
+        >
+          <img
+            src="assets/brands/wedding-capital.jpg"
+            alt="Wedding Capital"
+          >
+
+          <span>
+            Wedding Capital
+          </span>
+        </a>
+
+        <a
+          class="subbrand"
+          href="booking.html?service=baby"
+        >
+          <img
+            src="assets/brands/tinytoons.png"
+            alt="TinyToons"
+          >
+
+          <span>
+            TinyToons
+          </span>
+        </a>
+
+        <a
+          class="subbrand"
+          href="shop.html"
+        >
+          <img
+            src="assets/brands/vowshot.jpg"
+            alt="Vowshot"
+          >
+
+          <span>
+            Vowshot
+          </span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <!-- =========================================
+       PAGE HEADER
+       ========================================= -->
+
+  <section class="pagehead">
+
+    <div class="wrap">
+
+      <div class="crumb">
+        Home / Book Your Date
+      </div>
+
+      <h1>
+        Book your date. Plan every function.
+      </h1>
+
+      <p style="color:#9db0b6;max-width:820px">
+        Select your package, event dates, functions and venue.
+        Choose either a 30% booking advance or pay the complete
+        package amount now.
       </p>
 
     </div>
 
+  </section>
 
-    <div>
+  <!-- =========================================
+       BOOKING
+       ========================================= -->
 
-      <h4>
-        Contact
-      </h4>
+  <section class="section">
 
-      <p>
-        WhatsApp: +91 70440 07755
-      </p>
+    <div class="wrap booking-grid">
 
-      <p>
-        help.lightroomproductions@gmail.com
-      </p>
+      <!-- =====================================
+           FORM
+           ===================================== -->
 
-      <p>
-        care.lightroomproductions@gmail.com
-      </p>
+      <form
+        id="bookingForm"
+        class="checkout-card"
+      >
 
-    </div>
+        <span class="eyebrow">
+          Wedding Capital
+        </span>
 
-  </div>
+        <h2>
+          Reservation details
+        </h2>
 
+        <!-- PACKAGE -->
 
-  <div
-    class="wrap"
-    style="
-      border-top:1px solid #1c4854;
-      margin-top:35px;
-      padding-top:18px;
-      font-size:10px;
-      color:#88a0a5;
-    "
-  >
-    © 2026 Lightroom Productions
-  </div>
+        <div class="field">
 
-</footer>
+          <label>
+            Package
+          </label>
 
+          <select
+            id="selectedPackage"
+            required
+          >
 
-<!-- =========================================================
-SITE JS
-========================================================= -->
+            <option value="">
+              Select a package
+            </option>
 
-<script src="assets/site.js"></script>
+          </select>
 
+        </div>
 
-<!-- =========================================================
-RAZORPAY
-========================================================= -->
+        <div
+          id="packageSummary"
+          class="package-summary"
+        ></div>
 
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <!-- CUSTOMER -->
 
+        <div class="two">
 
-<!-- =========================================================
-BOOKING APPLICATION
-========================================================= -->
+          <div class="field">
 
-<script>
-
-"use strict";
-
-
-/* =========================================================
-PACKAGE DATA
-========================================================= */
-
-const PACKAGE_GROUPS = {
-
-  singleSide: [
-
-    {
-      name: "Shubh Aarambh",
-      price: 34999,
-      days: "1 Day",
-      team: "Single Side",
-      events: [
-        "Day 1 Wedding + Reception"
-      ],
-      deliverables: [
-        "Wedding Photography",
-        "Wedding Cinematography",
-        "Reception Coverage",
-        "Couple Portraits"
-      ]
-    },
-
-
-    {
-      name: "Mangal Milan",
-      price: 44999,
-      days: "1 Day",
-      team: "Single Side",
-      events: [
-        "Wedding + Reception",
-        "Couple Portraits"
-      ],
-      deliverables: [
-        "Wedding Photography",
-        "Wedding Cinematography",
-        "Reception Coverage",
-        "Couple Portraits"
-      ]
-    },
-
-
-    {
-      name: "Rajsi Vivaah",
-      price: 54999,
-      days: "2 Days",
-      team: "Single Side",
-      events: [
-        "Day 1 Haldi / Mehendi",
-        "Day 2 Wedding + Reception"
-      ],
-      deliverables: [
-        "Haldi Photography",
-        "Mehendi Photography",
-        "Wedding Photography",
-        "Wedding Cinematography",
-        "Reception Coverage"
-      ]
-    },
-
-
-    {
-      name: "Royal Utsav",
-      price: 64999,
-      days: "2 Days",
-      team: "Single Side",
-      events: [
-        "Day 1 Pre-Wedding Functions",
-        "Day 2 Wedding + Reception"
-      ],
-      deliverables: [
-        "Pre-Wedding Functions",
-        "Wedding Photography",
-        "Wedding Cinematography",
-        "Reception Coverage",
-        "Couple Portraits"
-      ]
-    },
-
-
-    {
-      name: "Swarna Mahotsav",
-      price: 74999,
-      days: "3 Days",
-      team: "Single Side",
-      events: [
-        "Day 1 Mehendi / Haldi",
-        "Day 2 Wedding",
-        "Day 3 Reception / Post-Wedding"
-      ],
-      deliverables: [
-        "Mehendi Photography",
-        "Haldi Photography",
-        "Wedding Photography",
-        "Reception Photography",
-        "Post-Wedding Coverage"
-      ]
-    },
-
-
-    {
-      name: "Maharaja Signature",
-      price: 84999,
-      days: "3 Days",
-      team: "Single Side",
-      events: [
-        "Day 1 Pre-Wedding Functions",
-        "Day 2 Wedding",
-        "Day 3 Reception"
-      ],
-      deliverables: [
-        "Pre-Wedding Functions",
-        "Wedding Photography",
-        "Wedding Cinematography",
-        "Reception Coverage",
-        "Couple Portraits"
-      ]
-    },
-
-
-    {
-      name: "Imperial Dynasty",
-      price: 99999,
-      days: "3 Days",
-      team: "Single Side",
-      events: [
-        "Day 1 Haldi / Mehendi",
-        "Day 2 Wedding",
-        "Day 3 Reception / Couple Shoot"
-      ],
-      deliverables: [
-        "Haldi Photography",
-        "Mehendi Photography",
-        "Wedding Photography",
-        "Reception Coverage",
-        "Couple Shoot"
-      ]
-    },
-
-
-    {
-      name: "Raj Mahal Elite",
-      price: 124999,
-      days: "3 Days",
-      team: "Single Side",
-      events: [
-        "Day 1 Pre-Wedding Functions",
-        "Day 2 Wedding",
-        "Day 3 Reception + Couple Story"
-      ],
-      deliverables: [
-        "Pre-Wedding Coverage",
-        "Wedding Photography",
-        "Wedding Cinematography",
-        "Reception Coverage",
-        "Couple Story"
-      ]
-    },
-
-
-    {
-      name: "Crown Legacy",
-      price: 149999,
-      days: "4 Days",
-      team: "Single Side",
-      events: [
-        "Day 1 Mehendi",
-        "Day 2 Haldi",
-        "Day 3 Wedding",
-        "Day 4 Reception / Couple Shoot"
-      ],
-      deliverables: [
-        "Mehendi Coverage",
-        "Haldi Coverage",
-        "Wedding Photography",
-        "Reception Coverage",
-        "Couple Shoot"
-      ]
-    }
-
-  ],
-
-
-  bothSide: [
-
-    {
-      name: "Royal Sangam",
-      price: 89999,
-      days: "2 Days",
-      team: "Both Side",
-      events: [
-        "Day 1 Bride + Groom Side Functions",
-        "Day 2 Wedding + Reception"
-      ],
-      deliverables: [
-        "Bride Side Coverage",
-        "Groom Side Coverage",
-        "Wedding Photography",
-        "Wedding Cinematography",
-        "Reception Coverage"
-      ]
-    },
-
-
-    {
-      name: "Maharaja Sangam",
-      price: 109999,
-      days: "3 Days",
-      team: "Both Side",
-      events: [
-        "Day 1 Bride Side",
-        "Day 2 Groom Side",
-        "Day 3 Wedding / Reception"
-      ],
-      deliverables: [
-        "Bride Side Coverage",
-        "Groom Side Coverage",
-        "Wedding Photography",
-        "Wedding Cinematography",
-        "Reception Coverage"
-      ]
-    },
-
-
-    {
-      name: "Rajwada Heritage",
-      price: 129999,
-      days: "3 Days",
-      team: "Both Side",
-      events: [
-        "Day 1 Bride Side",
-        "Day 2 Groom Side",
-        "Day 3 Wedding + Reception"
-      ],
-      deliverables: [
-        "Bride Side Coverage",
-        "Groom Side Coverage",
-        "Wedding Photography",
-        "Wedding Cinematography",
-        "Reception Coverage"
-      ]
-    },
-
-
-    {
-      name: "Imperial Vivaah",
-      price: 149999,
-      days: "3 Days",
-      team: "Both Side",
-      events: [
-        "Day 1 Bride Side",
-        "Day 2 Groom Side",
-        "Day 3 Wedding / Reception"
-      ],
-      deliverables: [
-        "Bride Side Coverage",
-        "Groom Side Coverage",
-        "Wedding Photography",
-        "Wedding Cinematography",
-        "Reception Coverage"
-      ]
-    },
-
-
-    {
-      name: "Maharani Collection",
-      price: 174999,
-      days: "3 Days",
-      team: "Both Side",
-      events: [
-        "Day 1 Bride Side",
-        "Day 2 Groom Side",
-        "Day 3 Wedding + Reception"
-      ],
-      deliverables: [
-        "Bride Side Coverage",
-        "Groom Side Coverage",
-        "Wedding Photography",
-        "Wedding Cinematography",
-        "Editorial Couple Coverage"
-      ]
-    },
-
-
-    {
-      name: "Royal Dynasty",
-      price: 199999,
-      days: "4 Days",
-      team: "Both Side",
-      events: [
-        "Day 1 Bride Events",
-        "Day 2 Groom Events",
-        "Day 3 Wedding",
-        "Day 4 Reception / Grand Celebration"
-      ],
-      deliverables: [
-        "Bride Side Coverage",
-        "Groom Side Coverage",
-        "Wedding Photography",
-        "Wedding Cinematography",
-        "Grand Celebration Coverage"
-      ]
-    }
-
-  ]
-
-};
-
-
-/* =========================================================
-ELEMENTS
-========================================================= */
-
-const packageSelect =
-  document.getElementById("selectedPackage");
-
-const bookingForm =
-  document.getElementById("bookingForm");
-
-const submitButton =
-  document.getElementById("bookingSubmit");
-
-const statusBox =
-  document.getElementById("bookingStatus");
-
-const eventDate =
-  document.getElementById("eventDate");
-
-const endDate =
-  document.getElementById("endDate");
-
-
-/* =========================================================
-PACKAGE HELPERS
-========================================================= */
-
-function getAllPackages() {
-
-  return Object
-    .values(PACKAGE_GROUPS)
-    .flat();
-
-}
-
-
-function getSelectedPackage() {
-
-  return getAllPackages()
-    .find(function(packageItem) {
-
-      return packageItem.name ===
-        packageSelect.value;
-
-    });
-
-}
-
-
-/* =========================================================
-HTML ESCAPE
-========================================================= */
-
-function escapeHTML(value) {
-
-  return String(value ?? "")
-    .replace(/[&<>"']/g, function(character) {
-
-      return {
-
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-
-      }[character];
-
-    });
-
-}
-
-
-/* =========================================================
-MONEY
-========================================================= */
-
-function formatMoney(value) {
-
-  return "₹" +
-    Number(value || 0)
-      .toLocaleString(
-        "en-IN",
-        {
-          maximumFractionDigits: 2
-        }
-      );
-
-}
-
-
-/* =========================================================
-STATUS
-========================================================= */
-
-function setStatus(message, type) {
-
-  statusBox.style.display =
-    "block";
-
-  statusBox.textContent =
-    message;
-
-
-  if (type === "error") {
-
-    statusBox.style.color =
-      "#ffb5b5";
-
-    statusBox.style.borderColor =
-      "rgba(255,70,70,.45)";
-
-  } else {
-
-    statusBox.style.color =
-      "#dce7ea";
-
-    statusBox.style.borderColor =
-      "rgba(212,175,55,.35)";
-
-  }
-
-}
-
-
-/* =========================================================
-LOAD DROPDOWN
-========================================================= */
-
-function populatePackageDropdown() {
-
-  packageSelect.innerHTML =
-    '<option value="">Select a package</option>';
-
-
-  getAllPackages()
-    .forEach(function(packageItem) {
-
-      const option =
-        document.createElement("option");
-
-
-      option.value =
-        packageItem.name;
-
-
-      option.textContent =
-        packageItem.name +
-        " — " +
-        formatMoney(packageItem.price) +
-        " — " +
-        packageItem.days;
-
-
-      packageSelect.appendChild(
-        option
-      );
-
-    });
-
-}
-
-
-/* =========================================================
-DISPLAY PACKAGE
-========================================================= */
-
-function updatePackageDisplay() {
-
-  const packageItem =
-    getSelectedPackage();
-
-
-  const packageSummary =
-    document.getElementById(
-      "packageSummary"
-    );
-
-  const functionChoices =
-    document.getElementById(
-      "functionChoices"
-    );
-
-  const summaryName =
-    document.getElementById(
-      "summaryName"
-    );
-
-  const summaryPrice =
-    document.getElementById(
-      "summaryPrice"
-    );
-
-  const summaryEvents =
-    document.getElementById(
-      "summaryEvents"
-    );
-
-  const paymentSchedule =
-    document.getElementById(
-      "paymentSchedule"
-    );
-
-
-  if (!packageItem) {
-
-    packageSummary.innerHTML =
-      "";
-
-    functionChoices.innerHTML =
-      "";
-
-    summaryName.textContent =
-      "Select a package";
-
-    summaryPrice.textContent =
-      "₹0";
-
-    summaryEvents.innerHTML =
-      "";
-
-    paymentSchedule.innerHTML =
-      "";
-
-    return;
-
-  }
-
-
-  const total =
-    Number(packageItem.price);
-
-
-  const advance =
-    Math.round(
-      total * 0.30 * 100
-    ) / 100;
-
-
-  const eventPayment =
-    Math.round(
-      total * 0.50 * 100
-    ) / 100;
-
-
-  const finalPayment =
-    Math.round(
-      total * 0.20 * 100
-    ) / 100;
-
-
-  summaryName.textContent =
-    packageItem.name;
-
-
-  summaryPrice.textContent =
-    formatMoney(total);
-
-
-  /* EVENT PLAN */
-
-  summaryEvents.innerHTML =
-    packageItem.events
-      .map(function(eventName, index) {
-
-        return `
-          <div>
-            <span>${index + 1}</span>
-            ${escapeHTML(eventName)}
-          </div>
-        `;
-
-      })
-      .join("");
-
-
-  /* PACKAGE SUMMARY */
-
-  packageSummary.innerHTML = `
-
-    <div>
-      <b>
-        ${escapeHTML(packageItem.days)}
-      </b>
-
-      •
-      ${escapeHTML(packageItem.team)}
-    </div>
-
-    <ul>
-
-      ${packageItem.deliverables
-        .slice(0, 5)
-        .map(function(item) {
-
-          return `
-            <li>
-              ${escapeHTML(item)}
-            </li>
-          `;
-
-        })
-        .join("")}
-
-    </ul>
-
-  `;
-
-
-  /* FUNCTIONS */
-
-  functionChoices.innerHTML =
-    packageItem.events
-      .map(function(eventName) {
-
-        return `
-
-          <label class="check">
+            <label>
+              Bride / Client name
+            </label>
 
             <input
-              type="checkbox"
-              value="${escapeHTML(eventName)}"
+              id="bName"
+              required
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Groom / Co-client name
+            </label>
+
+            <input
+              id="gName"
+            >
+
+          </div>
+
+        </div>
+
+        <div class="two">
+
+          <div class="field">
+
+            <label>
+              Phone / WhatsApp
+            </label>
+
+            <input
+              id="bPhone"
+              type="tel"
+              required
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Email
+            </label>
+
+            <input
+              id="bEmail"
+              type="email"
+              required
+            >
+
+          </div>
+
+        </div>
+
+        <!-- DATES -->
+
+        <div class="two">
+
+          <div class="field">
+
+            <label>
+              Primary event date
+            </label>
+
+            <input
+              id="eventDate"
+              type="date"
+              required
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              End date
+            </label>
+
+            <input
+              id="endDate"
+              type="date"
+            >
+
+          </div>
+
+        </div>
+
+        <!-- FUNCTIONS -->
+
+        <div class="field">
+
+          <label>
+            Functions to cover
+          </label>
+
+          <div
+            id="functionChoices"
+            class="check-grid"
+          ></div>
+
+        </div>
+
+        <!-- VENUE -->
+
+        <div class="two">
+
+          <div class="field">
+
+            <label>
+              Venue name
+            </label>
+
+            <input
+              id="venue"
+              required
+              placeholder="Wedding venue / banquet / resort"
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              City
+            </label>
+
+            <input
+              id="city"
+              required
+              placeholder="Kolkata / Hooghly / etc."
+            >
+
+          </div>
+
+        </div>
+
+        <div class="field">
+
+          <label>
+            Venue address
+          </label>
+
+          <textarea
+            id="venueAddress"
+            required
+            placeholder="Full venue address, landmark and directions"
+          ></textarea>
+
+        </div>
+
+        <!-- GUESTS -->
+
+        <div class="two">
+
+          <div class="field">
+
+            <label>
+              Expected guests
+            </label>
+
+            <input
+              id="guests"
+              type="number"
+              min="1"
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Special requirements
+            </label>
+
+            <input
+              id="requirements"
+              placeholder="Drone, live LED, express delivery, etc."
+            >
+
+          </div>
+
+        </div>
+
+        <!-- =================================
+             PAYMENT OPTIONS
+             ================================= -->
+
+        <div class="payment-choice-box">
+
+          <h3>
+            Choose Payment Option
+          </h3>
+
+          <p class="payment-choice-subtitle">
+            Select how much you want to pay through Razorpay now.
+          </p>
+
+          <label class="payment-option">
+
+            <input
+              type="radio"
+              name="paymentType"
+              value="advance"
               checked
             >
 
-            ${escapeHTML(eventName)}
+            <span>
+
+              <strong>
+                30% Booking Advance
+              </strong>
+
+              <small>
+                Pay 30% now. The remaining 70% follows the agreed
+                wedding payment schedule.
+              </small>
+
+            </span>
+
+            <b id="advancePaymentAmount">
+              ₹0.00
+            </b>
 
           </label>
 
-        `;
+          <label class="payment-option">
 
-      })
-      .join("");
+            <input
+              type="radio"
+              name="paymentType"
+              value="full"
+            >
 
+            <span>
 
-  /* PAYMENT SCHEDULE */
+              <strong>
+                Pay Full Amount
+              </strong>
 
-  paymentSchedule.innerHTML = `
+              <small>
+                Pay 100% now. Any eligible full-payment card,
+                UPI, EMI or Razorpay offers will be shown
+                by the payment gateway where applicable.
+              </small>
+
+            </span>
+
+            <b id="fullPaymentAmount">
+              ₹0.00
+            </b>
+
+          </label>
+
+          <div class="offer-note">
+            Full-payment offers are subject to the customer's
+            payment method, Razorpay availability and applicable
+            card/bank terms. Lightroom Productions does not
+            guarantee a particular bank offer or cashback.
+          </div>
+
+          <div class="selected-payment-summary">
+
+            <span>
+              Amount payable now
+            </span>
+
+            <strong id="selectedPayableAmount">
+              ₹0.00
+            </strong>
+
+          </div>
+
+        </div>
+
+        <!-- STATUS -->
+
+        <div
+          id="statusBox"
+          class="status-box"
+        ></div>
+
+        <!-- BUTTON -->
+
+        <button
+          id="submitButton"
+          class="btn gold"
+          type="submit"
+        >
+          Continue to Payment
+        </button>
+
+        <a
+          class="btn"
+          href="https://wa.me/917044007755"
+          style="margin-left:8px"
+        >
+          WhatsApp Studio
+        </a>
+
+      </form>
+
+      <!-- =====================================
+           SUMMARY
+           ===================================== -->
+
+      <aside class="checkout-card summary">
+
+        <span class="eyebrow">
+          Your booking
+        </span>
+
+        <h2 id="summaryName">
+          Select a package
+        </h2>
+
+        <div
+          id="summaryEvents"
+          class="event-plan"
+        ></div>
+
+        <div class="summary-total">
+
+          <span>
+            Package price
+          </span>
+
+          <strong id="summaryPrice">
+            ₹0
+          </strong>
+
+        </div>
+
+        <div
+          class="booking-trust"
+        >
+
+          <span>
+            ✓ Multiple bookings per date allowed
+          </span>
+
+          <span>
+            ✓ Venue details captured
+          </span>
+
+          <span>
+            ✓ Functions mapped by day
+          </span>
+
+          <span>
+            ✓ 30% advance option
+          </span>
+
+          <span>
+            ✓ 100% full-payment option
+          </span>
+
+          <span>
+            ✓ Razorpay secure checkout
+          </span>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+  </section>
+
+  <!-- =========================================
+       MOBILE NAV
+       ========================================= -->
+
+  <nav
+    class="mobile-bottom-nav"
+    aria-label="Mobile navigation"
+  >
+
+    <a href="index.html">
+      <span>⌂</span>
+      Home
+    </a>
+
+    <button
+      type="button"
+      onclick="mobileMenu()"
+    >
+      <span>☰</span>
+      Menu
+    </button>
+
+    <a href="shop.html">
+      <span>▣</span>
+      Shop
+    </a>
+
+    <a href="booking.html">
+      <span>◈</span>
+      Book
+    </a>
+
+    <button
+      type="button"
+      data-open-cart
+    >
+      <span>🛒</span>
+      Cart
+      <b data-cart-count>
+        0
+      </b>
+    </button>
+
+  </nav>
+
+  <!-- =========================================
+       FOOTER
+       ========================================= -->
+
+  <footer class="footer">
+
+    <div class="wrap footgrid">
+
+      <div>
+
+        <a
+          class="logo"
+          href="index.html"
+        >
+
+          <img
+            class="brand-logo"
+            src="assets/lightroom-logo.png"
+            alt="Lightroom Productions"
+          >
+
+        </a>
+
+        <p>
+          Luxury wedding stories and premium photo products,
+          crafted in India.
+        </p>
+
+      </div>
+
+      <div>
+
+        <h4>
+          Contact
+        </h4>
+
+        <p>
+          WhatsApp: +91 70440 07755
+        </p>
+
+        <p>
+          help.lightroomproductions@gmail.com
+        </p>
+
+        <p>
+          care.lightroomproductions@gmail.com
+        </p>
+
+      </div>
+
+    </div>
 
     <div
+      class="wrap"
       style="
-        font-weight:700;
-        margin-bottom:8px;
+        border-top:1px solid #1c4854;
+        margin-top:35px;
+        padding-top:18px;
+        font-size:10px;
+        color:#88a0a5
       "
     >
-      Payment Schedule
+      © 2026 Lightroom Productions
     </div>
 
+  </footer>
 
-    <div>
-      30% Booking Advance
+  <!-- =========================================
+       RAZORPAY
+       ========================================= -->
 
-      <strong style="float:right">
-        ${formatMoney(advance)}
-      </strong>
-    </div>
+  <script
+    src="https://checkout.razorpay.com/v1/checkout.js"
+  ></script>
 
+  <script src="assets/site.js"></script>
 
-    <div>
-      50% on Event Ending Date
+  <script src="assets/packages.js"></script>
 
-      <strong style="float:right">
-        ${formatMoney(eventPayment)}
-      </strong>
-    </div>
+  <script>
 
+    // ==========================================
+    // ELEMENTS
+    // ==========================================
 
-    <div>
-      20% Before Final Deliverables
+    const packageSelect =
+      document.getElementById(
+        "selectedPackage"
+      );
 
-      <strong style="float:right">
-        ${formatMoney(finalPayment)}
-      </strong>
-    </div>
+    const bookingForm =
+      document.getElementById(
+        "bookingForm"
+      );
 
+    const submitButton =
+      document.getElementById(
+        "submitButton"
+      );
 
-    <div
-      style="
-        border-top:1px solid rgba(255,255,255,.12);
-        margin-top:10px;
-        padding-top:10px;
-      "
-    >
+    const statusBox =
+      document.getElementById(
+        "statusBox"
+      );
 
-      Total Package
+    const advanceAmountElement =
+      document.getElementById(
+        "advancePaymentAmount"
+      );
 
-      <strong style="float:right">
-        ${formatMoney(total)}
-      </strong>
+    const fullAmountElement =
+      document.getElementById(
+        "fullPaymentAmount"
+      );
 
-    </div>
+    const selectedPayableElement =
+      document.getElementById(
+        "selectedPayableAmount"
+      );
 
-  `;
+    // ==========================================
+    // HELPERS
+    // ==========================================
 
-}
+    function esc(value) {
 
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
-/* =========================================================
-PACKAGE CHANGE
-========================================================= */
+    }
 
-packageSelect.addEventListener(
-  "change",
-  function() {
+    function money(value) {
 
-    updatePackageDisplay();
+      return "₹" +
+        Number(value || 0)
+          .toLocaleString(
+            "en-IN",
+            {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2
+            }
+          );
 
-  }
-);
+    }
 
+    function getAllPackages() {
 
-/* =========================================================
-URL PACKAGE
-========================================================= */
+      if (
+        typeof PACKAGE_GROUPS ===
+        "undefined"
+      ) {
+        return [];
+      }
 
-function loadPackageFromURL() {
+      return Object
+        .values(PACKAGE_GROUPS)
+        .flat();
 
-  const params =
-    new URLSearchParams(
-      window.location.search
-    );
+    }
 
+    function getPackage() {
 
-  const requestedPackage =
-    params.get("package");
+      return getAllPackages()
+        .find(
+          p =>
+            p.name ===
+            packageSelect.value
+        );
 
+    }
 
-  if (!requestedPackage) {
+    function getPaymentType() {
 
-    return;
+      const selected =
+        document.querySelector(
+          'input[name="paymentType"]:checked'
+        );
 
-  }
+      return selected
+        ? selected.value
+        : "advance";
 
+    }
 
-  const packageItem =
+    function showStatus(
+      message,
+      isError = false
+    ) {
+
+      statusBox.textContent =
+        message;
+
+      statusBox.classList.add(
+        "show"
+      );
+
+      statusBox.style.borderColor =
+        isError
+          ? "rgba(255,80,80,.35)"
+          : "rgba(212,175,55,.25)";
+
+    }
+
+    // ==========================================
+    // PACKAGE DROPDOWN
+    // ==========================================
+
     getAllPackages()
-      .find(function(item) {
+      .forEach(pkg => {
 
-        return (
-          item.name.toLowerCase() ===
-          requestedPackage.toLowerCase()
+        const option =
+          document.createElement(
+            "option"
+          );
+
+        option.value =
+          pkg.name;
+
+        option.textContent =
+          `${pkg.name} — ${money(pkg.price)} — ${pkg.days}`;
+
+        packageSelect.appendChild(
+          option
         );
 
       });
 
+    // ==========================================
+    // PACKAGE DISPLAY
+    // ==========================================
 
-  if (packageItem) {
+    function updatePackage() {
 
-    packageSelect.value =
-      packageItem.name;
+      const pkg =
+        getPackage();
 
-    updatePackageDisplay();
+      const summary =
+        document.getElementById(
+          "packageSummary"
+        );
 
-  }
+      const events =
+        document.getElementById(
+          "summaryEvents"
+        );
 
-}
+      if (!pkg) {
 
+        summary.innerHTML = "";
 
-/* =========================================================
-END DATE
-========================================================= */
+        events.innerHTML = "";
 
-eventDate.addEventListener(
-  "change",
-  function() {
+        document.getElementById(
+          "summaryName"
+        ).textContent =
+          "Select a package";
 
-    if (
-      eventDate.value &&
-      (
-        !endDate.value ||
-        endDate.value < eventDate.value
-      )
-    ) {
+        document.getElementById(
+          "summaryPrice"
+        ).textContent =
+          "₹0";
 
-      endDate.value =
-        eventDate.value;
+        updatePaymentAmounts();
+
+        return;
+
+      }
+
+      document.getElementById(
+        "summaryName"
+      ).textContent =
+        pkg.name;
+
+      document.getElementById(
+        "summaryPrice"
+      ).textContent =
+        money(pkg.price);
+
+      events.innerHTML =
+        pkg.events
+          .map(
+            (event, index) => `
+              <div>
+                <span>${index + 1}</span>
+                ${esc(event)}
+              </div>
+            `
+          )
+          .join("");
+
+      summary.innerHTML = `
+        <div>
+          <b>${esc(pkg.days)}</b>
+          •
+          ${esc(pkg.team)}
+        </div>
+
+        <ul>
+          ${pkg.deliverables
+            .slice(0, 6)
+            .map(
+              item =>
+                `<li>${esc(item)}</li>`
+            )
+            .join("")}
+        </ul>
+      `;
+
+      const choices =
+        document.getElementById(
+          "functionChoices"
+        );
+
+      choices.innerHTML =
+        pkg.events
+          .map(
+            (event, index) => `
+              <label class="check">
+                <input
+                  type="checkbox"
+                  value="${esc(event)}"
+                  checked
+                >
+                ${esc(event)}
+              </label>
+            `
+          )
+          .join("");
+
+      updatePaymentAmounts();
 
     }
 
-  }
-);
+    packageSelect.addEventListener(
+      "change",
+      updatePackage
+    );
 
+    // ==========================================
+    // PAYMENT AMOUNTS
+    // ==========================================
 
-/* =========================================================
-CHECK AVAILABILITY
-========================================================= */
+    function updatePaymentAmounts() {
 
-async function checkAvailability(
-  start,
-  end
-) {
+      const pkg =
+        getPackage();
 
-  const response =
-    await fetch(
-      "/api/check-availability",
-      {
+      if (!pkg) {
 
-        method: "POST",
+        advanceAmountElement.textContent =
+          "₹0.00";
 
-        headers: {
-          "Content-Type":
-            "application/json"
-        },
+        fullAmountElement.textContent =
+          "₹0.00";
 
-        body: JSON.stringify({
+        selectedPayableElement.textContent =
+          "₹0.00";
 
-          start: start,
-
-          end:
-            end || start
-
-        })
+        return;
 
       }
-    );
 
+      const total =
+        Number(pkg.price);
 
-  let data;
+      const advance =
+        Math.round(
+          total * 0.30 * 100
+        ) / 100;
 
+      advanceAmountElement.textContent =
+        money(advance);
 
-  try {
+      fullAmountElement.textContent =
+        money(total);
 
-    data =
-      await response.json();
+      const paymentType =
+        getPaymentType();
 
-  } catch (error) {
+      selectedPayableElement.textContent =
+        money(
+          paymentType === "full"
+            ? total
+            : advance
+        );
 
-    throw new Error(
-      "Availability server returned an invalid response."
-    );
+    }
 
-  }
-
-
-  if (!response.ok) {
-
-    throw new Error(
-      data.error ||
-      "Unable to check date availability."
-    );
-
-  }
-
-
-  return data;
-
-}
-
-
-/* =========================================================
-CREATE BOOKING ORDER
-========================================================= */
-
-async function createBookingOrder() {
-
-  const packageItem =
-    getSelectedPackage();
-
-
-  if (!packageItem) {
-
-    throw new Error(
-      "Please select a wedding package."
-    );
-
-  }
-
-
-  const start =
-    eventDate.value;
-
-
-  const end =
-    endDate.value || start;
-
-
-  if (!start) {
-
-    throw new Error(
-      "Please select your primary event date."
-    );
-
-  }
-
-
-  if (end < start) {
-
-    throw new Error(
-      "End date cannot be before the primary event date."
-    );
-
-  }
-
-
-  /* CHECK AVAILABILITY */
-
-  setStatus(
-    "Checking wedding date availability...",
-    "info"
-  );
-
-
-  const availability =
-    await checkAvailability(
-      start,
-      end
-    );
-
-
-  if (
-    availability &&
-    availability.available === false
-  ) {
-
-    throw new Error(
-      "This wedding date is already reserved. Please select another date."
-    );
-
-  }
-
-
-  /* FUNCTIONS */
-
-  const functions =
-    Array.from(
-      document.querySelectorAll(
-        "#functionChoices input:checked"
+    document
+      .querySelectorAll(
+        'input[name="paymentType"]'
       )
-    )
-    .map(function(input) {
+      .forEach(
+        input =>
+          input.addEventListener(
+            "change",
+            updatePaymentAmounts
+          )
+      );
 
-      return input.value;
+    // ==========================================
+    // URL PACKAGE
+    // ==========================================
 
-    });
+    const query =
+      new URLSearchParams(
+        window.location.search
+      );
 
+    const requestedPackage =
+      query.get("package");
 
-  /* PAYLOAD */
+    if (requestedPackage) {
 
-  const payload = {
+      packageSelect.value =
+        requestedPackage;
 
-    package: {
+      updatePackage();
 
-      name:
-        packageItem.name,
+    }
 
-      price:
-        packageItem.price,
+    // ==========================================
+    // DATE DEFAULT
+    // ==========================================
 
-      days:
-        packageItem.days
+    const eventDate =
+      document.getElementById(
+        "eventDate"
+      );
 
-    },
+    const endDate =
+      document.getElementById(
+        "endDate"
+      );
 
+    eventDate.addEventListener(
+      "change",
+      () => {
 
-    client: {
+        if (
+          !endDate.value ||
+          endDate.value <
+            eventDate.value
+        ) {
 
-      bride:
-        document
-          .getElementById("bName")
-          .value
-          .trim(),
+          endDate.value =
+            eventDate.value;
 
-      groom:
-        document
-          .getElementById("gName")
-          .value
-          .trim(),
+        }
 
-      phone:
-        document
-          .getElementById("bPhone")
-          .value
-          .trim(),
-
-      email:
-        document
-          .getElementById("bEmail")
-          .value
-          .trim()
-
-    },
-
-
-    dates: {
-
-      start:
-        start,
-
-      end:
-        end
-
-    },
-
-
-    functions:
-      functions,
-
-
-    venue: {
-
-      name:
-        document
-          .getElementById("venue")
-          .value
-          .trim(),
-
-      city:
-        document
-          .getElementById("city")
-          .value
-          .trim(),
-
-      address:
-        document
-          .getElementById("venueAddress")
-          .value
-          .trim()
-
-    },
-
-
-    guests:
-      document
-        .getElementById("guests")
-        .value,
-
-
-    requirements:
-      document
-        .getElementById("requirements")
-        .value
-        .trim()
-
-  };
-
-
-  /* VALIDATION */
-
-  if (!payload.client.bride) {
-
-    throw new Error(
-      "Please enter the bride / client name."
-    );
-
-  }
-
-
-  if (!payload.client.phone) {
-
-    throw new Error(
-      "Please enter your phone / WhatsApp number."
-    );
-
-  }
-
-
-  if (!payload.client.email) {
-
-    throw new Error(
-      "Please enter your email address."
-    );
-
-  }
-
-
-  if (!payload.venue.name) {
-
-    throw new Error(
-      "Please enter the venue name."
-    );
-
-  }
-
-
-  if (!payload.venue.city) {
-
-    throw new Error(
-      "Please enter the city."
-    );
-
-  }
-
-
-  if (!payload.venue.address) {
-
-    throw new Error(
-      "Please enter the venue address."
-    );
-
-  }
-
-
-  /* CREATE BACKEND ORDER */
-
-  setStatus(
-    "Creating your booking and payment order...",
-    "info"
-  );
-
-
-  const response =
-    await fetch(
-      "/api/create-booking-order",
-      {
-
-        method: "POST",
-
-        headers: {
-          "Content-Type":
-            "application/json"
-        },
-
-        body:
-          JSON.stringify(payload)
+        endDate.min =
+          eventDate.value;
 
       }
     );
 
+    // ==========================================
+    // FORM SUBMISSION
+    // ==========================================
 
-  let data;
+    bookingForm.addEventListener(
+      "submit",
+      async function(event) {
 
+        event.preventDefault();
 
-  try {
+        const pkg =
+          getPackage();
 
-    data =
-      await response.json();
+        if (!pkg) {
 
-  } catch (error) {
+          alert(
+            "Please select a wedding package."
+          );
 
-    throw new Error(
-      "Booking server returned an invalid response."
-    );
+          return;
 
-  }
+        }
 
+        const paymentType =
+          getPaymentType();
 
-  if (!response.ok) {
+        const start =
+          eventDate.value;
 
-    throw new Error(
-      data.error ||
-      "Unable to create the booking."
-    );
+        const end =
+          endDate.value ||
+          start;
 
-  }
+        if (!start) {
 
+          alert(
+            "Please select the wedding date."
+          );
 
-  if (!data.bookingId) {
+          return;
 
-    throw new Error(
-      "Booking ID was not returned by the server."
-    );
+        }
 
-  }
+        if (
+          end &&
+          start > end
+        ) {
 
+          alert(
+            "The end date cannot be before the start date."
+          );
 
-  if (!data.options) {
+          return;
 
-    throw new Error(
-      "Razorpay payment information was not returned."
-    );
+        }
 
-  }
+        const functions =
+          [
+            ...document.querySelectorAll(
+              "#functionChoices input:checked"
+            )
+          ]
+            .map(
+              input =>
+                input.value
+            );
 
+        const payload = {
 
-  /* RAZORPAY */
+          package: {
+            name: pkg.name
+          },
 
-  if (
-    typeof window.Razorpay ===
-    "undefined"
-  ) {
+          client: {
 
-    throw new Error(
-      "Razorpay Checkout could not be loaded. Please refresh the page."
-    );
+            bride:
+              document.getElementById(
+                "bName"
+              ).value,
 
-  }
+            groom:
+              document.getElementById(
+                "gName"
+              ).value,
 
+            phone:
+              document.getElementById(
+                "bPhone"
+              ).value,
 
-  setStatus(
-    "Opening secure Razorpay checkout...",
-    "info"
-  );
+            email:
+              document.getElementById(
+                "bEmail"
+              ).value
 
+          },
 
-  const razorpayOptions = {
+          dates: {
 
-    ...data.options,
+            start,
 
+            end
 
-    handler:
-      async function(payment) {
+          },
+
+          functions,
+
+          venue: {
+
+            name:
+              document.getElementById(
+                "venue"
+              ).value,
+
+            city:
+              document.getElementById(
+                "city"
+              ).value,
+
+            address:
+              document.getElementById(
+                "venueAddress"
+              ).value
+
+          },
+
+          guests:
+            document.getElementById(
+              "guests"
+            ).value,
+
+          requirements:
+            document.getElementById(
+              "requirements"
+            ).value,
+
+          paymentType
+
+        };
+
+        submitButton.disabled =
+          true;
+
+        submitButton.classList.add(
+          "loading"
+        );
+
+        submitButton.textContent =
+          "Creating Payment...";
+
+        showStatus(
+          paymentType === "full"
+            ? "Creating your full-payment order..."
+            : "Creating your 30% advance order..."
+        );
 
         try {
 
-          setStatus(
-            "Payment received. Verifying payment and confirming your booking...",
-            "info"
-          );
+          // ------------------------------------
+          // CREATE BOOKING + RAZORPAY ORDER
+          // ------------------------------------
 
-
-          const verificationResponse =
+          const response =
             await fetch(
-              "/api/verify-booking-payment",
+              "/api/create-booking-order",
               {
-
                 method: "POST",
 
                 headers: {
@@ -1964,247 +1537,273 @@ async function createBookingOrder() {
                 },
 
                 body:
-                  JSON.stringify({
-
-                    booking_id:
-                      data.bookingId,
-
-                    razorpay_order_id:
-                      payment.razorpay_order_id,
-
-                    razorpay_payment_id:
-                      payment.razorpay_payment_id,
-
-                    razorpay_signature:
-                      payment.razorpay_signature
-
-                  })
-
+                  JSON.stringify(
+                    payload
+                  )
               }
             );
 
+          const data =
+            await response.json();
 
-          let verificationData;
-
-
-          try {
-
-            verificationData =
-              await verificationResponse.json();
-
-          } catch (error) {
+          if (!response.ok) {
 
             throw new Error(
-              "Payment verification returned an invalid response."
+              data.error ||
+              "Unable to create booking."
             );
 
           }
 
-
           if (
-            !verificationResponse.ok ||
-            !verificationData.success
+            !data.success ||
+            !data.options
           ) {
 
             throw new Error(
-              verificationData.error ||
-              "Payment verification failed."
+              "Payment order was not created."
             );
 
           }
 
+          // ------------------------------------
+          // RAZORPAY
+          // ------------------------------------
 
-          /* SUCCESS */
+          if (
+            typeof Razorpay ===
+            "undefined"
+          ) {
 
-          window.location.href =
-            "booking-success.html" +
-            "?booking_id=" +
-            encodeURIComponent(
-              data.bookingId
-            ) +
-            "&payment_id=" +
-            encodeURIComponent(
-              payment.razorpay_payment_id
+            throw new Error(
+              "Razorpay checkout could not be loaded."
             );
+
+          }
+
+          const razorpayOptions =
+            {
+              ...data.options,
+
+              handler:
+                async function(
+                  razorpayResponse
+                ) {
+
+                  await verifyPayment(
+                    data,
+                    razorpayResponse
+                  );
+
+                },
+
+              modal: {
+
+                ondismiss:
+                  function() {
+
+                    submitButton.disabled =
+                      false;
+
+                    submitButton.classList.remove(
+                      "loading"
+                    );
+
+                    submitButton.textContent =
+                      "Continue to Payment";
+
+                    showStatus(
+                      "Payment window closed. Your booking has not been confirmed yet."
+                    );
+
+                  }
+
+              }
+
+            };
+
+          const razorpay =
+            new Razorpay(
+              razorpayOptions
+            );
+
+          razorpay.on(
+            "payment.failed",
+            function(response) {
+
+              console.error(
+                "Razorpay payment failed:",
+                response
+              );
+
+              showStatus(
+                response?.error?.description ||
+                "Payment failed. Please try again.",
+                true
+              );
+
+              submitButton.disabled =
+                false;
+
+              submitButton.classList.remove(
+                "loading"
+              );
+
+              submitButton.textContent =
+                "Continue to Payment";
+
+            }
+          );
+
+          razorpay.open();
 
         } catch (error) {
 
           console.error(
-            "Payment verification error:",
+            "Booking error:",
             error
           );
 
-
-          setStatus(
-            error.message ||
-            "Payment verification failed.",
-            "error"
-          );
-
-
           alert(
-            "Payment was received, but booking confirmation failed.\n\n" +
-            "Booking ID: " +
-            data.bookingId +
-            "\n\n" +
-            "Please contact Lightroom Productions."
+            error.message ||
+            "Unable to create the booking."
           );
-
 
           submitButton.disabled =
             false;
 
-          submitButton.textContent =
-            "Book Now & Continue to Payment";
-
-        }
-
-      },
-
-
-    modal: {
-
-      ondismiss:
-        function() {
-
-          submitButton.disabled =
-            false;
+          submitButton.classList.remove(
+            "loading"
+          );
 
           submitButton.textContent =
-            "Book Now & Continue to Payment";
+            "Continue to Payment";
 
-
-          setStatus(
-            "Payment window was closed. The booking was not paid.",
-            "error"
+          showStatus(
+            error.message ||
+            "Unable to create the booking.",
+            true
           );
 
         }
 
-    }
-
-  };
-
-
-  const razorpay =
-    new window.Razorpay(
-      razorpayOptions
+      }
     );
 
+    // ==========================================
+    // VERIFY PAYMENT
+    // ==========================================
 
-  razorpay.on(
-    "payment.failed",
-    function(response) {
+    async function verifyPayment(
+      orderData,
+      razorpayResponse
+    ) {
 
-      console.error(
-        "Razorpay payment failed:",
-        response
+      showStatus(
+        "Payment received. Verifying your booking..."
       );
 
+      try {
 
-      submitButton.disabled =
-        false;
+        const response =
+          await fetch(
+            "/api/verify-booking-payment",
+            {
+              method: "POST",
 
-      submitButton.textContent =
-        "Book Now & Continue to Payment";
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
 
+              body:
+                JSON.stringify({
 
-      const errorMessage =
-        response &&
-        response.error &&
-        response.error.description
-          ? response.error.description
-          : "Payment failed. Please try again.";
+                  booking_id:
+                    orderData.bookingId,
 
+                  razorpay_order_id:
+                    razorpayResponse.razorpay_order_id,
 
-      setStatus(
-        errorMessage,
-        "error"
-      );
+                  razorpay_payment_id:
+                    razorpayResponse.razorpay_payment_id,
+
+                  razorpay_signature:
+                    razorpayResponse.razorpay_signature
+
+                })
+            }
+          );
+
+        const result =
+          await response.json();
+
+        if (!response.ok) {
+
+          throw new Error(
+            result.error ||
+            "Payment verification failed."
+          );
+
+        }
+
+        if (!result.success) {
+
+          throw new Error(
+            result.error ||
+            "Payment verification failed."
+          );
+
+        }
+
+        // --------------------------------------
+        // SUCCESS
+        // --------------------------------------
+
+        const params =
+          new URLSearchParams({
+
+            booking_id:
+              result.bookingId,
+
+            payment_id:
+              result.paymentId,
+
+            payment_type:
+              result.paymentType,
+
+            amount:
+              result.amount
+
+          });
+
+        window.location.href =
+          "booking-success.html?" +
+          params.toString();
+
+      } catch (error) {
+
+        console.error(
+          "Verification error:",
+          error
+        );
+
+        alert(
+          error.message ||
+          "Payment was received but verification failed. Please contact Lightroom Productions."
+        );
+
+        showStatus(
+          error.message ||
+          "Payment verification failed.",
+          true
+        );
+
+      }
 
     }
-  );
 
-
-  razorpay.open();
-
-}
-
-
-/* =========================================================
-FORM SUBMIT
-========================================================= */
-
-bookingForm.addEventListener(
-  "submit",
-  async function(event) {
-
-    event.preventDefault();
-
-
-    if (!bookingForm.checkValidity()) {
-
-      bookingForm.reportValidity();
-
-      return;
-
-    }
-
-
-    submitButton.disabled =
-      true;
-
-
-    submitButton.textContent =
-      "Checking availability...";
-
-
-    try {
-
-      await createBookingOrder();
-
-    } catch (error) {
-
-      console.error(
-        "Wedding booking error:",
-        error
-      );
-
-
-      setStatus(
-        error.message ||
-        "Unable to start booking.",
-        "error"
-      );
-
-
-      alert(
-        error.message ||
-        "Unable to start booking."
-      );
-
-
-      submitButton.disabled =
-        false;
-
-
-      submitButton.textContent =
-        "Book Now & Continue to Payment";
-
-    }
-
-  });
-
-
-/* =========================================================
-INITIALIZE
-========================================================= */
-
-populatePackageDropdown();
-
-loadPackageFromURL();
-
-</script>
+  </script>
 
 </body>
 </html>
