@@ -1052,20 +1052,294 @@
 
     }
 
-    function getAllPackages() {
+   function getAllPackages() {
 
-      if (
-        typeof PACKAGE_GROUPS ===
-        "undefined"
-      ) {
-        return [];
-      }
+  return [
 
-      return Object
-        .values(PACKAGE_GROUPS)
-        .flat();
+    // SINGLE SIDE
+    {
+      name: "Shubh Aarambh",
+      price: 34999,
+      days: "1 Day",
+      team: "Wedding + Reception",
+      events: [
+        "Day 1 Wedding + Reception"
+      ],
+      deliverables: [
+        "Wedding Photography",
+        "Wedding Cinematography",
+        "Reception Coverage",
+        "Couple Portraits"
+      ]
+    },
 
+    {
+      name: "Mangal Milan",
+      price: 44999,
+      days: "1 Day",
+      team: "Wedding + Reception + Couple Portraits",
+      events: [
+        "Day 1 Wedding + Reception",
+        "Couple Portraits"
+      ],
+      deliverables: [
+        "Wedding Photography",
+        "Wedding Cinematography",
+        "Reception Coverage",
+        "Couple Portraits"
+      ]
+    },
+
+    {
+      name: "Rajsi Vivaah",
+      price: 54999,
+      days: "2 Days",
+      team: "Single Side",
+      events: [
+        "Day 1 Haldi / Mehendi",
+        "Day 2 Wedding + Reception"
+      ],
+      deliverables: [
+        "Haldi Photography",
+        "Mehendi Photography",
+        "Wedding Photography",
+        "Cinematography",
+        "Reception Coverage"
+      ]
+    },
+
+    {
+      name: "Royal Utsav",
+      price: 64999,
+      days: "2 Days",
+      team: "Single Side",
+      events: [
+        "Day 1 Pre-Wedding Functions",
+        "Day 2 Wedding + Reception"
+      ],
+      deliverables: [
+        "Pre-Wedding Functions",
+        "Wedding Photography",
+        "Cinematography",
+        "Reception Coverage"
+      ]
+    },
+
+    {
+      name: "Swarna Mahotsav",
+      price: 74999,
+      days: "3 Days",
+      team: "Single Side",
+      events: [
+        "Day 1 Mehendi / Haldi",
+        "Day 2 Wedding",
+        "Day 3 Reception / Post-Wedding"
+      ],
+      deliverables: [
+        "Mehendi",
+        "Haldi",
+        "Wedding",
+        "Reception",
+        "Post-Wedding"
+      ]
+    },
+
+    {
+      name: "Maharaja Signature",
+      price: 84999,
+      days: "3 Days",
+      team: "Single Side",
+      events: [
+        "Day 1 Pre-Wedding Functions",
+        "Day 2 Wedding",
+        "Day 3 Reception"
+      ],
+      deliverables: [
+        "Pre-Wedding Functions",
+        "Wedding Photography",
+        "Wedding Cinematography",
+        "Reception"
+      ]
+    },
+
+    {
+      name: "Imperial Dynasty",
+      price: 99999,
+      days: "3 Days",
+      team: "Single Side",
+      events: [
+        "Day 1 Haldi / Mehendi",
+        "Day 2 Wedding",
+        "Day 3 Reception / Couple Shoot"
+      ],
+      deliverables: [
+        "Haldi",
+        "Mehendi",
+        "Wedding Photography",
+        "Wedding Cinematography",
+        "Reception",
+        "Couple Shoot"
+      ]
+    },
+
+    {
+      name: "Raj Mahal Elite",
+      price: 124999,
+      days: "3 Days",
+      team: "Single Side",
+      events: [
+        "Day 1 Pre-Wedding Functions",
+        "Day 2 Wedding",
+        "Day 3 Reception + Couple Story"
+      ],
+      deliverables: [
+        "Pre-Wedding Functions",
+        "Wedding Photography",
+        "Cinematography",
+        "Reception",
+        "Couple Story"
+      ]
+    },
+
+    {
+      name: "Crown Legacy",
+      price: 149999,
+      days: "4 Days",
+      team: "Single Side",
+      events: [
+        "Day 1 Mehendi",
+        "Day 2 Haldi",
+        "Day 3 Wedding",
+        "Day 4 Reception / Couple Shoot"
+      ],
+      deliverables: [
+        "Mehendi",
+        "Haldi",
+        "Wedding",
+        "Reception",
+        "Couple Shoot"
+      ]
+    },
+
+    // BOTH SIDE
+    {
+      name: "Royal Sangam",
+      price: 89999,
+      days: "2 Days",
+      team: "Bride + Groom Side",
+      events: [
+        "Day 1 Bride + Groom Side Functions",
+        "Day 2 Wedding + Reception"
+      ],
+      deliverables: [
+        "Bride Side Coverage",
+        "Groom Side Coverage",
+        "Wedding Photography",
+        "Cinematography",
+        "Reception"
+      ]
+    },
+
+    {
+      name: "Maharaja Sangam",
+      price: 109999,
+      days: "3 Days",
+      team: "Bride + Groom Side",
+      events: [
+        "Day 1 Bride Side",
+        "Day 2 Groom Side",
+        "Day 3 Wedding / Reception"
+      ],
+      deliverables: [
+        "Bride Side",
+        "Groom Side",
+        "Wedding",
+        "Reception",
+        "Cinematography"
+      ]
+    },
+
+    {
+      name: "Rajwada Heritage",
+      price: 129999,
+      days: "3 Days",
+      team: "Bride + Groom Side",
+      events: [
+        "Day 1 Bride Side",
+        "Day 2 Groom Side",
+        "Day 3 Wedding + Reception"
+      ],
+      deliverables: [
+        "Bride Side",
+        "Groom Side",
+        "Wedding Photography",
+        "Cinematography",
+        "Reception"
+      ]
+    },
+
+    {
+      name: "Imperial Vivaah",
+      price: 149999,
+      days: "3 Days",
+      team: "Bride + Groom Side",
+      events: [
+        "Day 1 Bride Side",
+        "Day 2 Groom Side",
+        "Day 3 Wedding + Reception"
+      ],
+      deliverables: [
+        "Bride Side",
+        "Groom Side",
+        "Wedding",
+        "Reception",
+        "Cinematography"
+      ]
+    },
+
+    {
+      name: "Maharani Collection",
+      price: 174999,
+      days: "3 Days",
+      team: "Bride + Groom Side + Editorial",
+      events: [
+        "Day 1 Bride Side",
+        "Day 2 Groom Side",
+        "Day 3 Wedding + Reception + Editorial"
+      ],
+      deliverables: [
+        "Bride Side",
+        "Groom Side",
+        "Wedding",
+        "Reception",
+        "Editorial Photography"
+      ]
+    },
+
+    {
+      name: "Royal Dynasty",
+      price: 199999,
+      days: "4 Days",
+      team: "Bride + Groom Side",
+      events: [
+        "Day 1 Bride Events",
+        "Day 2 Groom Events",
+        "Day 3 Wedding",
+        "Day 4 Reception / Grand Celebration"
+      ],
+      deliverables: [
+        "Bride Events",
+        "Groom Events",
+        "Wedding Photography",
+        "Wedding Cinematography",
+        "Reception",
+        "Grand Celebration"
+      ]
     }
+
+  ];
+
+}
 
     function getPackage() {
 
