@@ -1590,17 +1590,27 @@
         window.location.search
       );
 
-    const requestedPackage =
-      query.get("package");
+   const requestedPackage =
+  query.get("package");
 
-    if (requestedPackage) {
+if (requestedPackage) {
 
-      packageSelect.value =
-        requestedPackage;
+  const matchingPackage =
+    getAllPackages().find(
+      pkg =>
+        pkg.name === requestedPackage
+    );
 
-      updatePackage();
+  if (matchingPackage) {
 
-    }
+    packageSelect.value =
+      matchingPackage.name;
+
+    updatePackage();
+
+  }
+
+}
 
     // ==========================================
     // DATE DEFAULT
