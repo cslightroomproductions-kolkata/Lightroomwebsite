@@ -26,9 +26,3 @@ The access token is server-side only. The homepage should use the Facebook feed 
 
 ## Backend safety
 Existing Razorpay/Supabase booking/payment API files were not changed by the V21 homepage redesign.
-
-
-## V22 redesign
-- Luxury editorial homepage with full-width photography hero, service mosaic, curated packages, portfolio gallery, Vowshot shop shelf, brand section and CTA.
-- New `assets/v22.css` is loaded after existing styles so the booking, checkout, cart, product and API logic remain intact.
-- All HTML pages receive the V22 visual layer for a consistent header, navigation, cards, page headers and footer.
