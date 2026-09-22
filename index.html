@@ -18,7 +18,7 @@
       --gold-dark: #b88636;
       --bg-dark: #07090e;
       --bg-card: rgba(18, 22, 31, 0.85);
-      --bg-warm-light: #f9f6f0;
+      --bg-warm-light: #fbf9f4;
       --text-main: #ffffff;
       --text-muted: #a6b0c3;
       --text-dark: #1f242e;
@@ -176,6 +176,8 @@
       align-items: center;
       gap: 8px;
       box-shadow: 0 4px 15px rgba(229, 184, 105, 0.25);
+      border: none;
+      cursor: pointer;
     }
 
     .btn-gold:hover {
@@ -445,6 +447,7 @@
       gap: 16px;
       padding-left: 30px;
       border-left: 1px solid rgba(0,0,0,0.1);
+      cursor: pointer;
     }
 
     .pillar-item:first-child {
@@ -463,7 +466,6 @@
       font-family: var(--font-serif);
       font-size: 1.25rem;
       font-weight: 700;
-      color: #11151e;
     }
 
     .pillar-info p {
@@ -564,50 +566,107 @@
     }
 
     /* ============================================================
-       VOWSHOT COLLECTION / PRODUCT CAROUSEL
+       PHOTOGRAPHY & CINEMATOGRAPHY PACKAGES SECTION
+    ============================================================ */
+    .packages-section {
+      padding: 70px 70px;
+      background: var(--bg-dark);
+      border-top: 1px solid var(--border-dark);
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 35px;
+    }
+
+    .package-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 8px;
+      padding: 34px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .package-box:hover {
+      transform: translateY(-4px);
+    }
+
+    .package-box.popular {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 25px rgba(229,184,105,0.18);
+    }
+
+    .package-box h3 {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .package-box .pkg-sub {
+      font-size: 0.75rem;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .package-box .price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+      margin-bottom: 20px;
+    }
+
+    .package-box ul {
+      list-style: none;
+      margin-bottom: 30px;
+    }
+
+    .package-box ul li {
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      margin-bottom: 11px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .package-box ul li i {
+      color: var(--gold-primary);
+      font-size: 0.8rem;
+    }
+
+    /* ============================================================
+       VOWSHOT COLLECTION / PRODUCT CAROUSEL & CATALOG
     ============================================================ */
     .vowshot-section {
       background: #fbf9f4;
-      padding: 0 70px 60px;
-      border-top: 1px solid #eae2d3;
+      padding: 60px 70px;
       color: var(--text-dark);
     }
 
     .products-shelf {
       display: grid;
-      grid-template-columns: 240px repeat(5, 1fr);
-      gap: 16px;
-      align-items: center;
-    }
-
-    .vowshot-intro .eyebrow {
-      font-size: 0.68rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #8c7853;
-      font-weight: 600;
-    }
-
-    .vowshot-intro h2 {
-      font-family: var(--font-serif);
-      font-size: 1.7rem;
-      line-height: 1.2;
-      font-weight: 700;
-      color: #111622;
-      margin: 4px 0 10px;
-    }
-
-    .vowshot-intro p {
-      font-size: 0.78rem;
-      color: #5d6778;
-      line-height: 1.4;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 25px;
     }
 
     .product-card {
       background: #ffffff;
       border: 1px solid #e7dfd1;
       border-radius: 6px;
-      padding: 12px;
+      padding: 14px;
       text-align: center;
       transition: all 0.25s ease;
       display: flex;
@@ -622,11 +681,11 @@
 
     .product-img-box {
       width: 100%;
-      height: 125px;
+      height: 140px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       overflow: hidden;
     }
 
@@ -636,37 +695,41 @@
     }
 
     .product-card h4 {
-      font-size: 0.78rem;
+      font-size: 0.85rem;
       font-weight: 600;
       color: #1a1e27;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       margin-bottom: 4px;
+    }
+
+    .product-card .cat-tag {
+      font-size: 0.7rem;
+      color: #8c7853;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .product-bottom-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 6px;
-      padding-top: 6px;
+      margin-top: 10px;
+      padding-top: 8px;
       border-top: 1px dashed #f0e9df;
     }
 
     .product-bottom-row span {
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       color: #64748b;
     }
 
     .product-bottom-row strong {
       color: #0f172a;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
     }
 
     .cart-add-btn {
-      width: 26px;
-      height: 26px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background: #f1ede4;
       color: #111;
@@ -674,7 +737,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       cursor: pointer;
       transition: all 0.2s ease;
     }
@@ -685,7 +748,7 @@
     }
 
     /* ============================================================
-       FOOTER CTA & BOTTOM BANNER
+       BOTTOM BANNER: BOOKING CALL TO ACTION
     ============================================================ */
     .cta-banner {
       position: relative;
@@ -831,40 +894,23 @@
       margin: 0 2px;
     }
 
-    /* Mobile / Tablet responsiveness */
-    @media (max-width: 1024px) {
-      .services-strip {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .portfolio-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      .products-shelf {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      .sub-brands-section {
-        flex-direction: column;
-        gap: 30px;
-        text-align: center;
-      }
-      .brand-pillars {
-        flex-direction: column;
-      }
-      .pillar-item {
-        border-left: none;
-        padding-left: 0;
-      }
+    @media (max-width: 1100px) {
+      .services-strip { grid-template-columns: repeat(2, 1fr); }
+      .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
+      .products-shelf { grid-template-columns: repeat(3, 1fr); }
+      .packages-grid { grid-template-columns: 1fr; }
+      .sub-brands-section { flex-direction: column; gap: 30px; text-align: center; }
+      .brand-pillars { flex-direction: column; }
+      .pillar-item { border-left: none; padding-left: 0; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ============================================================
-       TOP NAVIGATION
-  ============================================================ -->
+  <!-- TOP NAVIGATION -->
   <header class="site-header">
     <a href="index.html" class="brand-logo-wrap">
-      <img src="assets/lightroom-logo.png" alt="Lightroom Productions Logo" onerror="this.src='https://placehold.co/180x50/07090e/e5b869?text=LIGHTROOM'" />
+      <img src="assets/lightroom-logo.png" alt="Lightroom Logo" onerror="this.src='https://placehold.co/180x50/07090e/e5b869?text=LIGHTROOM'" />
       <div class="brand-title">
         <span class="main-name">Lightroom</span>
         <span class="sub-name">Productions Pvt. Ltd.</span>
@@ -874,11 +920,11 @@
     <nav class="nav-menu">
       <a href="index.html" class="active">Home</a>
       <a href="about.html">About</a>
-      <a href="weddings.html">Weddings</a>
-      <a href="photography.html">Services <i class="fa-solid fa-chevron-down" style="font-size:0.6rem;"></i></a>
-      <a href="shop.html">Shop</a>
-      <a href="portfolio.html">Gallery</a>
-      <a href="#blogs">Blogs</a>
+      <a href="#wedding-capital">Weddings</a>
+      <a href="#services">Services</a>
+      <a href="#vowshot">Shop</a>
+      <a href="#portfolio">Gallery</a>
+      <a href="#packages">Packages</a>
       <a href="contact.html">Contact</a>
     </nav>
 
@@ -896,9 +942,7 @@
     </div>
   </header>
 
-  <!-- ============================================================
-       HERO SECTION
-  ============================================================ -->
+  <!-- HERO SECTION -->
   <section class="hero-section">
     <div class="hero-content">
       <p class="hero-tagline">Weddings &nbsp;|&nbsp; Pre-Weddings &nbsp;|&nbsp; Families &nbsp;|&nbsp; And More</p>
@@ -947,11 +991,8 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       TOP 5 SERVICES STRIP
-  ============================================================ -->
-  <section class="services-strip">
-    <!-- Wedding Photography -->
+  <!-- TOP 5 SERVICES TILES -->
+  <section class="services-strip" id="services">
     <div class="service-card" onclick="location.href='wedding-photography.html'">
       <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600&auto=format&fit=crop" alt="Wedding Photography">
       <div class="overlay"></div>
@@ -964,7 +1005,6 @@
       </div>
     </div>
 
-    <!-- Pre-Wedding Shoots -->
     <div class="service-card" onclick="location.href='pre-wedding.html'">
       <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=600&auto=format&fit=crop" alt="Pre-Wedding Shoots">
       <div class="overlay"></div>
@@ -977,7 +1017,6 @@
       </div>
     </div>
 
-    <!-- Maternity Photography -->
     <div class="service-card" onclick="location.href='photography.html'">
       <img src="https://images.unsplash.com/photo-1544126592-807ade215a0b?q=80&w=600&auto=format&fit=crop" alt="Maternity Photography">
       <div class="overlay"></div>
@@ -990,7 +1029,6 @@
       </div>
     </div>
 
-    <!-- Baby & Kids (TinyToons) -->
     <div class="service-card" onclick="location.href='photography.html'">
       <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=600&auto=format&fit=crop" alt="Baby & Kids">
       <div class="overlay"></div>
@@ -1003,7 +1041,6 @@
       </div>
     </div>
 
-    <!-- Albums & Frames (Vowshot) -->
     <div class="service-card" onclick="location.href='albums.html'">
       <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=600&auto=format&fit=crop" alt="Albums & Frames">
       <div class="overlay"></div>
@@ -1017,37 +1054,32 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       OUR SUB-BRANDS
-  ============================================================ -->
-  <section class="sub-brands-section">
+  <!-- SUB-BRANDS -->
+  <section class="sub-brands-section" id="wedding-capital">
     <div class="sub-brands-heading">
       <span class="eyebrow">Our Sub-Brands</span>
       <h2>Different Stories<br>One Family</h2>
     </div>
 
     <div class="brand-pillars">
-      <!-- Wedding Capital -->
-      <div class="pillar-item">
-        <img src="assets/brands/wedding-capital.jpg" alt="Wedding Capital" onerror="this.src='https://placehold.co/60x60/f5e5cf/8c7853?text=WC'" />
+      <div class="pillar-item" onclick="location.href='weddings.html'">
+        <img src="assets/brands/wedding-capital.jpg" alt="Wedding Capital" onerror="this.src='https://placehold.co/60x60/f5e5cf/a82222?text=WC'" />
         <div class="pillar-info">
           <h4 style="color:#a82222;">Wedding Capital</h4>
           <p>Weddings, Pre-weddings and cinematic celebrations</p>
         </div>
       </div>
 
-      <!-- TinyToons -->
-      <div class="pillar-item">
-        <img src="assets/brands/tinytoons.png" alt="TinyToons" onerror="this.src='https://placehold.co/60x60/f5e5cf/8c7853?text=TT'" />
+      <div class="pillar-item" onclick="location.href='photography.html'">
+        <img src="assets/brands/tinytoons.png" alt="TinyToons" onerror="this.src='https://placehold.co/60x60/f5e5cf/b2671e?text=TT'" />
         <div class="pillar-info">
           <h4 style="color:#b2671e;">TinyToons</h4>
           <p>Baby Photography, Maternity & Birthday Celebrations</p>
         </div>
       </div>
 
-      <!-- Vowshot -->
-      <div class="pillar-item">
-        <img src="assets/brands/vowshot.jpg" alt="Vowshot" onerror="this.src='https://placehold.co/60x60/f5e5cf/8c7853?text=VS'" />
+      <div class="pillar-item" onclick="location.href='shop.html'">
+        <img src="assets/brands/vowshot.jpg" alt="Vowshot" onerror="this.src='https://placehold.co/60x60/f5e5cf/8b4513?text=VS'" />
         <div class="pillar-info">
           <h4 style="color:#8b4513;">Vowshot</h4>
           <p>Albums, Customized Gifts, Photo Frames & Keepsakes</p>
@@ -1060,10 +1092,8 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       FEATURED PORTFOLIO
-  ============================================================ -->
-  <section class="portfolio-section">
+  <!-- FEATURED PORTFOLIO -->
+  <section class="portfolio-section" id="portfolio">
     <div class="section-header-row">
       <div class="titles">
         <span class="eyebrow">Featured Portfolio</span>
@@ -1073,111 +1103,157 @@
     </div>
 
     <div class="portfolio-grid">
-      <div class="portfolio-thumb">
-        <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=400&auto=format&fit=crop" alt="Bride Portrait">
+      <div class="portfolio-thumb"><img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=400&auto=format&fit=crop" alt="Bride Portrait"></div>
+      <div class="portfolio-thumb"><img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=400&auto=format&fit=crop" alt="Pre Wedding Shoot"></div>
+      <div class="portfolio-thumb"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400&auto=format&fit=crop" alt="Monochrome Couple"></div>
+      <div class="portfolio-thumb"><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?q=80&w=400&auto=format&fit=crop" alt="Wedding Rituals"></div>
+      <div class="portfolio-thumb"><img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=400&auto=format&fit=crop" alt="Cute Baby"></div>
+      <div class="portfolio-thumb"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=400&auto=format&fit=crop" alt="Golden Hour Couple"></div>
+    </div>
+  </section>
+
+  <!-- PHOTOGRAPHY PACKAGES SECTION -->
+  <section class="packages-section" id="packages">
+    <div class="section-header-row">
+      <div class="titles">
+        <span class="eyebrow" style="color:var(--gold-light);">Signature Bookings</span>
+        <h2 style="color:#fff;">Wedding & Event Packages</h2>
       </div>
-      <div class="portfolio-thumb">
-        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=400&auto=format&fit=crop" alt="Pre Wedding Shoot">
+      <a href="packages.html" class="btn-clean-outline" style="color:#fff; border-color:rgba(255,255,255,0.3);">All Package Details <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <div class="packages-grid">
+      <!-- Silver -->
+      <div class="package-box">
+        <div>
+          <span class="pkg-sub">1-Day Core Coverage</span>
+          <h3>Silver Classic</h3>
+          <div class="price">₹45,000</div>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> 1 Lead Candid Photographer</li>
+            <li><i class="fa-solid fa-check"></i> 1 Traditional Videographer</li>
+            <li><i class="fa-solid fa-check"></i> Color Graded High-Res Photos</li>
+            <li><i class="fa-solid fa-check"></i> 3-5 Min Cinematic Teaser</li>
+          </ul>
+        </div>
+        <a href="booking.html" class="btn-gold" style="justify-content:center;">Book Package</a>
       </div>
-      <div class="portfolio-thumb">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400&auto=format&fit=crop" alt="Monochrome Couple">
+
+      <!-- Gold Royal -->
+      <div class="package-box popular">
+        <div>
+          <span class="pkg-sub" style="color:var(--gold-primary); font-weight:700;">★ Signature Choice</span>
+          <h3>Gold Royal</h3>
+          <div class="price">₹85,000</div>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> 2 Senior Candid Photographers</li>
+            <li><i class="fa-solid fa-check"></i> 2 4K Cinematic Cinematographers</li>
+            <li><i class="fa-solid fa-check"></i> 4K Drone Aerial Shoots</li>
+            <li><i class="fa-solid fa-check"></i> 1 Premium Handcrafted Album</li>
+            <li><i class="fa-solid fa-check"></i> Teaser + Full Cinematic Film</li>
+          </ul>
+        </div>
+        <a href="booking.html" class="btn-gold" style="justify-content:center;">Book Package</a>
       </div>
-      <div class="portfolio-thumb">
-        <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?q=80&w=400&auto=format&fit=crop" alt="Wedding Rituals">
-      </div>
-      <div class="portfolio-thumb">
-        <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=400&auto=format&fit=crop" alt="Cute Baby">
-      </div>
-      <div class="portfolio-thumb">
-        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=400&auto=format&fit=crop" alt="Golden Hour Couple">
+
+      <!-- Platinum Heritage -->
+      <div class="package-box">
+        <div>
+          <span class="pkg-sub">Multi-Day Grand Gala</span>
+          <h3>Platinum Heritage</h3>
+          <div class="price">₹1,45,000</div>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> Complete Senior Crew for 2-3 Days</li>
+            <li><i class="fa-solid fa-check"></i> Pre-Wedding Concept Shoot</li>
+            <li><i class="fa-solid fa-check"></i> 2 Luxury Heirloom Albums (Vowshot)</li>
+            <li><i class="fa-solid fa-check"></i> Same-Day Edit Highlight Reel</li>
+            <li><i class="fa-solid fa-check"></i> Master Wooden Keepsake Drive</li>
+          </ul>
+        </div>
+        <a href="booking.html" class="btn-gold" style="justify-content:center;">Book Package</a>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       VOWSHOT COLLECTION / PRODUCT SHOWCASE
-  ============================================================ -->
-  <section class="vowshot-section">
+  <!-- VOWSHOT COLLECTION & PRODUCTS -->
+  <section class="vowshot-section" id="vowshot">
     <div class="section-header-row" style="margin-bottom:18px;">
       <div class="titles">
         <span class="eyebrow">Vowshot Collection</span>
-        <h2 style="font-size:1.85rem;">Premium Albums & Keepsakes</h2>
+        <h2 style="font-size:1.85rem;">Premium Keepsakes & Decor</h2>
       </div>
       <a href="shop.html" class="btn-clean-outline">Shop All Products <i class="fa-solid fa-arrow-right"></i></a>
     </div>
 
     <div class="products-shelf">
-      <div class="vowshot-intro">
-        <span class="eyebrow">Handcrafted Luxury</span>
-        <h2>Keep Memories Close</h2>
-        <p>Turn your beautiful moments into timeless physical treasures and heirloom luxury prints.</p>
-      </div>
-
-      <!-- Item 1: Premium Wedding Album -->
+      <!-- Item 1: Premium Album -->
       <div class="product-card">
         <div class="product-img-box">
-          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=300&auto=format&fit=crop" alt="Premium Wedding Album">
+          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=350&auto=format&fit=crop" alt="Premium Album">
         </div>
+        <span class="cat-tag">Albums</span>
         <h4>Premium Wedding Album</h4>
         <div class="product-bottom-row">
           <span>From <strong>₹4,999</strong></span>
-          <button class="cart-add-btn" onclick="addToCart('premium-wedding-album')"><i class="fa-solid fa-cart-shopping"></i></button>
+          <button class="cart-add-btn" onclick="addToCart('premium-wedding-album', 'Premium Wedding Album', 4999)"><i class="fa-solid fa-cart-shopping"></i></button>
         </div>
       </div>
 
-      <!-- Item 2: Designer Photo Frame -->
+      <!-- Item 2: Designer Frame -->
       <div class="product-card">
         <div class="product-img-box">
-          <img src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?q=80&w=300&auto=format&fit=crop" alt="Designer Photo Frame">
+          <img src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?q=80&w=350&auto=format&fit=crop" alt="Designer Frame">
         </div>
+        <span class="cat-tag">Frames</span>
         <h4>Designer Photo Frame</h4>
         <div class="product-bottom-row">
           <span>From <strong>₹799</strong></span>
-          <button class="cart-add-btn" onclick="addToCart('designer-photo-frame')"><i class="fa-solid fa-cart-shopping"></i></button>
+          <button class="cart-add-btn" onclick="addToCart('designer-photo-frame', 'Designer Photo Frame', 799)"><i class="fa-solid fa-cart-shopping"></i></button>
         </div>
       </div>
 
       <!-- Item 3: Memory Box -->
       <div class="product-card">
         <div class="product-img-box">
-          <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=300&auto=format&fit=crop" alt="Memory Box">
+          <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=350&auto=format&fit=crop" alt="Memory Box">
         </div>
-        <h4>Memory Box</h4>
+        <span class="cat-tag">Keepsakes</span>
+        <h4>Wooden Memory Box</h4>
         <div class="product-bottom-row">
           <span>From <strong>₹1,999</strong></span>
-          <button class="cart-add-btn" onclick="addToCart('memory-box')"><i class="fa-solid fa-cart-shopping"></i></button>
+          <button class="cart-add-btn" onclick="addToCart('memory-box', 'Wooden Memory Box', 1999)"><i class="fa-solid fa-cart-shopping"></i></button>
         </div>
       </div>
 
-      <!-- Item 4: Acrylic Photo Print -->
+      <!-- Item 4: Acrylic Print -->
       <div class="product-card">
         <div class="product-img-box">
-          <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=300&auto=format&fit=crop" alt="Acrylic Photo Print">
+          <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=350&auto=format&fit=crop" alt="Acrylic Print">
         </div>
+        <span class="cat-tag">Wall Art</span>
         <h4>Acrylic Photo Print</h4>
         <div class="product-bottom-row">
           <span>From <strong>₹1,299</strong></span>
-          <button class="cart-add-btn" onclick="addToCart('acrylic-photo-print')"><i class="fa-solid fa-cart-shopping"></i></button>
+          <button class="cart-add-btn" onclick="addToCart('acrylic-photo-print', 'Acrylic Photo Print', 1299)"><i class="fa-solid fa-cart-shopping"></i></button>
         </div>
       </div>
 
       <!-- Item 5: Custom Photo Mug -->
       <div class="product-card">
         <div class="product-img-box">
-          <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=300&auto=format&fit=crop" alt="Custom Photo Mug">
+          <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=350&auto=format&fit=crop" alt="Photo Mug">
         </div>
+        <span class="cat-tag">Custom Gifts</span>
         <h4>Custom Photo Mug</h4>
         <div class="product-bottom-row">
           <span>From <strong>₹399</strong></span>
-          <button class="cart-add-btn" onclick="addToCart('custom-photo-mug')"><i class="fa-solid fa-cart-shopping"></i></button>
+          <button class="cart-add-btn" onclick="addToCart('custom-photo-mug', 'Custom Photo Mug', 399)"><i class="fa-solid fa-cart-shopping"></i></button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================================================
-       BOTTOM BANNER: BOOKING CALL TO ACTION
-  ============================================================ -->
+  <!-- BOTTOM BANNER -->
   <section class="cta-banner">
     <div class="cta-left-couple">
       <div class="couple-silhouette">
@@ -1222,9 +1298,7 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       FOOTER
-  ============================================================ -->
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="footer-socials">
       <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
@@ -1252,14 +1326,14 @@
     </div>
   </footer>
 
-  <!-- Basic Cart Helper Script -->
+  <!-- CART ENGINE & LOCALSTORAGE BINDING -->
   <script>
-    function addToCart(productId) {
+    function addToCart(id, name, price) {
       let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      cart.push({ id: productId, addedAt: new Date().toISOString() });
+      cart.push({ id: id, name: name, price: price, addedAt: new Date().toISOString() });
       localStorage.setItem('cart', JSON.stringify(cart));
       updateCartCount();
-      alert('Product added to your cart!');
+      alert(name + ' added to your cart!');
     }
 
     function updateCartCount() {
