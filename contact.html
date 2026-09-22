@@ -1,26 +1,177 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Contact — Lightroom Productions"><title>Contact | Lightroom Productions</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/style.css"><link rel="stylesheet" href="assets/futuristic.css"><link rel="stylesheet" href="assets/marketplace.css"><link rel="stylesheet" href="assets/v17.css"><link rel="stylesheet" href="assets/v19.css"></head><body data-page="contact">
-<div class="topbar"><div class="wrap"><span>Premium Wedding Photography • Cinematography • Vowshot</span><span>Free consultation • WhatsApp +91 70440 07755</span></div></div>
-<header class="header">
- <div class="wrap head1">
-  <a class="logo" href="index.html" aria-label="Lightroom Productions"><img class="brand-logo" src="assets/lightroom-logo.png" alt="Lightroom Productions"></a>
-  <button class="hamb" type="button" aria-label="Open menu" aria-expanded="false" onclick="mobileMenu()">☰</button>
-  <div class="search"><input data-search placeholder="Search packages, frames, albums, prints & gifts..."><button type="button" onclick="siteSearch()">Search</button></div>
-  <div class="head-actions"><a class="action book-head" href="booking.html">Booking<span>Check your date</span></a><a class="action account-head" href="account.html">My Account<span>Bookings & Orders</span></a><button class="action cart-btn" data-open-cart>Cart <span class="count" data-cart-count>0</span><span>View cart</span></button></div>
- </div>
- <div class="menu"><div class="wrap">
-  <a href="index.html">Home</a><a href="weddings.html">Weddings</a><a href="pre-wedding.html">Pre-Wedding</a><a href="engagement.html">Engagement</a><a href="photography.html">Photography</a><a href="cinematography.html">Cinematography</a><a href="albums.html">Albums</a><a href="frames.html">Frames</a><a href="shop.html">Vowshot Shop</a><a href="portfolio.html">Portfolio</a><a href="account.html">My Account</a><a href="contact.html">Contact</a>
- </div></div><div class="menu-backdrop" onclick="mobileMenu()"></div>
- <div class="brand-rail"><div class="wrap brand-rail-inner">
-  <span class="brand-rail-label">OUR BRANDS</span>
-  <a class="subbrand" href="weddings.html"><img src="assets/brands/wedding-capital.jpg" alt="Wedding Capital"><span>Wedding Capital</span></a>
-  <a class="subbrand" href="booking.html?service=baby"><img src="assets/brands/tinytoons.png" alt="TinyToons"><span>TinyToons</span></a>
-  <a class="subbrand" href="shop.html"><img src="assets/brands/vowshot.jpg" alt="Vowshot"><span>Vowshot</span></a>
- </div></div>
-</header>
-<section class="pagehead"><div class="wrap"><div class="crumb">Home / Contact</div><h1>Let's plan something beautiful.</h1><p style="color:#707b7f;max-width:720px">Speak with our studio team about your wedding, event, printing or Vowshot order.</p></div></section>
-<section class="section"><div class="wrap" style="max-width:900px"><form class="product-view" onsubmit="event.preventDefault();alert('Thank you. Our team will contact you shortly.');this.reset()"><div><span class="eyebrow">Enquiry form</span><h2 style="font:500 42px Cormorant Garamond,Georgia,serif;color:var(--navy)">Tell us about it.</h2><p style="color:#778">For faster response, you can also WhatsApp the studio.</p><a class="btn gold" href="https://wa.me/917044007755">WhatsApp Studio</a></div><div><div class="field" style="margin-bottom:12px"><label>Name</label><input required placeholder="Your name" style="width:100%;padding:12px;border:1px solid var(--line)"></div><div class="field" style="margin-bottom:12px"><label>Phone / WhatsApp</label><input required placeholder="+91" style="width:100%;padding:12px;border:1px solid var(--line)"></div><div class="field" style="margin-bottom:12px"><label>Event date</label><input type="date" style="width:100%;padding:12px;border:1px solid var(--line)"></div><div class="field" style="margin-bottom:12px"><label>City / Venue</label><input placeholder="City / venue" style="width:100%;padding:12px;border:1px solid var(--line)"></div><div class="field" style="margin-bottom:12px"><label>Requirement</label><textarea placeholder="Tell us what you need..." style="width:100%;padding:12px;border:1px solid var(--line);min-height:120px"></textarea></div><button class="btn gold" type="submit">Send Enquiry</button></div></form></div></section>
-<div class="overlay"></div><aside class="drawer"><div class="drawer-head"><b>Your Cart</b><button class="btn" data-close-cart>Close</button></div><div class="drawer-body" data-cart-body></div><div class="cart-foot"><div style="display:flex;justify-content:space-between;font-weight:700;margin-bottom:12px">Total <span data-cart-total>₹0</span></div><a href="checkout.html" data-checkout-link class="btn gold" style="width:100%">Proceed to Checkout</a><div style="font-size:10px;color:#788;margin-top:8px">For personalized products, our team will confirm artwork/photos after enquiry.</div></div></aside>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Lightroom Productions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="assets/luxury-theme.css">
+  <style>
+    .contact-wrapper {
+      padding: 70px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-dark);
+      border-radius: 8px;
+      padding: 40px;
+    }
+    .contact-card h2 {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 4px;
+      color: #fff;
+      font-family: var(--font-sans);
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+    }
+    .info-list-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .info-list-item i {
+      font-size: 1.2rem;
+      color: var(--gold-primary);
+      margin-top: 4px;
+    }
+    .info-list-item h4 {
+      font-size: 0.95rem;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .info-list-item p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
 
-<nav class="mobile-bottom-nav" aria-label="Mobile navigation"><a href="index.html"><span>⌂</span>Home</a><button type="button" onclick="mobileMenu()"><span>☰</span>Menu</button><a href="shop.html"><span>▣</span>Shop</a><a href="booking.html"><span>◈</span>Book</a><button type="button" data-open-cart><span>🛒</span>Cart <b data-cart-count>0</b></button></nav>
-<footer class="footer"><div class="wrap footgrid"><div><a class="logo" href="index.html" aria-label="Lightroom Productions"><img class="brand-logo" src="assets/lightroom-logo.png" alt="Lightroom Productions"></a><p>Luxury wedding stories and premium photo products, crafted in India.</p><p>Our brands</p><div class="footer-brands"><a href="packages.html"><img src="assets/brands/wedding-capital.jpg" alt="Wedding Capital"></a><a href="booking.html?service=baby"><img src="assets/brands/tinytoons.png" alt="TinyToons"></a><a href="shop.html"><img src="assets/brands/vowshot.jpg" alt="Vowshot"></a></div></div><div><h4>Wedding</h4><p><a href="packages.html">Packages & Pricing</a></p><p><a href="photography.html">Photography</a></p><p><a href="cinematography.html">Cinematography</a></p><p><a href="pre-wedding.html">Pre-Wedding</a></p></div><div><h4>Shop</h4><p><a href="shop.html">All Products</a></p><p><a href="albums.html">Albums & Combos</a></p><p><a href="frames.html">Frames & Acrylic</a></p><p><a href="printing.html">Photo Printing</a></p></div><div><h4>Contact</h4><p>WhatsApp: +91 70440 07755</p><p>Email: help.lightroomproductions@gmail.com</p><p>care.lightroomproductions@gmail.com</p><p><a href="booking.html">Book your date →</a></p></div></div><div class="wrap" style="border-top:1px solid #1c4854;margin-top:35px;padding-top:18px;font-size:10px;color:#88a0a5">© 2026 Lightroom Productions • Vowshot by Lightroom Productions</div></footer><a class="float" href="https://wa.me/917044007755">◔</a>
-<script src="assets/site.js"></script></body></html>
+  <header class="site-header">
+    <a href="index.html" class="brand-logo-wrap">
+      <img src="assets/lightroom-logo.png" alt="Lightroom Logo" onerror="this.src='https://placehold.co/180x50/07090e/e5b869?text=LIGHTROOM'" />
+      <div class="brand-title">
+        <span class="main-name">Lightroom</span>
+        <span class="sub-name">Productions Pvt. Ltd.</span>
+      </div>
+    </a>
+    <nav class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="weddings.html">Weddings</a>
+      <a href="photography.html">Services</a>
+      <a href="shop.html">Shop</a>
+      <a href="portfolio.html">Gallery</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a href="checkout.html" class="icon-btn"><i class="fa-solid fa-cart-shopping"></i></a>
+      <a href="booking.html" class="btn-gold">Book Now</a>
+    </div>
+  </header>
+
+  <section class="inner-hero">
+    <div class="inner-hero-content">
+      <span class="eyebrow">Get In Touch</span>
+      <h1>Let’s Discuss Your Celebration</h1>
+      <p>Have an upcoming wedding, newborn arrival, or custom photo frame request? Connect with our team directly.</p>
+    </div>
+  </section>
+
+  <section class="contact-wrapper">
+    <!-- Form -->
+    <div class="contact-card">
+      <h2>Send an Inquiry</h2>
+      <form onsubmit="event.preventDefault(); alert('Inquiry received! Our studio will reach out shortly.');">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Full name" required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+91 ..." required>
+        </div>
+        <div class="form-group">
+          <label>Event Type</label>
+          <select style="background:#111622;">
+            <option>Wedding Photography & Films</option>
+            <option>Pre-Wedding Shoot</option>
+            <option>Baby / Maternity (TinyToons)</option>
+            <option>Albums & Frames (Vowshot)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message / Dates</label>
+          <textarea rows="4" placeholder="Tell us about your event dates and vision..."></textarea>
+        </div>
+        <button type="submit" class="btn-gold" style="width:100%; justify-content:center;">Submit Inquiry</button>
+      </form>
+    </div>
+
+    <!-- Details -->
+    <div class="contact-card" style="display:flex; flex-direction:column; justify-content:center;">
+      <h2>Studio Information</h2>
+      <div class="info-list-item">
+        <i class="fa-solid fa-location-dot"></i>
+        <div>
+          <h4>Main Studio Address</h4>
+          <p>Lightroom Productions Pvt. Ltd.<br>Lichu Bagan, GT Road, Bandel, Hooghly, West Bengal</p>
+        </div>
+      </div>
+      <div class="info-list-item">
+        <i class="fa-solid fa-phone"></i>
+        <div>
+          <h4>Direct Call & WhatsApp</h4>
+          <p>+91 (Studio Team Direct Booking Line)</p>
+        </div>
+      </div>
+      <div class="info-list-item">
+        <i class="fa-solid fa-clock"></i>
+        <div>
+          <h4>Studio Hours</h4>
+          <p>Tuesday – Sunday: 10:30 AM – 8:30 PM (Mondays by appointment)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-socials">
+      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+    <div>© 2026 Lightroom Productions Pvt. Ltd. All Rights Reserved.</div>
+    <div class="footer-links">
+      <a href="about.html">Privacy</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>

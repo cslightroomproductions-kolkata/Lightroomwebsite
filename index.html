@@ -1,115 +1,1274 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Lightroom Productions — premium wedding photography, cinematography, family photography, albums, frames and personalized gifts.">
-<title>Lightroom Productions | Moments Become Memories</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Parisienne&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
-<link rel="stylesheet" href="assets/futuristic.css">
-<link rel="stylesheet" href="assets/marketplace.css">
-<link rel="stylesheet" href="assets/v24-home.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lightroom Productions Pvt. Ltd. | Moments Become Memories</title>
+  
+  <!-- Typography matching the reference -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&family=Reenie+Beanie&family=Alex+Brush&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    :root {
+      --gold-primary: #e5b869;
+      --gold-light: #f7deb0;
+      --gold-dark: #b88636;
+      --bg-dark: #07090e;
+      --bg-card: rgba(18, 22, 31, 0.85);
+      --bg-warm-light: #f9f6f0;
+      --text-main: #ffffff;
+      --text-muted: #a6b0c3;
+      --text-dark: #1f242e;
+      --border-dark: rgba(255, 255, 255, 0.12);
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Montserrat', sans-serif;
+      --font-hand: 'Reenie Beanie', cursive;
+      --font-script: 'Alex Brush', cursive;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s ease;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ============================================================
+       TOP NAVIGATION BAR
+    ============================================================ */
+    header.site-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 60px;
+      background: linear-gradient(180deg, rgba(7,9,14,0.92) 0%, rgba(7,9,14,0.4) 70%, transparent 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .brand-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo-wrap img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title span.main-name {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .brand-title span.sub-name {
+      font-size: 0.58rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+    }
+
+    nav.nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    nav.nav-menu a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: #e2e8f0;
+      position: relative;
+      padding: 4px 0;
+    }
+
+    nav.nav-menu a.active,
+    nav.nav-menu a:hover {
+      color: var(--gold-primary);
+    }
+
+    nav.nav-menu a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--gold-primary);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .header-actions .icon-btn {
+      color: #fff;
+      font-size: 1.05rem;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .header-actions .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: var(--gold-primary);
+      color: #000;
+      font-size: 0.65rem;
+      font-weight: 700;
+      border-radius: 50%;
+      width: 17px;
+      height: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+      color: #12100b;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      padding: 10px 24px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(229, 184, 105, 0.25);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(229, 184, 105, 0.4);
+    }
+
+    .handwritten-badge {
+      position: absolute;
+      top: 24px;
+      right: 25px;
+      font-family: var(--font-hand);
+      color: var(--gold-light);
+      font-size: 1.5rem;
+      line-height: 1.1;
+      transform: rotate(-7deg);
+      opacity: 0.85;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    /* ============================================================
+       HERO BANNER SECTION
+    ============================================================ */
+    .hero-section {
+      position: relative;
+      min-height: 94vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 180px 80px 60px;
+      background: linear-gradient(90deg, rgba(7,9,14,0.95) 0%, rgba(7,9,14,0.7) 42%, rgba(7,9,14,0.15) 100%),
+                  url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=2000&auto=format&fit=crop') center right / cover no-repeat;
+    }
+
+    .hero-content {
+      max-width: 650px;
+      z-index: 2;
+    }
+
+    .hero-tagline {
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 4.6rem;
+      line-height: 1.05;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: #c9d2e3;
+      font-weight: 300;
+      line-height: 1.5;
+      margin-bottom: 34px;
+      max-width: 520px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 48px;
+    }
+
+    .btn-outline-play {
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(10, 14, 22, 0.4);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 10px 22px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-outline-play:hover {
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+    }
+
+    .hero-metrics {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 24px;
+    }
+
+    .metric-pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .metric-pill i {
+      color: var(--gold-primary);
+      font-size: 1.2rem;
+    }
+
+    .metric-pill-text strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .metric-pill-text span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .hero-script-tag {
+      position: absolute;
+      right: 75px;
+      bottom: 190px;
+      font-family: var(--font-script);
+      font-size: 2.8rem;
+      color: rgba(247, 222, 176, 0.75);
+      line-height: 1.1;
+      text-align: right;
+      transform: rotate(-10deg);
+      pointer-events: none;
+    }
+
+    /* ============================================================
+       TOP 5 SERVICES / CATEGORY TILES
+    ============================================================ */
+    .services-strip {
+      padding: 30px 60px 50px;
+      background: var(--bg-dark);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .service-card {
+      position: relative;
+      height: 220px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+    }
+
+    .service-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      z-index: 1;
+    }
+
+    .service-card .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(7,9,14,0.95) 0%, rgba(7,9,14,0.4) 60%, transparent 100%);
+      z-index: 2;
+    }
+
+    .service-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .service-card .card-body {
+      position: relative;
+      z-index: 3;
+    }
+
+    .service-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.18rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .service-card .meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 6px;
+    }
+
+    .service-card .meta-row span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .service-card .meta-row .arrow-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--gold-primary);
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+    }
+
+    /* ============================================================
+       SUB-BRANDS BANNER (LIGHT THEME)
+    ============================================================ */
+    .sub-brands-section {
+      background: var(--bg-warm-light);
+      color: var(--text-dark);
+      padding: 55px 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      border-top: 1px solid #e2d9ca;
+      border-bottom: 1px solid #e2d9ca;
+    }
+
+    .sub-brands-heading {
+      max-width: 250px;
+    }
+
+    .sub-brands-heading .eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #8c7853;
+      font-weight: 600;
+    }
+
+    .sub-brands-heading h2 {
+      font-family: var(--font-serif);
+      font-size: 2.1rem;
+      line-height: 1.1;
+      font-weight: 700;
+      color: #1a1e27;
+      margin-top: 4px;
+    }
+
+    .brand-pillars {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .pillar-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-left: 30px;
+      border-left: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .pillar-item:first-child {
+      border-left: none;
+      padding-left: 0;
+    }
+
+    .pillar-item img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .pillar-info h4 {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #11151e;
+    }
+
+    .pillar-info p {
+      font-size: 0.74rem;
+      color: #5d6778;
+      max-width: 170px;
+      line-height: 1.35;
+      margin-top: 2px;
+    }
+
+    .brand-stamp-note {
+      position: absolute;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%) rotate(-6deg);
+      background: #e8d8bd;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-family: var(--font-hand);
+      font-size: 1.45rem;
+      line-height: 1.1;
+      color: #4b3d24;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    /* ============================================================
+       FEATURED PORTFOLIO SECTION
+    ============================================================ */
+    .portfolio-section {
+      background: #fbf9f4;
+      padding: 45px 70px 60px;
+      color: var(--text-dark);
+    }
+
+    .section-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 26px;
+    }
+
+    .section-header-row .titles .eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #8c7853;
+      font-weight: 600;
+    }
+
+    .section-header-row .titles h2 {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      line-height: 1.1;
+      font-weight: 700;
+      color: #111622;
+    }
+
+    .btn-clean-outline {
+      border: 1px solid #111622;
+      background: transparent;
+      color: #111622;
+      padding: 8px 18px;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-clean-outline:hover {
+      background: #111622;
+      color: #fff;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+
+    .portfolio-thumb {
+      height: 145px;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .portfolio-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .portfolio-thumb:hover img {
+      transform: scale(1.08);
+    }
+
+    /* ============================================================
+       VOWSHOT COLLECTION / PRODUCT CAROUSEL
+    ============================================================ */
+    .vowshot-section {
+      background: #fbf9f4;
+      padding: 0 70px 60px;
+      border-top: 1px solid #eae2d3;
+      color: var(--text-dark);
+    }
+
+    .products-shelf {
+      display: grid;
+      grid-template-columns: 240px repeat(5, 1fr);
+      gap: 16px;
+      align-items: center;
+    }
+
+    .vowshot-intro .eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #8c7853;
+      font-weight: 600;
+    }
+
+    .vowshot-intro h2 {
+      font-family: var(--font-serif);
+      font-size: 1.7rem;
+      line-height: 1.2;
+      font-weight: 700;
+      color: #111622;
+      margin: 4px 0 10px;
+    }
+
+    .vowshot-intro p {
+      font-size: 0.78rem;
+      color: #5d6778;
+      line-height: 1.4;
+    }
+
+    .product-card {
+      background: #ffffff;
+      border: 1px solid #e7dfd1;
+      border-radius: 6px;
+      padding: 12px;
+      text-align: center;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+    }
+
+    .product-img-box {
+      width: 100%;
+      height: 125px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .product-img-box img {
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .product-card h4 {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #1a1e27;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 4px;
+    }
+
+    .product-bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed #f0e9df;
+    }
+
+    .product-bottom-row span {
+      font-size: 0.72rem;
+      color: #64748b;
+    }
+
+    .product-bottom-row strong {
+      color: #0f172a;
+      font-size: 0.8rem;
+    }
+
+    .cart-add-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #f1ede4;
+      color: #111;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .cart-add-btn:hover {
+      background: var(--gold-primary);
+      color: #000;
+    }
+
+    /* ============================================================
+       FOOTER CTA & BOTTOM BANNER
+    ============================================================ */
+    .cta-banner {
+      position: relative;
+      background: linear-gradient(90deg, rgba(7,9,14,0.95) 0%, rgba(7,9,14,0.8) 50%, rgba(7,9,14,0.92) 100%),
+                  url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000&auto=format&fit=crop') center / cover no-repeat;
+      padding: 70px 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .cta-banner .cta-left-couple {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .couple-silhouette {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--gold-primary);
+    }
+
+    .couple-silhouette img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cta-center {
+      text-align: center;
+    }
+
+    .cta-center h2 {
+      font-family: var(--font-serif);
+      font-size: 2.8rem;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .cta-center h2 em {
+      font-style: italic;
+      color: var(--gold-light);
+      font-family: var(--font-serif);
+    }
+
+    .cta-center p {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      margin: 8px 0 24px;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+    }
+
+    .cta-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .cta-stats-right {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .cta-stat-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cta-stat-row i {
+      color: var(--gold-primary);
+      font-size: 1.15rem;
+    }
+
+    .cta-stat-row div strong {
+      display: block;
+      font-size: 0.9rem;
+      color: #fff;
+    }
+
+    .cta-stat-row div span {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .cta-hand-quote {
+      font-family: var(--font-hand);
+      font-size: 1.5rem;
+      color: var(--gold-light);
+      transform: rotate(-8deg);
+      margin-top: 10px;
+      text-align: right;
+    }
+
+    /* ============================================================
+       SITE FOOTER
+    ============================================================ */
+    footer.site-footer {
+      background: #05070a;
+      padding: 24px 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.75rem;
+      color: #717e94;
+    }
+
+    .footer-socials {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-socials a {
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    .footer-socials a:hover {
+      color: var(--gold-primary);
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .footer-links a:hover {
+      color: #e2e8f0;
+    }
+
+    .footer-credit i {
+      color: #ef4444;
+      margin: 0 2px;
+    }
+
+    /* Mobile / Tablet responsiveness */
+    @media (max-width: 1024px) {
+      .services-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .products-shelf {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .sub-brands-section {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+      }
+      .brand-pillars {
+        flex-direction: column;
+      }
+      .pillar-item {
+        border-left: none;
+        padding-left: 0;
+      }
+    }
+  </style>
 </head>
-<body data-page="home">
-<header class="lp24-header">
-  <div class="lp24-head-inner">
-    <a class="lp24-logo" href="index.html"><img src="assets/lightroom-logo.png" alt="Lightroom Productions"></a>
-    <button class="lp24-hamb" type="button" onclick="lp24MobileMenu()" aria-label="Menu">☰</button>
-    <nav class="lp24-nav" aria-label="Main navigation">
-      <a class="active" href="index.html">Home</a><a href="about.html">About</a><a href="weddings.html">Weddings</a>
-      <a href="booking.html">Services⌄</a><a href="shop.html">Shop</a><a href="portfolio.html">Gallery</a><a href="about.html">Blogs</a><a href="contact.html">Contact</a>
+<body>
+
+  <!-- ============================================================
+       TOP NAVIGATION
+  ============================================================ -->
+  <header class="site-header">
+    <a href="index.html" class="brand-logo-wrap">
+      <img src="assets/lightroom-logo.png" alt="Lightroom Productions Logo" onerror="this.src='https://placehold.co/180x50/07090e/e5b869?text=LIGHTROOM'" />
+      <div class="brand-title">
+        <span class="main-name">Lightroom</span>
+        <span class="sub-name">Productions Pvt. Ltd.</span>
+      </div>
+    </a>
+
+    <nav class="nav-menu">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="weddings.html">Weddings</a>
+      <a href="photography.html">Services <i class="fa-solid fa-chevron-down" style="font-size:0.6rem;"></i></a>
+      <a href="shop.html">Shop</a>
+      <a href="portfolio.html">Gallery</a>
+      <a href="#blogs">Blogs</a>
+      <a href="contact.html">Contact</a>
     </nav>
-    <div class="lp24-actions"><button class="lp24-search" type="button" onclick="document.querySelector('.lp24-searchbox').classList.toggle('show')" aria-label="Search">⌕</button><button class="lp24-cart" type="button" data-open-cart>🛒 <b data-cart-count>0</b></button><a class="lp24-book" href="booking.html">Book Now</a></div>
-  </div>
-  <div class="lp24-searchbox"><input data-search placeholder="Search weddings, pre-weddings, frames, albums, gifts..."><button onclick="siteSearch()">Search</button></div>
-  <div class="lp24-mobile-menu"><a href="index.html">Home</a><a href="about.html">About</a><a href="weddings.html">Weddings</a><a href="booking.html">Services</a><a href="shop.html">Shop</a><a href="portfolio.html">Gallery</a><a href="about.html">Blogs</a><a href="contact.html">Contact</a><a class="mobile-book" href="booking.html">Book Now</a></div>
-</header>
 
-<main class="lp24-home">
-  <section class="lp24-hero">
-    <div class="lp24-hero-media"><img id="lp24Hero" src="https://cdn0.weddingwire.in/vendor/3509/3_2/960/jpg/328625453-1378459962911694-7466237875652383750-n_15_363509-169160725821673.jpeg" alt="Wedding Capital wedding photography"></div>
-    <div class="lp24-hero-shade"></div>
-    <div class="lp24-hero-copy lp24-container">
-      <div class="lp24-eyebrow" id="lp24Eyebrow">WEDDINGS &nbsp; | &nbsp; PRE-WEDDINGS &nbsp; | &nbsp; FAMILIES &nbsp; | &nbsp; AND MORE</div>
-      <h1 id="lp24HeroTitle">Moments<br><em>Become Memories</em></h1>
-      <p id="lp24HeroText">Timeless Photography &amp; Cinematic Films<br>for Your Most Beautiful Chapters</p>
-      <div class="lp24-hero-buttons"><a class="lp24-btn gold" href="booking.html">Book Your Story <span>→</span></a><a class="lp24-btn ghost" href="portfolio.html">View Our Work <span>▶</span></a></div>
+    <div class="header-actions">
+      <a href="shop.html" class="icon-btn"><i class="fa-solid fa-magnifying-glass"></i></a>
+      <a href="checkout.html" class="icon-btn">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-badge" id="nav-cart-count">0</span>
+      </a>
+      <a href="booking.html" class="btn-gold">Book Now</a>
     </div>
-    <div class="lp24-script">Capturing<br>Stories for a<br>Lifetime <span>♥</span></div>
-    <div class="lp24-stats lp24-container">
-      <div><strong>500+</strong><span>Happy Couples</span></div><div><strong>10+</strong><span>Years Experience</span></div><div><strong>1000+</strong><span>Memories Created</span></div><div><strong>4.9★</strong><span>Customer Rating</span></div>
+
+    <div class="handwritten-badge">
+      Capturing<br>Stories for a<br>Lifetime ♥
     </div>
-    <div class="lp24-dots"><button class="on"></button><button></button><button></button></div>
+  </header>
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================ -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <p class="hero-tagline">Weddings &nbsp;|&nbsp; Pre-Weddings &nbsp;|&nbsp; Families &nbsp;|&nbsp; And More</p>
+      <h1 class="hero-title">Moments<br>Become Memories</h1>
+      <p class="hero-desc">Timeless Photography & Cinematic Films for Your Most Beautiful Chapters</p>
+      
+      <div class="hero-ctas">
+        <a href="booking.html" class="btn-gold">Book Your Story <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="cinematography.html" class="btn-outline-play"><i class="fa-solid fa-play"></i> View Our Work</a>
+      </div>
+
+      <div class="hero-metrics">
+        <div class="metric-pill">
+          <i class="fa-solid fa-user-group"></i>
+          <div class="metric-pill-text">
+            <strong>500+</strong>
+            <span>Happy Couples</span>
+          </div>
+        </div>
+        <div class="metric-pill">
+          <i class="fa-solid fa-trophy"></i>
+          <div class="metric-pill-text">
+            <strong>Award Winning</strong>
+            <span>Creative Team</span>
+          </div>
+        </div>
+        <div class="metric-pill">
+          <i class="fa-solid fa-camera"></i>
+          <div class="metric-pill-text">
+            <strong>Premium</strong>
+            <span>Signature Quality</span>
+          </div>
+        </div>
+        <div class="metric-pill">
+          <i class="fa-regular fa-heart"></i>
+          <div class="metric-pill-text">
+            <strong>Stories for</strong>
+            <span>Generations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-script-tag">
+      More<br>than just<br>photography ♡
+    </div>
   </section>
 
-  <section class="lp24-services">
-    <div class="lp24-container lp24-service-grid">
-      <a class="lp24-service-card" href="wedding-photography.html"><img src="https://cdn0.weddingwire.in/vendor/3509/3_2/960/jpg/328625453-1378459962911694-7466237875652383750-n_15_363509-169160725821673.jpeg"><div><h3>Wedding<br>Photography</h3><p>Timeless Stories</p></div><span>→</span></a>
-      <a class="lp24-service-card" href="pre-wedding.html"><img src="https://cdn0.weddingwire.in/vendor/3509/3_2/960/jpg/wedding-photography-wedding-capital-by-lightroom-productions-couple-shot-1_15_363509-161649393633936.jpeg"><div><h3>Pre-Wedding<br>Shoots</h3><p>Frames of Love</p></div><span>→</span></a>
-      <a class="lp24-service-card" href="booking.html?service=Maternity"><img src="https://cdn0.weddingwire.in/vendor/3509/3_2/960/jpg/481459496-1015153620785464-2096674339255417242-n_15_363509-174254703415713.jpeg"><div><h3>Maternity<br>Photography</h3><p>A New Beginning</p></div><span>→</span></a>
-      <a class="lp24-service-card" href="booking.html?service=Baby"><img src="https://cdn.shopify.com/s/files/1/0666/8609/1366/files/Gemini_Generated_Image_1oqv8y1oqv8y1oqv.png?v=1759558794"><div><h3>Baby &amp; Kids<br><small>(TinyToons)</small></h3><p>Little Moments</p></div><span>→</span></a>
-      <a class="lp24-service-card" href="shop.html"><img src="https://cdn.shopify.com/s/files/1/0666/8609/1366/files/Gemini_Generated_Image_67ni3y67ni3y67ni.png?v=1758722713"><div><h3>Albums &amp; Frames<br><small>(Vowshot)</small></h3><p>Preserve Forever</p></div><span>→</span></a>
+  <!-- ============================================================
+       TOP 5 SERVICES STRIP
+  ============================================================ -->
+  <section class="services-strip">
+    <!-- Wedding Photography -->
+    <div class="service-card" onclick="location.href='wedding-photography.html'">
+      <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600&auto=format&fit=crop" alt="Wedding Photography">
+      <div class="overlay"></div>
+      <div class="card-body">
+        <h3>Wedding<br>Photography</h3>
+        <div class="meta-row">
+          <span>Timeless Stories</span>
+          <div class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+      </div>
     </div>
-  </section>
 
-  <section class="lp24-brands">
-    <div class="lp24-container lp24-brand-layout">
-      <div class="lp24-title-block"><label>OUR SUB-BRANDS</label><h2>Different Stories<br><em>One Family</em></h2></div>
-      <div class="lp24-brand-grid">
-        <a href="weddings.html" class="lp24-brand"><img src="assets/brands/wedding-capital.jpg"><div><h3>Wedding Capital</h3><p>Weddings, Pre-weddings<br>and more</p></div></a>
-        <a href="booking.html?service=Baby" class="lp24-brand"><img src="assets/brands/tinytoons.png"><div><h3>TinyToons</h3><p>Baby Photography, Maternity<br>&amp; Birthday Celebrations</p></div></a>
-        <a href="shop.html" class="lp24-brand"><img src="assets/brands/vowshot.jpg"><div><h3>Vowshot</h3><p>Albums, Customized Gifts,<br>Photo Frames &amp; Keepsakes</p></div></a>
+    <!-- Pre-Wedding Shoots -->
+    <div class="service-card" onclick="location.href='pre-wedding.html'">
+      <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?q=80&w=600&auto=format&fit=crop" alt="Pre-Wedding Shoots">
+      <div class="overlay"></div>
+      <div class="card-body">
+        <h3>Pre-Wedding<br>Shoots</h3>
+        <div class="meta-row">
+          <span>Frames of Love</span>
+          <div class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Maternity Photography -->
+    <div class="service-card" onclick="location.href='photography.html'">
+      <img src="https://images.unsplash.com/photo-1544126592-807ade215a0b?q=80&w=600&auto=format&fit=crop" alt="Maternity Photography">
+      <div class="overlay"></div>
+      <div class="card-body">
+        <h3>Maternity<br>Photography</h3>
+        <div class="meta-row">
+          <span>A New Beginning</span>
+          <div class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Baby & Kids (TinyToons) -->
+    <div class="service-card" onclick="location.href='photography.html'">
+      <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=600&auto=format&fit=crop" alt="Baby & Kids">
+      <div class="overlay"></div>
+      <div class="card-body">
+        <h3>Baby & Kids<br>(TinyToons)</h3>
+        <div class="meta-row">
+          <span>Little Moments</span>
+          <div class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Albums & Frames (Vowshot) -->
+    <div class="service-card" onclick="location.href='albums.html'">
+      <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=600&auto=format&fit=crop" alt="Albums & Frames">
+      <div class="overlay"></div>
+      <div class="card-body">
+        <h3>Albums & Frames<br>(Vowshot)</h3>
+        <div class="meta-row">
+          <span>Preserve Forever</span>
+          <div class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="lp24-portfolio-section">
-    <div class="lp24-container">
-      <div class="lp24-section-head"><div><label>FEATURED PORTFOLIO</label><h2>Real Stories<br><em>Real Emotions</em></h2></div><a href="portfolio.html" class="lp24-outline-link">View Full Gallery <span>→</span></a></div>
-      <div class="lp24-portfolio-strip">
-        <a href="portfolio.html"><img src="https://cdn0.weddingwire.in/vendor/3509/3_2/960/jpg/279554244-368036158674952-7098405025732496619-n_15_363509-165362945220412.jpeg"><b>Bridal Story</b></a>
-        <a href="portfolio.html"><img src="https://cdn0.weddingwire.in/vendor/3509/3_2/960/jpg/wedding-photography-wedding-capital-by-lightroom-productions-couple-shot-1_15_363509-161649393633936.jpeg"><b>Pre-Wedding</b></a>
-        <a href="portfolio.html"><img src="https://cdn0.weddingwire.in/vendor/3509/3_2/960/jpg/328625453-1378459962911694-7466237875652383750-n_15_363509-169160725821673.jpeg"><b>Wedding</b></a>
-        <a href="portfolio.html"><img src="https://cdn0.weddingwire.in/vendor/3509/3_2/960/jpg/481459496-1015153620785464-2096674339255417242-n_15_363509-174254703415713.jpeg"><b>Cinematic</b></a>
-        <a href="portfolio.html"><img src="https://cdn0.weddingwire.in/vendor/3509/3_2/960/jpg/279554244-368036158674952-7098405025732496619-n_15_363509-165362945220412.jpeg"><b>Moments</b></a>
-        <a href="portfolio.html"><img src="https://cdn0.weddingwire.in/vendor/3509/3_2/960/jpg/wedding-photography-wedding-capital-by-lightroom-productions-couple-shot-5_15_363509-161649395861395.jpeg"><b>Couple Story</b></a>
+  <!-- ============================================================
+       OUR SUB-BRANDS
+  ============================================================ -->
+  <section class="sub-brands-section">
+    <div class="sub-brands-heading">
+      <span class="eyebrow">Our Sub-Brands</span>
+      <h2>Different Stories<br>One Family</h2>
+    </div>
+
+    <div class="brand-pillars">
+      <!-- Wedding Capital -->
+      <div class="pillar-item">
+        <img src="assets/brands/wedding-capital.jpg" alt="Wedding Capital" onerror="this.src='https://placehold.co/60x60/f5e5cf/8c7853?text=WC'" />
+        <div class="pillar-info">
+          <h4 style="color:#a82222;">Wedding Capital</h4>
+          <p>Weddings, Pre-weddings and cinematic celebrations</p>
+        </div>
+      </div>
+
+      <!-- TinyToons -->
+      <div class="pillar-item">
+        <img src="assets/brands/tinytoons.png" alt="TinyToons" onerror="this.src='https://placehold.co/60x60/f5e5cf/8c7853?text=TT'" />
+        <div class="pillar-info">
+          <h4 style="color:#b2671e;">TinyToons</h4>
+          <p>Baby Photography, Maternity & Birthday Celebrations</p>
+        </div>
+      </div>
+
+      <!-- Vowshot -->
+      <div class="pillar-item">
+        <img src="assets/brands/vowshot.jpg" alt="Vowshot" onerror="this.src='https://placehold.co/60x60/f5e5cf/8c7853?text=VS'" />
+        <div class="pillar-info">
+          <h4 style="color:#8b4513;">Vowshot</h4>
+          <p>Albums, Customized Gifts, Photo Frames & Keepsakes</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="brand-stamp-note">
+      Turn your<br>moments into<br>something beautiful ♥
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEATURED PORTFOLIO
+  ============================================================ -->
+  <section class="portfolio-section">
+    <div class="section-header-row">
+      <div class="titles">
+        <span class="eyebrow">Featured Portfolio</span>
+        <h2>Real Stories<br>Real Emotions</h2>
+      </div>
+      <a href="portfolio.html" class="btn-clean-outline">View Full Gallery <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <div class="portfolio-grid">
+      <div class="portfolio-thumb">
+        <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=400&auto=format&fit=crop" alt="Bride Portrait">
+      </div>
+      <div class="portfolio-thumb">
+        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=400&auto=format&fit=crop" alt="Pre Wedding Shoot">
+      </div>
+      <div class="portfolio-thumb">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400&auto=format&fit=crop" alt="Monochrome Couple">
+      </div>
+      <div class="portfolio-thumb">
+        <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?q=80&w=400&auto=format&fit=crop" alt="Wedding Rituals">
+      </div>
+      <div class="portfolio-thumb">
+        <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=400&auto=format&fit=crop" alt="Cute Baby">
+      </div>
+      <div class="portfolio-thumb">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=400&auto=format&fit=crop" alt="Golden Hour Couple">
       </div>
     </div>
   </section>
 
-  <section class="lp24-shop-section">
-    <div class="lp24-container lp24-shop-layout">
-      <div class="lp24-shop-intro"><label>VOWSHOT COLLECTION</label><h2>Premium Albums<br>&amp; Keepsakes</h2><p>Turn your beautiful memories into timeless treasures.</p><a href="shop.html" class="lp24-text-btn">Shop All Products <span>→</span></a></div>
-      <div class="lp24-home-products" data-home-products></div>
+  <!-- ============================================================
+       VOWSHOT COLLECTION / PRODUCT SHOWCASE
+  ============================================================ -->
+  <section class="vowshot-section">
+    <div class="section-header-row" style="margin-bottom:18px;">
+      <div class="titles">
+        <span class="eyebrow">Vowshot Collection</span>
+        <h2 style="font-size:1.85rem;">Premium Albums & Keepsakes</h2>
+      </div>
+      <a href="shop.html" class="btn-clean-outline">Shop All Products <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <div class="products-shelf">
+      <div class="vowshot-intro">
+        <span class="eyebrow">Handcrafted Luxury</span>
+        <h2>Keep Memories Close</h2>
+        <p>Turn your beautiful moments into timeless physical treasures and heirloom luxury prints.</p>
+      </div>
+
+      <!-- Item 1: Premium Wedding Album -->
+      <div class="product-card">
+        <div class="product-img-box">
+          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=300&auto=format&fit=crop" alt="Premium Wedding Album">
+        </div>
+        <h4>Premium Wedding Album</h4>
+        <div class="product-bottom-row">
+          <span>From <strong>₹4,999</strong></span>
+          <button class="cart-add-btn" onclick="addToCart('premium-wedding-album')"><i class="fa-solid fa-cart-shopping"></i></button>
+        </div>
+      </div>
+
+      <!-- Item 2: Designer Photo Frame -->
+      <div class="product-card">
+        <div class="product-img-box">
+          <img src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?q=80&w=300&auto=format&fit=crop" alt="Designer Photo Frame">
+        </div>
+        <h4>Designer Photo Frame</h4>
+        <div class="product-bottom-row">
+          <span>From <strong>₹799</strong></span>
+          <button class="cart-add-btn" onclick="addToCart('designer-photo-frame')"><i class="fa-solid fa-cart-shopping"></i></button>
+        </div>
+      </div>
+
+      <!-- Item 3: Memory Box -->
+      <div class="product-card">
+        <div class="product-img-box">
+          <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=300&auto=format&fit=crop" alt="Memory Box">
+        </div>
+        <h4>Memory Box</h4>
+        <div class="product-bottom-row">
+          <span>From <strong>₹1,999</strong></span>
+          <button class="cart-add-btn" onclick="addToCart('memory-box')"><i class="fa-solid fa-cart-shopping"></i></button>
+        </div>
+      </div>
+
+      <!-- Item 4: Acrylic Photo Print -->
+      <div class="product-card">
+        <div class="product-img-box">
+          <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=300&auto=format&fit=crop" alt="Acrylic Photo Print">
+        </div>
+        <h4>Acrylic Photo Print</h4>
+        <div class="product-bottom-row">
+          <span>From <strong>₹1,299</strong></span>
+          <button class="cart-add-btn" onclick="addToCart('acrylic-photo-print')"><i class="fa-solid fa-cart-shopping"></i></button>
+        </div>
+      </div>
+
+      <!-- Item 5: Custom Photo Mug -->
+      <div class="product-card">
+        <div class="product-img-box">
+          <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=300&auto=format&fit=crop" alt="Custom Photo Mug">
+        </div>
+        <h4>Custom Photo Mug</h4>
+        <div class="product-bottom-row">
+          <span>From <strong>₹399</strong></span>
+          <button class="cart-add-btn" onclick="addToCart('custom-photo-mug')"><i class="fa-solid fa-cart-shopping"></i></button>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="lp24-booking-cta">
-    <img src="https://cdn0.weddingwire.in/vendor/3509/3_2/960/jpg/wedding-photography-wedding-capital-by-lightroom-productions-couple-shot-5_15_363509-161649395861395.jpeg" alt="">
-    <div class="lp24-cta-shade"></div>
-    <div class="lp24-container lp24-cta-inner"><div><label>LET'S CREATE SOMETHING</label><h2>Beautiful <em>Together</em></h2><p>Booking open for weddings, celebrations &amp; creative stories.</p></div><div class="lp24-cta-buttons"><a href="booking.html" class="lp24-btn gold">Book Now <span>→</span></a><a href="contact.html" class="lp24-btn ghost">Free Consultation</a></div></div>
+  <!-- ============================================================
+       BOTTOM BANNER: BOOKING CALL TO ACTION
+  ============================================================ -->
+  <section class="cta-banner">
+    <div class="cta-left-couple">
+      <div class="couple-silhouette">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=300&auto=format&fit=crop" alt="Couple Silhouette">
+      </div>
+    </div>
+
+    <div class="cta-center">
+      <h2>Let's Create Something <em>Beautiful</em> Together</h2>
+      <p>Booking Open for 2025 - 2026 Wedding Season</p>
+      <div class="cta-buttons">
+        <a href="booking.html" class="btn-gold">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="contact.html" class="btn-outline-play">Get a Free Consultation</a>
+      </div>
+    </div>
+
+    <div class="cta-stats-right">
+      <div class="cta-stat-row">
+        <i class="fa-solid fa-user-group"></i>
+        <div>
+          <strong>500+</strong>
+          <span>Happy Couples</span>
+        </div>
+      </div>
+      <div class="cta-stat-row">
+        <i class="fa-solid fa-camera"></i>
+        <div>
+          <strong>1000+</strong>
+          <span>Memories Captured</span>
+        </div>
+      </div>
+      <div class="cta-stat-row">
+        <i class="fa-solid fa-calendar-check"></i>
+        <div>
+          <strong>10+</strong>
+          <span>Years of Experience</span>
+        </div>
+      </div>
+      <div class="cta-hand-quote">
+        Because every<br>picture has a story ♡
+      </div>
+    </div>
   </section>
 
-  <footer class="lp24-footer"><div class="lp24-container lp24-footer-grid"><div class="lp24-footer-brand"><img src="assets/lightroom-logo.png"><p>Capturing memories. Creating forever.</p><div class="social"><a href="https://www.facebook.com/weddingcapital" target="_blank">f</a><a href="https://www.instagram.com/" target="_blank">◎</a><a href="#">▶</a></div></div><div><h4>Explore</h4><a href="weddings.html">Weddings</a><a href="pre-wedding.html">Pre-Wedding</a><a href="portfolio.html">Gallery</a><a href="shop.html">Vowshot Shop</a></div><div><h4>Services</h4><a href="booking.html">Book a Session</a><a href="frames.html">Frames</a><a href="albums.html">Albums</a><a href="printing.html">Photo Printing</a></div><div><h4>Contact</h4><p>+91 70440 07755</p><p>help.lightroomproductions@gmail.com</p><p>Studio · India</p></div></div><div class="lp24-copyright lp24-container"><span>© 2026 Lightroom Productions Pvt. Ltd. All Rights Reserved.</span><span><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="contact.html">Contact</a></span></div></footer>
-</main>
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer">
+    <div class="footer-socials">
+      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-youtube"></i></a>
+      <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+    </div>
 
-<div class="overlay"></div><aside class="drawer"><div class="drawer-head"><b>Your Cart</b><button class="btn" data-close-cart>Close</button></div><div class="drawer-body" data-cart-body></div><div class="cart-foot"><div style="display:flex;justify-content:space-between;font-weight:700;margin-bottom:12px">Total <span data-cart-total>₹0</span></div><a href="checkout.html" data-checkout-link class="btn gold" style="width:100%">Proceed to Checkout</a></div></aside>
-<nav class="mobile-bottom-nav" aria-label="Mobile navigation"><a href="index.html"><span>⌂</span>Home</a><button type="button" onclick="mobileMenu()"><span>☰</span>Menu</button><a href="shop.html"><span>▣</span>Shop</a><a href="booking.html"><span>◈</span>Book</a><button type="button" data-open-cart><span>🛒</span>Cart <b data-cart-count>0</b></button></nav>
-<script src="assets/site.js"></script>
-<script>function lp24MobileMenu(){document.querySelector('.lp24-mobile-menu')?.classList.toggle('open')}
+    <div>
+      © 2026 Lightroom Productions Pvt. Ltd. All Rights Reserved.
+    </div>
 
-(function(){
- const slides=[
-  ['https://cdn0.weddingwire.in/vendor/3509/3_2/960/jpg/328625453-1378459962911694-7466237875652383750-n_15_363509-169160725821673.jpeg','WEDDINGS  |  PRE-WEDDINGS  |  FAMILIES  |  AND MORE','Moments<br><em>Become Memories</em>','Timeless Photography &amp; Cinematic Films<br>for Your Most Beautiful Chapters'],
-  ['https://cdn0.weddingwire.in/vendor/3509/3_2/960/jpg/wedding-photography-wedding-capital-by-lightroom-productions-couple-shot-1_15_363509-161649393633936.jpeg','PRE-WEDDINGS  |  COUPLES  |  STORIES','Frames<br><em>of Love</em>','Beautiful photographs and cinematic stories designed around you'],
-  ['https://cdn0.weddingwire.in/vendor/3509/3_2/960/jpg/481459496-1015153620785464-2096674339255417242-n_15_363509-174254703415713.jpeg','FAMILIES  |  MATERNITY  |  BABY &amp; KIDS','Every Chapter<br><em>Deserves Forever</em>','From growing families to milestone celebrations — beautifully preserved']
- ];
- let i=0;const img=document.getElementById('lp24Hero'),e=document.getElementById('lp24Eyebrow'),t=document.getElementById('lp24HeroTitle'),p=document.getElementById('lp24HeroText'),dots=[...document.querySelectorAll('.lp24-dots button')];
- function show(n){i=n%slides.length;img.classList.add('fade');setTimeout(()=>{img.src=slides[i][0];e.innerHTML=slides[i][1];t.innerHTML=slides[i][2];p.innerHTML=slides[i][3];dots.forEach((d,x)=>d.classList.toggle('on',x===i));img.classList.remove('fade')},220)}
- dots.forEach((d,x)=>d.onclick=()=>show(x));setInterval(()=>show(i+1),6500);
-})();
-</script>
-</body></html>
+    <div class="footer-links">
+      <a href="about.html">Privacy</a>
+      <span>|</span>
+      <a href="about.html">Terms</a>
+      <span>|</span>
+      <a href="contact.html">FAQs</a>
+      <span>|</span>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="footer-credit">
+      Made with <i class="fa-solid fa-heart"></i> for beautiful stories
+    </div>
+  </footer>
+
+  <!-- Basic Cart Helper Script -->
+  <script>
+    function addToCart(productId) {
+      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      cart.push({ id: productId, addedAt: new Date().toISOString() });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+      alert('Product added to your cart!');
+    }
+
+    function updateCartCount() {
+      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      const countEl = document.getElementById('nav-cart-count');
+      if (countEl) countEl.innerText = cart.length;
+    }
+
+    document.addEventListener('DOMContentLoaded', updateCartCount);
+  </script>
+</body>
+</html>
