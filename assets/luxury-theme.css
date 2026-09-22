@@ -53,7 +53,7 @@ header.site-header {
   align-items: center;
   justify-content: space-between;
   padding: 22px 60px;
-  background: linear-gradient(180deg, rgba(7,9,14,0.92) 0%, rgba(7,9,14,0.4) 70%, transparent 100%);
+  background: linear-gradient(180deg, rgba(7,9,14,0.95) 0%, rgba(7,9,14,0.4) 70%, transparent 100%);
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
@@ -64,7 +64,7 @@ header.site-header {
 }
 
 .brand-logo-wrap img {
-  height: 46px;
+  height: 48px;
   width: auto;
   object-fit: contain;
 }
@@ -90,7 +90,7 @@ header.site-header {
 nav.nav-menu {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 26px;
 }
 
 nav.nav-menu a {
@@ -120,7 +120,7 @@ nav.nav-menu a.active::after {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 20px;
 }
 
 .header-actions .icon-btn {
@@ -166,7 +166,25 @@ nav.nav-menu a.active::after {
   box-shadow: 0 6px 20px rgba(229, 184, 105, 0.4);
 }
 
-/* ================= INNER HERO BANNER ================= */
+.btn-outline {
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.03);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 9px 20px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-outline:hover {
+  border-color: var(--gold-primary);
+  color: var(--gold-primary);
+}
+
+/* ================= BANNER & HEADINGS ================= */
 .inner-hero {
   position: relative;
   min-height: 48vh;
@@ -176,10 +194,6 @@ nav.nav-menu a.active::after {
   background: linear-gradient(90deg, rgba(7,9,14,0.95) 0%, rgba(7,9,14,0.65) 50%, rgba(7,9,14,0.9) 100%),
               url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.inner-hero-content {
-  max-width: 700px;
 }
 
 .inner-hero .eyebrow {
@@ -210,7 +224,7 @@ nav.nav-menu a.active::after {
 /* ================= FOOTER ================= */
 footer.site-footer {
   background: #05070a;
-  padding: 24px 70px;
+  padding: 28px 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -226,6 +240,7 @@ footer.site-footer {
 
 .footer-socials a {
   color: #94a3b8;
+  font-size: 0.9rem;
 }
 
 .footer-socials a:hover {
@@ -245,9 +260,9 @@ footer.site-footer {
   color: #ef4444;
 }
 
-@media (max-width: 900px) {
-  header.site-header { padding: 18px 25px; }
+@media (max-width: 992px) {
+  header.site-header { padding: 18px 24px; }
   nav.nav-menu { display: none; }
-  .inner-hero { padding: 130px 25px 40px; }
-  footer.site-footer { flex-direction: column; gap: 15px; text-align: center; }
+  .inner-hero { padding: 130px 24px 40px; }
+  footer.site-footer { flex-direction: column; gap: 16px; text-align: center; }
 }
