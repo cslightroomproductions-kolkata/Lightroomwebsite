@@ -1,28 +1,19 @@
-# Lightroom Productions V21
+# Lightroom Productions V24
 
-Marketplace-style homepage inspired by common Indian value-commerce UX patterns, using Lightroom's own branding/content.
+A from-scratch visual redesign of the Lightroom Productions homepage, using the supplied reference as the design direction while preserving the existing booking, cart, checkout, product and API structure.
 
-## Homepage
-- Red / white / light-grey marketplace palette
-- Top categories rail
-- Left-side All Services navigation
-- Wide rectangular hero banner (single photography banner, not full-page photo mosaic)
-- Rotating Wedding Capital banner images
-- Right-side offer cards
-- Offer Zone
-- Shop by Occasion
+## Design system
+- Deep navy header and cinematic hero
+- Warm ivory / cream content surfaces
+- Champagne gold CTAs
+- Cormorant Garamond editorial headlines + Inter UI text
+- Widescreen hero banner
+- Five service cards
+- Sub-brand section
+- Featured portfolio strip
 - Vowshot product shelf
-- Small Wedding Capital portfolio strip
-- Mobile-responsive marketplace layout
-
-## Wedding Capital Facebook feed
-The existing server-side endpoint `api/facebook-photos.js` is retained. Configure these Vercel environment variables:
-
-- `FACEBOOK_PAGE_USERNAME=weddingcapital`
-- `FACEBOOK_PAGE_ACCESS_TOKEN=<Page access token>`
-- `FACEBOOK_GRAPH_VERSION=v26.0`
-
-The access token is server-side only. The homepage should use the Facebook feed when configured and the public WeddingWire image URLs as visual fallback.
+- Full-width booking CTA
+- Responsive mobile layout
 
 ## Backend safety
-Existing Razorpay/Supabase booking/payment API files were not changed by the V21 homepage redesign.
+Existing API files are carried forward unchanged from the previous working build.
