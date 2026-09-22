@@ -1,229 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vowshot Shop | Albums, Frames & Keepsakes</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="assets/luxury-theme.css">
-  <style>
-    .shop-container {
-      background: var(--bg-warm-light);
-      color: var(--text-dark);
-      padding: 50px 70px 80px;
-    }
-    .shop-filter-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 35px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid #e2d9ca;
-    }
-    .filter-tabs {
-      display: flex;
-      gap: 12px;
-    }
-    .filter-btn {
-      padding: 6px 16px;
-      border-radius: 20px;
-      border: 1px solid #cbd5e1;
-      background: #fff;
-      font-size: 0.78rem;
-      cursor: pointer;
-      font-weight: 500;
-    }
-    .filter-btn.active {
-      background: #111622;
-      color: #fff;
-      border-color: #111622;
-    }
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 22px;
-    }
-    .shop-card {
-      background: #ffffff;
-      border: 1px solid #e7dfd1;
-      border-radius: 8px;
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.25s ease;
-    }
-    .shop-card:hover {
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      transform: translateY(-3px);
-    }
-    .shop-card .img-wrap {
-      height: 180px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 12px;
-      overflow: hidden;
-    }
-    .shop-card .img-wrap img {
-      max-height: 100%;
-      object-fit: contain;
-    }
-    .shop-card h4 {
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: #0f172a;
-      margin-bottom: 4px;
-    }
-    .shop-card .category {
-      font-size: 0.72rem;
-      color: #8c7853;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .shop-card-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 14px;
-      padding-top: 10px;
-      border-top: 1px dashed #f0e9df;
-    }
-    .shop-card-bottom strong {
-      font-size: 0.95rem;
-      color: #111622;
-    }
-  </style>
-</head>
-<body>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Vowshot Shop — Lightroom Productions"><title>Vowshot Shop | Lightroom Productions</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/style.css"><link rel="stylesheet" href="assets/futuristic.css"><link rel="stylesheet" href="assets/marketplace.css"><link rel="stylesheet" href="assets/v17.css"></head><body data-page="shop">
+<div class="topbar"><div class="wrap"><span>Premium Wedding Photography • Cinematography • Vowshot</span><span>Free consultation • WhatsApp +91 70440 07755</span></div></div>
+<header class="header">
+ <div class="wrap head1">
+  <a class="logo" href="index.html" aria-label="Lightroom Productions"><img class="brand-logo" src="assets/lightroom-logo.png" alt="Lightroom Productions"></a>
+  <button class="hamb" type="button" aria-label="Open menu" aria-expanded="false" onclick="mobileMenu()">☰</button>
+  <div class="search"><input data-search placeholder="Search packages, frames, albums, prints & gifts..."><button type="button" onclick="siteSearch()">Search</button></div>
+  <div class="head-actions"><a class="action book-head" href="booking.html">Booking<span>Check your date</span></a><a class="action account-head" href="account.html">My Account<span>Bookings & Orders</span></a><button class="action cart-btn" data-open-cart>Cart <span class="count" data-cart-count>0</span><span>View cart</span></button></div>
+ </div>
+ <div class="menu"><div class="wrap">
+  <a href="index.html">Home</a><a href="weddings.html">Weddings</a><a href="pre-wedding.html">Pre-Wedding</a><a href="engagement.html">Engagement</a><a href="photography.html">Photography</a><a href="cinematography.html">Cinematography</a><a href="albums.html">Albums</a><a href="frames.html">Frames</a><a href="shop.html">Vowshot Shop</a><a href="portfolio.html">Portfolio</a><a href="account.html">My Account</a><a href="contact.html">Contact</a>
+ </div></div><div class="menu-backdrop" onclick="mobileMenu()"></div>
+ <div class="brand-rail"><div class="wrap brand-rail-inner">
+  <span class="brand-rail-label">OUR BRANDS</span>
+  <a class="subbrand" href="weddings.html"><img src="assets/brands/wedding-capital.jpg" alt="Wedding Capital"><span>Wedding Capital</span></a>
+  <a class="subbrand" href="booking.html?service=baby"><img src="assets/brands/tinytoons.png" alt="TinyToons"><span>TinyToons</span></a>
+  <a class="subbrand" href="shop.html"><img src="assets/brands/vowshot.jpg" alt="Vowshot"><span>Vowshot</span></a>
+ </div></div>
+</header>
+<section class="pagehead"><div class="wrap"><div class="crumb">Home / Vowshot Shop</div><h1>Vowshot Shop</h1><p style="color:#707b7f;max-width:650px">Frames, albums, prints and personalized gifts from your uploaded Vowshot catalogue. Photography packages are presented separately under Wedding Packages.</p></div></section>
+<section class="section"><div class="wrap shop-layout"><aside class="filter"><h3>SHOP BY CATEGORY</h3><label><input type="radio" name="cat" data-cat="All" checked> All Products</label><label><input type="radio" name="cat" data-cat="Albums & Combos"> Albums & Combos</label><label><input type="radio" name="cat" data-cat="Frames & Acrylic"> Frames & Acrylic</label><label><input type="radio" name="cat" data-cat="Photo Printing"> Photo Printing</label><label><input type="radio" name="cat" data-cat="Personalized Gifts"> Personalized Gifts</label></aside><main><div class="shopbar"><span class="result-count" data-result>Loading...</span><select data-sort><option value="featured">Featured</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option><option value="name">Name</option></select></div><div class="product-grid" data-products></div></main></div></section>
+<div class="overlay"></div><aside class="drawer"><div class="drawer-head"><b>Your Cart</b><button class="btn" data-close-cart>Close</button></div><div class="drawer-body" data-cart-body></div><div class="cart-foot"><div style="display:flex;justify-content:space-between;font-weight:700;margin-bottom:12px">Total <span data-cart-total>₹0</span></div><a href="checkout.html" data-checkout-link class="btn gold" style="width:100%">Proceed to Checkout</a><div style="font-size:10px;color:#788;margin-top:8px">For personalized products, our team will confirm artwork/photos after enquiry.</div></div></aside>
 
-  <header class="site-header">
-    <a href="index.html" class="brand-logo-wrap">
-      <img src="assets/lightroom-logo.png" alt="Lightroom Logo" onerror="this.src='https://placehold.co/180x50/07090e/e5b869?text=LIGHTROOM'" />
-      <div class="brand-title">
-        <span class="main-name">Lightroom</span>
-        <span class="sub-name">Productions Pvt. Ltd.</span>
-      </div>
-    </a>
-    <nav class="nav-menu">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="weddings.html">Weddings</a>
-      <a href="photography.html">Services</a>
-      <a href="shop.html" class="active">Shop</a>
-      <a href="portfolio.html">Gallery</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <div class="header-actions">
-      <a href="checkout.html" class="icon-btn">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span class="cart-badge" id="nav-cart-count">0</span>
-      </a>
-      <a href="booking.html" class="btn-gold">Book Now</a>
-    </div>
-  </header>
-
-  <section class="inner-hero" style="background-image: linear-gradient(90deg, rgba(7,9,14,0.95) 0%, rgba(7,9,14,0.6) 100%), url('https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1600&auto=format&fit=crop');">
-    <div class="inner-hero-content">
-      <span class="eyebrow">Vowshot Collection</span>
-      <h1>Handcrafted Keepsakes & Albums</h1>
-      <p>Preserve your most cherished wedding, family, and celebration memories in museum-grade physical form.</p>
-    </div>
-  </section>
-
-  <section class="shop-container">
-    <div class="shop-filter-bar">
-      <div class="filter-tabs">
-        <button class="filter-btn active">All Items</button>
-        <button class="filter-btn">Photo Albums</button>
-        <button class="filter-btn">Acrylic & Frames</button>
-        <button class="filter-btn">Customized Gifts</button>
-      </div>
-      <div>Showing signature collections</div>
-    </div>
-
-    <div class="products-grid">
-      <!-- Item 1 -->
-      <div class="shop-card">
-        <div class="img-wrap">
-          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=500&auto=format&fit=crop" alt="Premium Album">
-        </div>
-        <span class="category">Albums</span>
-        <h4>Premium Wedding Album</h4>
-        <div class="shop-card-bottom">
-          <strong>₹4,999</strong>
-          <button class="btn-gold" style="padding:6px 14px; font-size:0.75rem;" onclick="addToCart('premium-wedding-album')">Add to Cart</button>
-        </div>
-      </div>
-
-      <!-- Item 2 -->
-      <div class="shop-card">
-        <div class="img-wrap">
-          <img src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?q=80&w=500&auto=format&fit=crop" alt="Designer Frame">
-        </div>
-        <span class="category">Frames</span>
-        <h4>Designer Photo Frame</h4>
-        <div class="shop-card-bottom">
-          <strong>₹799</strong>
-          <button class="btn-gold" style="padding:6px 14px; font-size:0.75rem;" onclick="addToCart('designer-photo-frame')">Add to Cart</button>
-        </div>
-      </div>
-
-      <!-- Item 3 -->
-      <div class="shop-card">
-        <div class="img-wrap">
-          <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=500&auto=format&fit=crop" alt="Memory Box">
-        </div>
-        <span class="category">Keepsakes</span>
-        <h4>Handcrafted Memory Box</h4>
-        <div class="shop-card-bottom">
-          <strong>₹1,999</strong>
-          <button class="btn-gold" style="padding:6px 14px; font-size:0.75rem;" onclick="addToCart('memory-box')">Add to Cart</button>
-        </div>
-      </div>
-
-      <!-- Item 4 -->
-      <div class="shop-card">
-        <div class="img-wrap">
-          <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?q=80&w=500&auto=format&fit=crop" alt="Acrylic Print">
-        </div>
-        <span class="category">Prints</span>
-        <h4>Acrylic Photo Block</h4>
-        <div class="shop-card-bottom">
-          <strong>₹1,299</strong>
-          <button class="btn-gold" style="padding:6px 14px; font-size:0.75rem;" onclick="addToCart('acrylic-photo-print')">Add to Cart</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="footer-socials">
-      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-      <a href="#"><i class="fa-brands fa-instagram"></i></a>
-      <a href="#"><i class="fa-brands fa-youtube"></i></a>
-    </div>
-    <div>© 2026 Lightroom Productions Pvt. Ltd. All Rights Reserved.</div>
-    <div class="footer-links">
-      <a href="about.html">Privacy</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </footer>
-
-  <script>
-    function addToCart(productId) {
-      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      cart.push({ id: productId, addedAt: new Date().toISOString() });
-      localStorage.setItem('cart', JSON.stringify(cart));
-      updateCartCount();
-      alert('Product added to your cart!');
-    }
-    function updateCartCount() {
-      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      const countEl = document.getElementById('nav-cart-count');
-      if (countEl) countEl.innerText = cart.length;
-    }
-    document.addEventListener('DOMContentLoaded', updateCartCount);
-  </script>
-</body>
-</html>
+<nav class="mobile-bottom-nav" aria-label="Mobile navigation"><a href="index.html"><span>⌂</span>Home</a><button type="button" onclick="mobileMenu()"><span>☰</span>Menu</button><a href="shop.html"><span>▣</span>Shop</a><a href="booking.html"><span>◈</span>Book</a><button type="button" data-open-cart><span>🛒</span>Cart <b data-cart-count>0</b></button></nav>
+<footer class="footer"><div class="wrap footgrid"><div><a class="logo" href="index.html" aria-label="Lightroom Productions"><img class="brand-logo" src="assets/lightroom-logo.png" alt="Lightroom Productions"></a><p>Luxury wedding stories and premium photo products, crafted in India.</p><p>Our brands</p><div class="footer-brands"><a href="packages.html"><img src="assets/brands/wedding-capital.jpg" alt="Wedding Capital"></a><a href="booking.html?service=baby"><img src="assets/brands/tinytoons.png" alt="TinyToons"></a><a href="shop.html"><img src="assets/brands/vowshot.jpg" alt="Vowshot"></a></div></div><div><h4>Wedding</h4><p><a href="packages.html">Packages & Pricing</a></p><p><a href="photography.html">Photography</a></p><p><a href="cinematography.html">Cinematography</a></p><p><a href="pre-wedding.html">Pre-Wedding</a></p></div><div><h4>Shop</h4><p><a href="shop.html">All Products</a></p><p><a href="albums.html">Albums & Combos</a></p><p><a href="frames.html">Frames & Acrylic</a></p><p><a href="printing.html">Photo Printing</a></p></div><div><h4>Contact</h4><p>WhatsApp: +91 70440 07755</p><p>Email: help.lightroomproductions@gmail.com</p><p>care.lightroomproductions@gmail.com</p><p><a href="booking.html">Book your date →</a></p></div></div><div class="wrap" style="border-top:1px solid #1c4854;margin-top:35px;padding-top:18px;font-size:10px;color:#88a0a5">© 2026 Lightroom Productions • Vowshot by Lightroom Productions</div></footer><a class="float" href="https://wa.me/917044007755">◔</a>
+<script src="assets/site.js"></script></body></html>

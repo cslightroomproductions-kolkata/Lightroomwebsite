@@ -1,28 +1,26 @@
-# Lightroom Productions V21
+# Lightroom Productions — V15 Black & Gold
 
-Marketplace-style homepage inspired by common Indian value-commerce UX patterns, using Lightroom's own branding/content.
+V15 keeps the V13 marketplace-style usability and V9/V11 commerce flows while applying a unified black + champagne-gold visual identity inspired by Lightroom Productions, Wedding Capital, TinyToons and Vowshot branding.
 
-## Homepage
-- Red / white / light-grey marketplace palette
-- Top categories rail
-- Left-side All Services navigation
-- Wide rectangular hero banner (single photography banner, not full-page photo mosaic)
-- Rotating Wedding Capital banner images
-- Right-side offer cards
-- Offer Zone
-- Shop by Occasion
-- Vowshot product shelf
-- Small Wedding Capital portfolio strip
-- Mobile-responsive marketplace layout
+## Included
+- Black + gold brand palette across header, navigation, shelves, products, packages, checkout and footer
+- High-contrast ivory typography for readability
+- Champagne-gold primary CTAs
+- Existing sub-brand logos
+- Existing product catalogue excluding photography packages
+- Existing Book Now / Check Date wedding flow
+- Existing Buy Now / Add to Cart product flow
+- Responsive mobile marketplace UX
 
-## Wedding Capital Facebook feed
-The existing server-side endpoint `api/facebook-photos.js` is retained. Configure these Vercel environment variables:
+## Payment
+The static build remains payment-ready but must be connected to a secure server-side Razorpay integration before accepting real payments. Never put the Razorpay secret key in client-side JavaScript.
 
-- `FACEBOOK_PAGE_USERNAME=weddingcapital`
-- `FACEBOOK_PAGE_ACCESS_TOKEN=<Page access token>`
-- `FACEBOOK_GRAPH_VERSION=v26.0`
 
-The access token is server-side only. The homepage should use the Facebook feed when configured and the public WeddingWire image URLs as visual fallback.
+V16: Replaced the main Lightroom Productions logo with the user-supplied white logo and tuned the marketplace header/footer for black + gold contrast.
 
-## Backend safety
-Existing Razorpay/Supabase booking/payment API files were not changed by the V21 homepage redesign.
+
+## Razorpay test integration added
+- Vercel serverless `/api/create-order.js` creates Razorpay orders server-side.
+- `/api/verify-payment.js` verifies the Razorpay signature.
+- Checkout sends product handle/variant to the server so the server calculates the amount from `assets/products.json`.
+- Requires Vercel environment variables `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET`.
