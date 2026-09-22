@@ -747,6 +747,7 @@
     }
 
   </style>
+<link rel="stylesheet" href="assets/v17.css">
 </head>
 
 <body>
@@ -836,9 +837,9 @@
 
         <a
           class="header-link"
-          href="/"
+          href="/account.html"
         >
-          ACCOUNT
+          MY ACCOUNT
           <small>Studio</small>
         </a>
 
@@ -1400,7 +1401,7 @@
           type="button"
           onclick="openWhatsApp()"
         >
-          CONTACT BOOKING SUPPORT
+          WhatsApp Customer Support
         </button>
 
       </section>
@@ -2502,6 +2503,14 @@
         );
 
       }
+
+      try {
+        localStorage.setItem("lp_booking_draft", JSON.stringify({
+          payload,
+          bookingId: data.bookingId,
+          createdAt: new Date().toISOString()
+        }));
+      } catch (e) {}
 
       if (
         !data.success ||

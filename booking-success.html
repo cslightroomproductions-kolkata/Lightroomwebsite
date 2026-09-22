@@ -261,9 +261,9 @@
 
         <a
           class="btn gold"
-          href="index.html"
+          href="account.html"
         >
-          Back to Home
+          View My Account
         </a>
 
         <a
@@ -319,6 +319,19 @@
       paymentType === "full"
         ? "Full Payment — 100%"
         : "Booking Advance — 30%";
+
+    try {
+      const draft = JSON.parse(localStorage.getItem("lp_booking_draft") || "null");
+      localStorage.setItem("lp_booking_confirmed", JSON.stringify({
+        ...(draft || {}),
+        bookingId,
+        paymentId,
+        paymentType,
+        amount,
+        status: "confirmed",
+        confirmedAt: new Date().toISOString()
+      }));
+    } catch (e) {}
 
     document.getElementById(
       "amount"
