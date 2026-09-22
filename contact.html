@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us | Lightroom Productions</title>
+  <title>Contact Studio | Lightroom Productions Pvt. Ltd.</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="assets/luxury-theme.css">
   <style>
-    .contact-wrapper {
+    .contact-container {
       padding: 70px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.1fr 0.9fr;
       gap: 50px;
+      background: var(--bg-dark);
     }
     .contact-card {
       background: var(--bg-card);
@@ -30,7 +31,7 @@
     }
     .form-group label {
       display: block;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--text-muted);
@@ -45,7 +46,7 @@
       color: #fff;
       font-family: var(--font-sans);
     }
-    .form-group input:focus, .form-group textarea:focus {
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
       outline: none;
       border-color: var(--gold-primary);
     }
@@ -55,18 +56,30 @@
       margin-bottom: 24px;
     }
     .info-list-item i {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       color: var(--gold-primary);
       margin-top: 4px;
     }
     .info-list-item h4 {
       font-size: 0.95rem;
       color: #fff;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
     .info-list-item p {
       color: var(--text-muted);
       font-size: 0.85rem;
+      line-height: 1.4;
+    }
+    .info-list-item a {
+      color: var(--gold-light);
+      text-decoration: underline;
+    }
+    .direct-actions-box {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      gap: 14px;
     }
   </style>
 </head>
@@ -95,67 +108,88 @@
     </div>
   </header>
 
-  <section class="inner-hero">
+  <section class="inner-hero" style="background-image: linear-gradient(90deg, rgba(7,9,14,0.95) 0%, rgba(7,9,14,0.7) 100%), url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1600&auto=format&fit=crop');">
     <div class="inner-hero-content">
-      <span class="eyebrow">Get In Touch</span>
-      <h1>Let’s Discuss Your Celebration</h1>
-      <p>Have an upcoming wedding, newborn arrival, or custom photo frame request? Connect with our team directly.</p>
+      <span class="eyebrow">Direct Studio Connect</span>
+      <h1>Let’s Plan Your Celebration</h1>
+      <p>Visit our Bandel flagship studio or book an appointment for weddings, albums, pre-wedding sessions, and video books.</p>
     </div>
   </section>
 
-  <section class="contact-wrapper">
-    <!-- Form -->
+  <section class="contact-container">
     <div class="contact-card">
-      <h2>Send an Inquiry</h2>
-      <form onsubmit="event.preventDefault(); alert('Inquiry received! Our studio will reach out shortly.');">
+      <h2>Send Studio Inquiry</h2>
+      <form onsubmit="event.preventDefault(); alert('Thank you! Your inquiry has been sent to Lightroom Productions. We will contact you shortly.');">
         <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" placeholder="Full name" required>
+          <label>Full Name</label>
+          <input type="text" placeholder="e.g. Rahul Sen" required>
         </div>
         <div class="form-group">
-          <label>Phone Number</label>
-          <input type="tel" placeholder="+91 ..." required>
+          <label>Phone / WhatsApp Number</label>
+          <input type="tel" placeholder="+91 98300 00000" required>
         </div>
         <div class="form-group">
-          <label>Event Type</label>
-          <select style="background:#111622;">
-            <option>Wedding Photography & Films</option>
-            <option>Pre-Wedding Shoot</option>
-            <option>Baby / Maternity (TinyToons)</option>
-            <option>Albums & Frames (Vowshot)</option>
+          <label>Service / Brand Required</label>
+          <select style="background:#121620;">
+            <option>Wedding Photography & Cinematic Film (Wedding Capital)</option>
+            <option>Pre-Wedding Story & Concept Shoots</option>
+            <option>Maternity & Baby Photography (TinyToons)</option>
+            <option>Premium Albums & Keepsakes (Vowshot)</option>
+            <option>Framing, Restorations & Printing</option>
           </select>
         </div>
         <div class="form-group">
-          <label>Message / Dates</label>
-          <textarea rows="4" placeholder="Tell us about your event dates and vision..."></textarea>
+          <label>Event Date(s) & Venue Location</label>
+          <input type="text" placeholder="e.g. Dec 14 - 18, 2026 | Kolkata / Hooghly">
         </div>
-        <button type="submit" class="btn-gold" style="width:100%; justify-content:center;">Submit Inquiry</button>
+        <div class="form-group">
+          <label>Message / Requirements</label>
+          <textarea rows="4" placeholder="Tell us about your event vision, special requests, or questions..."></textarea>
+        </div>
+        <button type="submit" class="btn-gold" style="width:100%; justify-content:center;">Send Inquiry</button>
       </form>
     </div>
 
-    <!-- Details -->
-    <div class="contact-card" style="display:flex; flex-direction:column; justify-content:center;">
-      <h2>Studio Information</h2>
-      <div class="info-list-item">
-        <i class="fa-solid fa-location-dot"></i>
-        <div>
-          <h4>Main Studio Address</h4>
-          <p>Lightroom Productions Pvt. Ltd.<br>Lichu Bagan, GT Road, Bandel, Hooghly, West Bengal</p>
+    <div class="contact-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+      <div>
+        <h2>Studio Information</h2>
+        
+        <div class="info-list-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <h4>Studio & Production Office</h4>
+            <p><strong>Lightroom Productions Pvt. Ltd.</strong><br>Lichu Bagan, GT Road, Bandel, Hooghly,<br>West Bengal - 712123, India</p>
+          </div>
+        </div>
+
+        <div class="info-list-item">
+          <i class="fa-solid fa-phone"></i>
+          <div>
+            <h4>Direct Call & Booking Lines</h4>
+            <p>Phone: <a href="tel:+917044007755">+91 7003117194</a><br>WhatsApp: <a href="https://wa.me/917044007755" target="_blank">+91 7044007755</a></p>
+          </div>
+        </div>
+
+        <div class="info-list-item">
+          <i class="fa-solid fa-envelope"></i>
+          <div>
+            <h4>Official Email</h4>
+            <p><a href="mailto:Help.lightroomproductions@gmail.com">cs.lightroomproductions@gmail.com</a><br><a href="mailto:cs.lightroomproductions@gmail.com">cs.lightroomproductions@gmail.com</a></p>
+          </div>
+        </div>
+
+        <div class="info-list-item">
+          <i class="fa-solid fa-clock"></i>
+          <div>
+            <h4>Studio Working Hours</h4>
+            <p>Tuesday – Sunday: 10:30 AM – 8:30 PM<br><span style="color:#ef4444;">Closed on Mondays</span> (Special shooting bookings open)</p>
+          </div>
         </div>
       </div>
-      <div class="info-list-item">
-        <i class="fa-solid fa-phone"></i>
-        <div>
-          <h4>Direct Call & WhatsApp</h4>
-          <p>+91 (Studio Team Direct Booking Line)</p>
-        </div>
-      </div>
-      <div class="info-list-item">
-        <i class="fa-solid fa-clock"></i>
-        <div>
-          <h4>Studio Hours</h4>
-          <p>Tuesday – Sunday: 10:30 AM – 8:30 PM (Mondays by appointment)</p>
-        </div>
+
+      <div class="direct-actions-box">
+        <a href="https://wa.me/917044007755" target="_blank" class="btn-gold" style="flex:1; justify-content:center;"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+        <a href="booking.html" class="btn-outline" style="flex:1; justify-content:center;">Book Online</a>
       </div>
     </div>
   </section>
