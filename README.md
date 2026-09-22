@@ -1,26 +1,19 @@
-# Lightroom Productions — V15 Black & Gold
+# Lightroom Productions V19
 
-V15 keeps the V13 marketplace-style usability and V9/V11 commerce flows while applying a unified black + champagne-gold visual identity inspired by Lightroom Productions, Wedding Capital, TinyToons and Vowshot branding.
+Marketplace-style booking + ecommerce redesign for Lightroom Productions.
 
-## Included
-- Black + gold brand palette across header, navigation, shelves, products, packages, checkout and footer
-- High-contrast ivory typography for readability
-- Champagne-gold primary CTAs
-- Existing sub-brand logos
-- Existing product catalogue excluding photography packages
-- Existing Book Now / Check Date wedding flow
-- Existing Buy Now / Add to Cart product flow
-- Responsive mobile marketplace UX
+## V19 visual direction
+- Clean white / light-grey marketplace interface
+- Red/pink accent for actions, offers and booking CTAs
+- Prominent search and compact category navigation
+- Offer Zone on homepage
+- Quick category rail for booking and shopping
+- Service cards for Wedding, Pre-Wedding, Engagement, Birthday, Rice Ceremony, Corporate, Music Video, Frames, Albums and Printing
+- Responsive mobile menu and bottom navigation
 
-## Payment
-The static build remains payment-ready but must be connected to a secure server-side Razorpay integration before accepting real payments. Never put the Razorpay secret key in client-side JavaScript.
+The visual language is inspired by common Indian marketplace UX patterns, while using Lightroom Productions' own branding and content rather than copying another site's branding/assets.
 
-
-V16: Replaced the main Lightroom Productions logo with the user-supplied white logo and tuned the marketplace header/footer for black + gold contrast.
-
-
-## Razorpay test integration added
-- Vercel serverless `/api/create-order.js` creates Razorpay orders server-side.
-- `/api/verify-payment.js` verifies the Razorpay signature.
-- Checkout sends product handle/variant to the server so the server calculates the amount from `assets/products.json`.
-- Requires Vercel environment variables `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET`.
+## Booking + ecommerce
+- Wedding, Pre-Wedding, Engagement, Birthday, Rice Ceremony, Baby, Maternity, Fashion, Corporate, Musical and Music Video packages are available through the booking flow.
+- Vowshot products continue through the ecommerce cart/checkout flow.
+- Existing Razorpay/Supabase API files were not intentionally modified by the V19 theme pass.
