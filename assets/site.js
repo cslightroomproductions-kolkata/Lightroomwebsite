@@ -46,7 +46,7 @@ function initShop(){
  const grid=document.querySelector('[data-products]'), count=document.querySelector('[data-result]');
  const search=document.querySelector('[data-search]');
  const catLinks=[...document.querySelectorAll('[data-cat]')];
- const urlCat=new URLSearchParams(location.search).get('cat'); let state={q:'',cat:urlCat||'All',sort:'featured'};
+ const params=new URLSearchParams(location.search); const urlCat=params.get('cat'); let state={q:params.get('search')||'',cat:urlCat||'All',sort:'featured'};
  function render(){
   let arr=PRODUCTS.filter(p=>(state.cat==='All'||p.category===state.cat)&&(!state.q||(p.title+' '+p.category).toLowerCase().includes(state.q.toLowerCase())));
   if(state.sort==='low')arr.sort((a,b)=>minVar(a).price-minVar(b).price);
@@ -100,7 +100,8 @@ function selectVariant(i){if(i>=0){currentVariant=i;renderProduct()}}
 let qty=1;function qtyChange(n){qty=Math.max(1,qty+n);const e=document.getElementById('qty');if(e)e.textContent=qty}
 function addCurrent(){addToCart(currentProduct,currentVariant,qty);qty=1}
 function buyCurrent(){const v=currentProduct.variants[currentVariant]||currentProduct.variants[0];location.href='checkout.html?buy='+encodeURIComponent(currentProduct.handle)+'&variant='+currentVariant+'&qty='+qty}
-function mobileMenu(){const m=document.querySelector('.menu');if(!m)return;m.classList.toggle('open');}
+function mobileMenu(){const m=document.querySelector('.menu');if(!m)return;const open=!m.classList.contains('open');m.classList.toggle('open',open);document.body.classList.toggle('menu-open',open);document.querySelector('.hamb')?.setAttribute('aria-expanded',String(open));}
+function siteSearch(){const q=document.querySelector('[data-search]')?.value?.trim();if(!q)return;location.href='shop.html?search='+encodeURIComponent(q);}
 document.addEventListener('click',e=>{if(e.target.closest('.menu a'))document.querySelector('.menu')?.classList.remove('open')});
 
 document.addEventListener('DOMContentLoaded',async()=>{document.querySelectorAll('[data-open-cart]').forEach(x=>x.onclick=openCart);document.querySelectorAll('[data-close-cart]').forEach(x=>x.onclick=closeCart);document.querySelector('.overlay')?.addEventListener('click',closeCart);await loadProducts();if(document.body.dataset.page==='home'){const el=document.querySelector('[data-home-products]');if(el){el.innerHTML=PRODUCTS.filter(p=>p.category!=='Photography Packages').slice(0,8).map(card).join('')}}if(document.body.dataset.page==='product'){const r=document.querySelector('[data-related]');if(r&&currentProduct)r.innerHTML=PRODUCTS.filter(p=>p.category===currentProduct.category&&p.handle!==currentProduct.handle).slice(0,4).map(card).join('')}});

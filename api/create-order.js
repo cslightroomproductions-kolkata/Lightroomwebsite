@@ -38,12 +38,31 @@ module.exports = async (req, res) => {
     }
 
     if (total <= 0) return json(res, 400, { error: 'Invalid order total.' });
+
+    const couponCode = String(payload.couponCode || '').trim().toUpperCase();
+    const COUPONS = {
+      VOWSHOT10: { type: 'percent', value: 10, max: 1000, min: 4999 },
+      WELCOME500: { type: 'fixed', value: 500, min: 2999 },
+      FRAME500: { type: 'fixed', value: 500, min: 4999 }
+    };
+    let discount = 0;
+    if (couponCode) {
+      const coupon = COUPONS[couponCode];
+      if (!coupon) return json(res, 400, { error: 'Invalid or unavailable coupon code.' });
+      if (total < coupon.min) return json(res, 400, { error: `Minimum order value for ${couponCode} is ₹${coupon.min.toLocaleString('en-IN')}.` });
+      discount = coupon.type === 'percent' ? total * coupon.value / 100 : coupon.value;
+      if (coupon.max) discount = Math.min(discount, coupon.max);
+      discount = Math.min(discount, total);
+      discount = Math.round(discount * 100) / 100;
+    }
+    const finalTotal = Math.round((total - discount) * 100) / 100;
+    if (finalTotal <= 0) return json(res, 400, { error: 'Invalid discounted order total.' });
     const receipt = `LP_${Date.now()}`;
     const auth = Buffer.from(`${process.env.RAZORPAY_KEY_ID}:${process.env.RAZORPAY_KEY_SECRET}`).toString('base64');
     const r = await fetch('https://api.razorpay.com/v1/orders', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Basic ${auth}` },
-      body: JSON.stringify({ amount: Math.round(total * 100), currency: 'INR', receipt, notes: { source: 'Lightroom Productions Vowshot', customer_name: String(payload.customer?.name || '').slice(0, 200), customer_phone: String(payload.customer?.phone || '').slice(0, 50) } })
+      body: JSON.stringify({ amount: Math.round(finalTotal * 100), currency: 'INR', receipt, notes: { source: 'Lightroom Productions Vowshot', customer_name: String(payload.customer?.name || '').slice(0, 200), customer_phone: String(payload.customer?.phone || '').slice(0, 50), coupon_code: couponCode, coupon_discount: discount } })
     });
     const order = await r.json();
     if (!r.ok) return json(res, r.status, { error: order?.error?.description || 'Razorpay order creation failed.' });
@@ -51,6 +70,7 @@ module.exports = async (req, res) => {
     return json(res, 200, {
       orderId: order.id,
       amount: order.amount,
+      pricing: { originalTotal: total, discount, total: finalTotal, couponCode: couponCode || null },
       currency: order.currency,
       options: {
         key: process.env.RAZORPAY_KEY_ID,

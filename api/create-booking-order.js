@@ -7,22 +7,246 @@ const { json, supabaseFetch } = require("./_supabase");
 // =====================================================
 
 const PACKAGES = {
-  "Shubh Aarambh": 34999,
-  "Mangal Milan": 44999,
-  "Rajsi Vivaah": 54999,
-  "Royal Utsav": 64999,
-  "Swarna Mahotsav": 74999,
-  "Maharaja Signature": 84999,
-  "Imperial Dynasty": 99999,
-  "Raj Mahal Elite": 124999,
-  "Crown Legacy": 149999,
-
-  "Royal Sangam": 89999,
-  "Maharaja Sangam": 109999,
-  "Rajwada Heritage": 129999,
-  "Imperial Vivaah": 149999,
-  "Maharani Collection": 174999,
-  "Royal Dynasty": 199999
+  "PREM": {
+    "price": 7999,
+    "category": "Pre-Wedding"
+  },
+  "BANDHAN": {
+    "price": 19999,
+    "category": "Pre-Wedding"
+  },
+  "SAATHI": {
+    "price": 30000,
+    "category": "Pre-Wedding"
+  },
+  "ANANT": {
+    "price": 49999,
+    "category": "Pre-Wedding"
+  },
+  "Engagement Economy": {
+    "price": 14999,
+    "category": "Engagement"
+  },
+  "Engagement Standard": {
+    "price": 19999,
+    "category": "Engagement"
+  },
+  "Engagement Premium": {
+    "price": 29999,
+    "category": "Engagement"
+  },
+  "Shubh Aarambh": {
+    "price": 34999,
+    "category": "Single Side"
+  },
+  "Mangal Milan": {
+    "price": 44999,
+    "category": "Single Side"
+  },
+  "Rajsi Vivaah": {
+    "price": 54999,
+    "category": "Single Side"
+  },
+  "Royal Utsav": {
+    "price": 64999,
+    "category": "Single Side"
+  },
+  "Swarna Mahotsav": {
+    "price": 74999,
+    "category": "Single Side"
+  },
+  "Maharaja Signature": {
+    "price": 84999,
+    "category": "Single Side"
+  },
+  "Imperial Dynasty": {
+    "price": 99999,
+    "category": "Single Side"
+  },
+  "Raj Mahal Elite": {
+    "price": 124999,
+    "category": "Single Side"
+  },
+  "The Crown Legacy": {
+    "price": 149999,
+    "category": "Single Side"
+  },
+  "Royal Sangam": {
+    "price": 89999,
+    "category": "Both Side"
+  },
+  "Maharaja Sangam": {
+    "price": 109999,
+    "category": "Both Side"
+  },
+  "Rajwada Heritage": {
+    "price": 129999,
+    "category": "Both Side"
+  },
+  "Imperial Vivaah": {
+    "price": 149999,
+    "category": "Both Side"
+  },
+  "Maharani Collection": {
+    "price": 174999,
+    "category": "Both Side"
+  },
+  "Royal Dynasty": {
+    "price": 199999,
+    "category": "Both Side"
+  },
+  "Happy Moments": {
+    "price": 7999,
+    "category": "Birthday"
+  },
+  "Birthday Bash": {
+    "price": 12999,
+    "category": "Birthday"
+  },
+  "Celebration Deluxe": {
+    "price": 17999,
+    "category": "Birthday"
+  },
+  "Royal Birthday": {
+    "price": 24999,
+    "category": "Birthday"
+  },
+  "Grand Celebration": {
+    "price": 34999,
+    "category": "Birthday"
+  },
+  "Silver": {
+    "price": 14999,
+    "category": "Rice Ceremony"
+  },
+  "Gold": {
+    "price": 19999,
+    "category": "Rice Ceremony"
+  },
+  "Royal": {
+    "price": 24999,
+    "category": "Rice Ceremony"
+  },
+  "Maharaja": {
+    "price": 39999,
+    "category": "Rice Ceremony"
+  },
+  "Tiny Smiles": {
+    "price": 4999,
+    "category": "Baby"
+  },
+  "Little Prince": {
+    "price": 7999,
+    "category": "Baby"
+  },
+  "Baby Bliss": {
+    "price": 9999,
+    "category": "Baby"
+  },
+  "Dreamy Childhood": {
+    "price": 14999,
+    "category": "Baby"
+  },
+  "Royal Kids": {
+    "price": 19999,
+    "category": "Baby"
+  },
+  "Mother’s Glow": {
+    "price": 9999,
+    "category": "Maternity"
+  },
+  "Blooming Love": {
+    "price": 14999,
+    "category": "Maternity"
+  },
+  "Precious Journey": {
+    "price": 19999,
+    "category": "Maternity"
+  },
+  "Queen Mother": {
+    "price": 29999,
+    "category": "Maternity"
+  },
+  "Luxury Maternity Story": {
+    "price": 49999,
+    "category": "Maternity"
+  },
+  "Runway Start": {
+    "price": 9999,
+    "category": "Fashion"
+  },
+  "Fashion Icon": {
+    "price": 19999,
+    "category": "Fashion"
+  },
+  "Editorial Glamour": {
+    "price": 29999,
+    "category": "Fashion"
+  },
+  "Luxury Vogue": {
+    "price": 49999,
+    "category": "Fashion"
+  },
+  "Elite Couture": {
+    "price": 79999,
+    "category": "Fashion"
+  },
+  "Business Essential": {
+    "price": 9999,
+    "category": "Corporate"
+  },
+  "Corporate Professional": {
+    "price": 19999,
+    "category": "Corporate"
+  },
+  "Executive Branding": {
+    "price": 29999,
+    "category": "Corporate"
+  },
+  "Enterprise Elite": {
+    "price": 49999,
+    "category": "Corporate"
+  },
+  "Corporate Prestige": {
+    "price": 79999,
+    "category": "Corporate"
+  },
+  "Live Beat": {
+    "price": 14999,
+    "category": "Musical"
+  },
+  "Stage Lights": {
+    "price": 24999,
+    "category": "Musical"
+  },
+  "Concert Pro": {
+    "price": 34999,
+    "category": "Musical"
+  },
+  "Rockstar Coverage": {
+    "price": 49999,
+    "category": "Musical"
+  },
+  "Festival Elite": {
+    "price": 74999,
+    "category": "Musical"
+  },
+  "Music Video Starter": {
+    "price": 24999,
+    "category": "Music Video"
+  },
+  "Music Video Standard": {
+    "price": 44999,
+    "category": "Music Video"
+  },
+  "Music Video Premium": {
+    "price": 74999,
+    "category": "Music Video"
+  },
+  "Music Video Signature": {
+    "price": 119999,
+    "category": "Music Video"
+  }
 };
 
 // =====================================================
@@ -133,17 +357,19 @@ module.exports = async function handler(req, res) {
       150
     );
 
-    const packagePrice =
-      PACKAGES[packageName];
+    const packageRecord = PACKAGES[packageName];
 
-    if (!packagePrice) {
+    if (!packageRecord) {
       return res.status(400).json({
         success: false,
         error:
-          "Invalid wedding package: " +
+          "Invalid service package: " +
           packageName
       });
     }
+
+    const packagePrice = money(packageRecord.price);
+    const category = (packageRecord.category === "Single Side" || packageRecord.category === "Both Side") ? "Wedding" : packageRecord.category;
 
     // =================================================
     // DATES
@@ -290,11 +516,32 @@ module.exports = async function handler(req, res) {
         : "advance";
 
     // =================================================
+    // LIGHTROOM COUPON
+    // =================================================
+
+    const couponCode = clean(payload.couponCode, 40).toUpperCase();
+    const COUPONS = {
+      LPWEDDING10: { scope: "Wedding", type: "percent", value: 10, max: 10000, min: 50000 },
+      LPLOVE5: { scope: "Pre-Wedding", type: "percent", value: 5, max: 2500, min: 15000 },
+      LPENGAGE5: { scope: "Engagement", type: "percent", value: 5, max: 2000, min: 15000 }
+    };
+    let couponDiscount = 0;
+    if (couponCode) {
+      const coupon = COUPONS[couponCode];
+      if (!coupon) return res.status(400).json({success:false,error:"Invalid or unavailable coupon code."});
+      if (coupon.scope !== category) return res.status(400).json({success:false,error:"This coupon is not valid for this service."});
+      if (packagePrice < coupon.min) return res.status(400).json({success:false,error:`Minimum package value for ${couponCode} is ₹${coupon.min.toLocaleString("en-IN")}.`});
+      couponDiscount = coupon.type === "percent" ? packagePrice * coupon.value / 100 : coupon.value;
+      if (coupon.max) couponDiscount = Math.min(couponDiscount, coupon.max);
+      couponDiscount = money(Math.min(couponDiscount, packagePrice));
+    }
+
+    // =================================================
     // PAYMENT CALCULATION
     // =================================================
 
-    const total =
-      money(packagePrice);
+    const originalTotal = money(packagePrice);
+    const total = money(originalTotal - couponDiscount);
 
     const advance =
       money(total * 0.30);
@@ -385,7 +632,7 @@ module.exports = async function handler(req, res) {
         guests || null,
 
       special_requirements:
-        requirements,
+        [requirements, couponCode ? `Coupon ${couponCode} applied: ₹${couponDiscount.toLocaleString("en-IN")} off (original ₹${originalTotal.toLocaleString("en-IN")}).` : ""].filter(Boolean).join(" "),
 
       advance_amount:
         advance,
@@ -502,6 +749,15 @@ module.exports = async function handler(req, res) {
 
                 package:
                   packageName,
+
+                original_package_price:
+                  originalTotal,
+
+                coupon_code:
+                  couponCode || "",
+
+                coupon_discount:
+                  couponDiscount,
 
                 payment_type:
                   paymentType,
@@ -638,6 +894,7 @@ module.exports = async function handler(req, res) {
 
       },
 
+      pricing: { originalTotal, discount: couponDiscount, total, couponCode: couponCode || null },
       options: {
 
         key:
