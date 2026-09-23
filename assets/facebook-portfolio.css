@@ -1,0 +1,14 @@
+
+/* Premium Wedding Capital Facebook portfolio integration */
+.fb-portfolio-section{margin-top:28px;padding:30px;border:1px solid rgba(199,163,90,.35);border-radius:22px;background:radial-gradient(circle at top right,rgba(199,163,90,.12),transparent 34%),linear-gradient(145deg,#0b0b0b,#111);box-shadow:0 22px 60px rgba(0,0,0,.28),0 0 35px rgba(199,163,90,.08)}
+.fb-portfolio-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:22px}
+.fb-portfolio-head h3{margin:6px 0 7px;font-size:30px;color:#fff}
+.fb-portfolio-head p{margin:0;color:#b8b8b8;max-width:700px;font-size:13px;line-height:1.65}
+.fb-brand-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(199,163,90,.35);border-radius:999px;padding:7px 11px;color:#e5c66f;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;background:rgba(199,163,90,.06)}
+.fb-live-frame{background:#fff;border-radius:15px;overflow:hidden;min-height:520px;display:flex;justify-content:center;align-items:flex-start;padding:10px}
+.fb-page-wrap{width:100%;max-width:900px}
+.fb-fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:480px;text-align:center;padding:35px;background:#0d0d0d;border-radius:10px;color:#fff}
+.fb-fallback h4{font-size:22px;margin:12px 0 7px}
+.fb-fallback p{color:#aaa;max-width:520px;line-height:1.6;margin:0 0 18px}
+.fb-portfolio-note{font-size:10px;color:#8e8e8e;margin-top:13px;text-align:center}
+@media(max-width:700px){.fb-portfolio-section{padding:18px;border-radius:16px}.fb-portfolio-head{display:block}.fb-portfolio-head .btn{margin-top:15px}.fb-portfolio-head h3{font-size:25px}.fb-live-frame{min-height:500px;padding:6px}}
