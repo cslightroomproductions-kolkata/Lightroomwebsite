@@ -1841,9 +1841,11 @@ body{background:radial-gradient(circle at 85% 5%,rgba(182,122,90,.16),transparen
         <button type="button" class="booking-package-card ${packageSelect.value===pkg.name?'selected':''}" data-package="${pkg.name.replace(/"/g,'&quot;')}">
           <span class="booking-package-tag">${pkg.tag || groupKey}</span>
           <strong>${pkg.name}</strong>
-          <span class="booking-package-price">${money(pkg.price)}</span>
+          ${pkg.subtitle ? `<span class="booking-package-preview">${pkg.subtitle}</span>` : ""}
+          <span class="booking-package-price">${money(pkg.price)} ${pkg.compareAt ? `<del style="font-size:10px;color:#8b7b78;font-weight:500">${money(pkg.compareAt)}</del>` : ""}</span>
+          ${pkg.discount ? `<span class="booking-package-tag" style="color:#fff;background:#5b2634;border-radius:999px;padding:4px 7px;width:max-content">${pkg.discount}</span>` : ""}
           <span class="booking-package-meta">${pkg.days} · ${pkg.team}</span>
-          <span class="booking-package-preview">${(pkg.deliverables||[]).slice(0,3).map(x=>'✓ '+x).join(' · ')}</span>
+          <span class="booking-package-preview">${(pkg.deliverables||[]).slice(0,4).map(x=>'✓ '+x).join(' · ')}</span>
         </button>`).join('');
       bookingPackageGrid.querySelectorAll('[data-package]').forEach(btn => btn.addEventListener('click', () => {
         packageSelect.value = btn.dataset.package;
