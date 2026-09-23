@@ -760,6 +760,17 @@ body{background:radial-gradient(circle at 85% 5%,rgba(182,122,90,.16),transparen
 .booking-package-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:16px}.booking-package-card{padding:14px;border:1px solid var(--v18-line);border-radius:16px;background:#fffdf9;color:var(--v18-ink);display:flex;flex-direction:column;gap:5px;transition:.2s;box-shadow:0 6px 18px rgba(80,50,50,.04)}.booking-package-card:hover,.booking-package-card.selected{border-color:var(--v18-wine);background:linear-gradient(145deg,#fffdf9,#f3e7dd);box-shadow:0 12px 28px rgba(91,38,52,.11);transform:translateY(-2px)}.booking-package-tag{font-size:8px;letter-spacing:1.4px;text-transform:uppercase;color:var(--v18-wine);font-weight:800}.booking-package-card strong{font-family:Georgia,serif;font-size:17px}.booking-package-price{font-size:18px;font-weight:800;color:var(--v18-wine)}.booking-package-meta{font-size:10px;color:var(--v18-muted);line-height:1.4}.booking-package-preview{font-size:10px;color:#66595a;line-height:1.45;margin-top:4px}.package-info{background:#f3e7dd!important;border:1px solid var(--v18-line)!important;border-radius:15px!important;color:var(--v18-ink)}.package-info strong{color:var(--v18-wine)}.event-list li{color:#5d5151}.summary-panel{background:#211a1b!important;color:#fffaf3!important;border-color:#211a1b!important}.summary-panel h2,.summary-panel .summary-price strong,.summary-panel .summary-row strong{color:#fffaf3}.summary-divider{border-color:rgba(255,255,255,.14)!important}.summary-box,.schedule{background:rgba(255,255,255,.045)!important;border-color:rgba(255,255,255,.12)!important}.feature-list li{color:#e8ddd7}.feature-list li::marker{color:#d3a17e}.payment-card{background:#fffaf3!important;border-color:var(--v18-line)!important;color:var(--v18-ink)}.payment-card.selected{border-color:var(--v18-wine)!important;background:#f5eae1!important}.book-button{background:var(--v18-wine)!important;border-color:var(--v18-wine)!important;color:#fffaf3!important;border-radius:12px!important}.book-button:hover{background:var(--v18-wine2)!important}.whatsapp-button{background:transparent!important;color:var(--v18-wine)!important;border:1px solid var(--v18-line)!important;border-radius:12px!important}
 @media(max-width:900px){.booking-service-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:650px){.booking-service-grid{grid-template-columns:repeat(2,1fr)}.booking-package-grid{grid-template-columns:1fr}.header-links{display:none}}
 </style>
+
+<style id="luxury-booking-package-overrides">
+/* Lightroom black + gold booking service/package controls */
+.booking-service-card{background:linear-gradient(145deg,#15120b,#090909)!important;color:#f7f0df!important;border:1px solid rgba(214,170,62,.38)!important;box-shadow:0 8px 24px rgba(0,0,0,.45),inset 0 0 18px rgba(214,170,62,.025)!important}
+.booking-service-card:hover,.booking-service-card.active{background:linear-gradient(145deg,#211b0d,#0b0b0b)!important;color:#fff7df!important;border-color:#e2b93f!important;box-shadow:0 0 14px rgba(226,185,63,.30),0 0 32px rgba(226,185,63,.12)!important;transform:translateY(-3px)!important}
+.booking-service-icon{color:#e4b83f!important;text-shadow:0 0 12px rgba(228,184,63,.55)!important}
+.booking-service-card b{color:#fff7df!important}.booking-service-card small{color:#bcae8b!important}
+.booking-package-card{background:linear-gradient(145deg,#15120d,#090909)!important;color:#f6efdf!important;border:1px solid rgba(214,170,62,.30)!important;box-shadow:0 10px 30px rgba(0,0,0,.45)!important}
+.booking-package-card:hover,.booking-package-card.selected{background:linear-gradient(145deg,#211b0d,#0b0b0b)!important;border-color:#e2b93f!important;box-shadow:0 0 18px rgba(226,185,63,.24),0 14px 34px rgba(0,0,0,.5)!important;transform:translateY(-3px)!important}
+.booking-package-tag{color:#e4b83f!important}.booking-package-card strong{color:#fff7df!important}.booking-package-subtitle{color:#d0bf97!important;font-family:Georgia,serif;font-size:12px;font-style:italic}.booking-package-price{color:#efc64d!important}.booking-package-price del{font-size:10px;color:#8c816a;margin-left:7px;font-weight:500}.booking-package-price em{font-style:normal;font-size:8px;margin-left:6px;padding:3px 6px;border:1px solid rgba(226,185,63,.35);border-radius:999px;color:#efc64d;background:rgba(226,185,63,.10)}.booking-package-meta,.booking-package-preview{color:#b9ad93!important}
+</style>
 </head>
 
 <body>
@@ -1441,7 +1452,7 @@ body{background:radial-gradient(circle at 85% 5%,rgba(182,122,90,.16),transparen
        JAVASCRIPT
   ========================================= -->
 
-  <script src="assets/packages.js"></script>
+  <script src="assets/packages.js?v=20260923-1"></script>
 
   <script>
 
@@ -1452,7 +1463,7 @@ body{background:radial-gradient(circle at 85% 5%,rgba(182,122,90,.16),transparen
     // PACKAGES
     // =================================================
 
-    const BOOKING_PACKAGES = Object.entries(PACKAGE_GROUPS).flatMap(([category, list]) =>
+    const BOOKING_PACKAGES = Object.entries(window.PACKAGE_GROUPS || {}).flatMap(([category, list]) =>
       list.map(pkg => ({ ...pkg, category }))
     );
 
@@ -1836,16 +1847,15 @@ body{background:radial-gradient(circle at 85% 5%,rgba(182,122,90,.16),transparen
     }
 
     function renderBookingPackages(groupKey) {
-      const list = PACKAGE_GROUPS[groupKey] || [];
+      const list = (window.PACKAGE_GROUPS || {})[groupKey] || [];
       bookingPackageGrid.innerHTML = list.map(pkg => `
         <button type="button" class="booking-package-card ${packageSelect.value===pkg.name?'selected':''}" data-package="${pkg.name.replace(/"/g,'&quot;')}">
           <span class="booking-package-tag">${pkg.tag || groupKey}</span>
           <strong>${pkg.name}</strong>
-          ${pkg.subtitle ? `<span class="booking-package-preview">${pkg.subtitle}</span>` : ""}
-          <span class="booking-package-price">${money(pkg.price)} ${pkg.compareAt ? `<del style="font-size:10px;color:#8b7b78;font-weight:500">${money(pkg.compareAt)}</del>` : ""}</span>
-          ${pkg.discount ? `<span class="booking-package-tag" style="color:#fff;background:#5b2634;border-radius:999px;padding:4px 7px;width:max-content">${pkg.discount}</span>` : ""}
+          ${pkg.subtitle?`<span class="booking-package-subtitle">${pkg.subtitle}</span>`:''}
+          <span class="booking-package-price">${money(pkg.price)} ${pkg.compareAt?`<del>${money(pkg.compareAt)}</del><em>${pkg.discount||''}</em>`:''}</span>
           <span class="booking-package-meta">${pkg.days} · ${pkg.team}</span>
-          <span class="booking-package-preview">${(pkg.deliverables||[]).slice(0,4).map(x=>'✓ '+x).join(' · ')}</span>
+          <span class="booking-package-preview">${(pkg.deliverables||[]).slice(0,3).map(x=>'✓ '+x).join(' · ')}</span>
         </button>`).join('');
       bookingPackageGrid.querySelectorAll('[data-package]').forEach(btn => btn.addEventListener('click', () => {
         packageSelect.value = btn.dataset.package;
