@@ -1,0 +1,37 @@
+/* Accessible light editorial theme for package detail pages */
+:root{--lr-ink:#241725;--lr-muted:#665968;--lr-bg:#fff8fc;--lr-surface:#ffffff;--lr-line:#ead8e5;--lr-pink:#c60067;--lr-pink-dark:#92004c;--lr-shadow:0 12px 32px rgba(91,17,61,.09)}
+html,body,body[data-page="package-detail"]{background:#fff8fc!important;color:#241725!important}
+body[data-page="package-detail"]{background:linear-gradient(180deg,#fffafd 0%,#fff4f9 52%,#fff 100%)!important}
+body[data-page="package-detail"]:before{display:none!important}
+body[data-page="package-detail"] .header{background:rgba(255,255,255,.96)!important;color:#241725!important;border-bottom:1px solid #f0e1eb}
+body[data-page="package-detail"] .header a:not(.btn),body[data-page="package-detail"] .header-links a{color:#302236!important}
+body[data-page="package-detail"] .package-detail-wrap{color:#241725!important}
+body[data-page="package-detail"] .detail-hero{background:linear-gradient(120deg,#a90057 0%,#dc0879 54%,#f28abd 100%)!important;color:#fff!important;position:relative;isolation:isolate;overflow:hidden}
+body[data-page="package-detail"] .detail-hero:after{content:"";position:absolute;inset:-40% -60%;z-index:-1;pointer-events:none;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.12) 48%,transparent 60%);transform:translateX(-45%);animation:lrSoftShimmer 12s ease-in-out infinite}
+@keyframes lrSoftShimmer{0%,15%{transform:translateX(-45%)}75%,100%{transform:translateX(45%)}}
+body[data-page="package-detail"] .detail-kicker{color:#fff!important}
+body[data-page="package-detail"] .detail-hero h1{color:#fffafc!important;text-shadow:0 2px 14px rgba(80,0,40,.12)}
+body[data-page="package-detail"] .detail-subtitle{color:#fff!important}
+body[data-page="package-detail"] .detail-price-row,body[data-page="package-detail"] .detail-price-row strong{color:#fff!important}
+body[data-page="package-detail"] .detail-price-row small{color:#fff5fa!important}
+body[data-page="package-detail"] .detail-cta .btn.gold{background:#fff!important;color:#a90057!important;border:1px solid #fff!important;box-shadow:0 8px 22px rgba(73,0,39,.14)!important}
+body[data-page="package-detail"] .detail-cta .btn:not(.gold){background:#7f0044!important;color:#fff!important;border:1px solid rgba(255,255,255,.75)!important}
+body[data-page="package-detail"] .detail-panel{background:#fff!important;color:#241725!important;border:1px solid #f0dce8!important;box-shadow:0 12px 32px rgba(91,17,61,.08)!important}
+body[data-page="package-detail"] .detail-panel h2{color:#342139!important}
+body[data-page="package-detail"] .detail-panel p,body[data-page="package-detail"] .detail-panel li,body[data-page="package-detail"] .detail-panel b,body[data-page="package-detail"] .detail-panel strong{color:#342139!important}
+body[data-page="package-detail"] .section-eyebrow{color:#b0005b!important}
+body[data-page="package-detail"] .coverage-meta>div{background:#fff1f8!important;border:1px solid #f7dfeb}
+body[data-page="package-detail"] .coverage-meta small{color:#6d5d6b!important}
+body[data-page="package-detail"] .coverage-meta b{color:#35243a!important}
+body[data-page="package-detail"] .coverage-list li,body[data-page="package-detail"] .deliverable-list li{color:#35243a!important;border-color:#f0e4ec!important}
+body[data-page="package-detail"] .coverage-list li span,body[data-page="package-detail"] .deliverable-list li span{color:#c60067!important}
+body[data-page="package-detail"] .perfect-for{background:#fff1f8!important;border:1px solid #f5d7e7}
+body[data-page="package-detail"] .perfect-for b{color:#a00053!important}
+body[data-page="package-detail"] .perfect-for p{color:#443246!important}
+body[data-page="package-detail"] .detail-note{background:#fff!important;border-color:#efd3e3!important;color:#342139!important}
+body[data-page="package-detail"] .detail-note p{color:#665568!important}
+body[data-page="package-detail"] .back-link{color:#a80055!important}
+body[data-page="package-detail"] .site-footer{background:#fff!important;color:#342139!important;border-top:1px solid #f0dce8}
+body[data-page="package-detail"] .site-footer span{color:#665568!important}
+@media(max-width:650px){body[data-page="package-detail"] .detail-hero:after{animation-duration:18s}body[data-page="package-detail"] .detail-panel h2{font-size:27px}}
+@media(prefers-reduced-motion:reduce){body[data-page="package-detail"] .detail-hero:after{animation:none!important}}
