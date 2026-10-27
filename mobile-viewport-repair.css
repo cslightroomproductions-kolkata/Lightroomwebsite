@@ -141,3 +141,90 @@ img,video,iframe,svg,canvas{max-width:100%}
   .mobile-bottom-nav{left:0!important;right:0!important;bottom:0!important;width:100%!important;border-left:0!important;border-right:0!important;border-radius:0!important;}
   body{padding-bottom:calc(68px + env(safe-area-inset-bottom))!important;}
 }
+
+/* V4: remove the phantom left rail and align all mobile content to the viewport. */
+@media (max-width: 760px) {
+  html, body {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    overflow-x: hidden !important;
+  }
+  body > .topbar,
+  body > header,
+  body > section,
+  body > main,
+  body > footer,
+  body > nav {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    transform: none !important;
+  }
+  /* The earlier auto margins were leaving the inner content offset on narrow screens. */
+  body .wrap,
+  body .topbar .wrap,
+  body .header .wrap,
+  body .menu .wrap,
+  body .brand-rail .wrap,
+  body .footer .wrap,
+  body .home-hero-v7 .wrap,
+  body .section .wrap,
+  body .pagehead .wrap,
+  body .banner .wrap {
+    width: calc(100% - 28px) !important;
+    max-width: calc(100% - 28px) !important;
+    min-width: 0 !important;
+    margin-left: 14px !important;
+    margin-right: 14px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    transform: none !important;
+  }
+  /* A closed navigation menu must not render a narrow, blank strip. */
+  body:not(.menu-open) .menu {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    left: -200vw !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+  body.menu-open .menu {
+    display: block !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    left: 0 !important;
+    width: min(320px, 86vw) !important;
+    max-width: 86vw !important;
+  }
+  body:not(.menu-open) .menu-backdrop { display: none !important; }
+  body.menu-open .menu-backdrop { display: block !important; }
+  .home-hero-v7,
+  .home-hero-v7 .hero-v7-grid,
+  .home-hero-v7 .hero-v7-copy,
+  .home-hero-v7 .hero-v7-visual {
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    min-width: 0 !important;
+  }
+  .mobile-bottom-nav {
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+}
