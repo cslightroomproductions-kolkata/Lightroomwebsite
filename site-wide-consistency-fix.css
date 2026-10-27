@@ -1,0 +1,44 @@
+/* Site-wide consistency pass: Cosmic Indigo + Starlight Pearl. Loaded last on every page. */
+:root{--lp-indigo:#10132B;--lp-iris:#7065FF;--lp-rose:#FF568C;--lp-mint:#48E0D0;--lp-pearl:#F5F4FF;--lp-slate:#252946;--lp-champagne:#F4BD70;--lp-ink:#252946;--lp-muted:#626783;--lp-line:#E0DFF4}
+html{background:var(--lp-pearl)!important;color-scheme:light!important;overflow-x:clip}
+body{background:var(--lp-pearl)!important;color:var(--lp-ink)!important;overflow-x:clip}
+/* Make the supplied white logo visible on every header variant. */
+.logo,.logo-box,.main-header .logo-box,.header .logo{background:var(--lp-indigo)!important;border:1px solid #343956!important;border-radius:12px!important;display:flex!important;align-items:center!important;justify-content:center!important;min-width:0!important;overflow:hidden!important;padding:7px 10px!important;box-shadow:0 5px 18px rgba(16,19,43,.12)!important}
+.logo img,.logo-box img,.brand-logo,.main-header .logo-box img{display:block!important;visibility:visible!important;opacity:1!important;width:100%!important;max-width:220px!important;height:auto!important;max-height:62px!important;object-fit:contain!important;object-position:center!important;background:transparent!important;padding:0!important;margin:0 auto!important;filter:none!important}
+.main-header{background:var(--lp-pearl)!important;color:var(--lp-indigo)!important;border-bottom:1px solid var(--lp-line)!important;box-shadow:0 5px 20px rgba(16,19,43,.07)!important}
+.main-header .header-inner{width:min(1320px,calc(100% - 32px))!important;max-width:1320px!important;margin-inline:auto!important;display:grid!important;grid-template-columns:minmax(180px,240px) minmax(260px,1fr) auto!important;align-items:center!important;gap:16px!important;padding:12px 0!important}
+.main-header .logo-box{width:100%!important;min-height:62px!important}
+.main-header .search-box{display:flex!important;min-width:0!important;width:100%!important;overflow:hidden!important;border:1.5px solid #c9c7f8!important;border-radius:13px!important;background:#fff!important;box-shadow:0 0 0 3px rgba(112,101,255,.06)!important}
+.main-header .search-box input{min-width:0!important;flex:1 1 auto!important;width:100%!important;background:#fff!important;color:var(--lp-indigo)!important;border:0!important;outline:0!important;padding:12px 14px!important}
+.main-header .search-box input::placeholder{color:#747792!important;opacity:1!important}
+.main-header .search-box button{flex:0 0 auto!important;background:linear-gradient(120deg,var(--lp-iris),var(--lp-rose))!important;color:#fff!important;border:0!important;font-weight:800!important;padding:0 20px!important}
+.main-header .header-links{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;white-space:nowrap!important}
+.main-header .header-link{color:var(--lp-indigo)!important;text-decoration:none!important;font-weight:800!important}
+.main-header .header-link small{display:block!important;color:var(--lp-muted)!important;font-size:10px!important;font-weight:500!important}
+/* Standard header variant used by the rest of the pages. */
+.header{background:rgba(245,244,255,.98)!important;color:var(--lp-indigo)!important;border-top:1px solid var(--lp-line)!important;border-bottom:1px solid var(--lp-line)!important;box-shadow:0 5px 20px rgba(16,19,43,.07)!important}
+.head1{display:flex!important;align-items:center!important;gap:16px!important;min-width:0!important}
+.search{min-width:0!important}
+/* Keep desktop navigation on one line; on small screens it becomes a usable horizontal scroller. */
+.menu,.nav{background:var(--lp-pearl)!important;color:var(--lp-indigo)!important;border-top:1px solid var(--lp-line)!important;border-bottom:1px solid var(--lp-line)!important;box-shadow:0 4px 14px rgba(16,19,43,.04)!important;width:100%!important}
+.menu>.wrap,.nav .nav-inner{width:min(1400px,calc(100% - 24px))!important;max-width:1400px!important;margin-inline:auto!important;display:flex!important;flex-flow:row nowrap!important;align-items:center!important;justify-content:center!important;gap:clamp(8px,1.05vw,18px)!important;white-space:nowrap!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:thin!important;padding:12px 0!important}
+.menu a,.nav .nav-inner>a{flex:0 0 auto!important;white-space:nowrap!important;color:var(--lp-slate)!important;font-size:11px!important;line-height:1.3!important;font-weight:800!important;text-decoration:none!important}
+.menu a:hover,.menu a.active,.nav .nav-inner>a:hover{color:var(--lp-iris)!important;background:#eae9ff!important;border-radius:7px!important}
+/* Unified typography and readable surfaces. */
+h1,h2,h3,h4,h5,h6,.page-title,.section-title{color:var(--lp-indigo)!important}
+p,li,label,small,.description,.desc,.muted,.product-description,.p-desc{color:var(--lp-muted)!important}
+.card,.package,.package-card,.product-card,.product-view,.detail-panel,.coverage-card,.booking-panel,.form-card,.checkout-card,.account-card,.cart-panel,.panel,.booking-grid>.panel{background:#fff!important;color:var(--lp-ink)!important;border-color:var(--lp-line)!important}
+input,select,textarea{background:#fff!important;color:var(--lp-indigo)!important;border-color:#cfccf0!important}
+input::placeholder,textarea::placeholder{color:#747792!important;opacity:1!important}
+button,.btn-primary,.button-primary,.book-head{background:linear-gradient(120deg,var(--lp-iris),var(--lp-rose))!important;color:#fff!important;border-color:transparent!important}
+.btn-secondary,.button-secondary{background:#fff!important;color:var(--lp-iris)!important;border:1px solid var(--lp-iris)!important}
+/* Don't let broad theme rules recolour essential text inside dark cinematic sections. */
+.portfolio,.portfolio-section,.gallery-section,.lp-portfolio,.cinematic-band,.footer{background:var(--lp-indigo)!important;color:#fff!important}
+.portfolio h1,.portfolio h2,.portfolio h3,.portfolio p,.portfolio li,.portfolio-section h1,.portfolio-section h2,.portfolio-section h3,.portfolio-section p,.gallery-section h2,.gallery-section h3,.gallery-section p,.lp-portfolio h2,.lp-portfolio h3,.lp-portfolio p,.cinematic-band h1,.cinematic-band h2,.cinematic-band p{color:#fff!important}
+.footer h1,.footer h2,.footer h3,.footer h4,.footer p,.footer li,.footer a,.footer small{color:#c2c6df!important}
+.footer a:hover{color:var(--lp-mint)!important}
+img{max-width:100%}
+@media(max-width:1050px){.main-header .header-inner{grid-template-columns:minmax(150px,205px) minmax(220px,1fr) auto!important;gap:10px!important}.main-header .header-links{gap:8px!important}.menu>.wrap,.nav .nav-inner{justify-content:flex-start!important}}
+@media(max-width:760px){.main-header .header-inner{grid-template-columns:minmax(0,1fr) auto!important;width:calc(100% - 24px)!important;gap:10px!important}.main-header .logo-box{grid-column:1;grid-row:1;width:min(220px,100%)!important;min-height:52px!important}.main-header .logo-box img{max-height:46px!important}.main-header .search-box{grid-column:1 / -1;grid-row:2}.main-header .header-links{grid-column:2;grid-row:1;gap:8px!important}.main-header .header-link{font-size:11px!important}.main-header .header-link small{font-size:9px!important}.logo img,.logo-box img,.brand-logo{max-width:100%!important;max-height:48px!important}.menu>.wrap,.nav .nav-inner{width:calc(100% - 16px)!important;justify-content:flex-start!important;gap:14px!important;padding:11px 0!important}.menu a,.nav .nav-inner>a{font-size:10px!important}.package-grid,.packages-grid,#packageGrid{grid-template-columns:minmax(0,1fr)!important}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.product-view{grid-template-columns:minmax(0,1fr)!important}}
+@media(max-width:420px){.main-header .header-links{gap:5px!important}.main-header .header-link{font-size:10px!important}.main-header .search-box button{padding-inline:12px!important}.product-grid{grid-template-columns:minmax(0,1fr)!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}

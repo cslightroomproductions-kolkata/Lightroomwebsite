@@ -1,0 +1,34 @@
+/* Lightroom Productions header — warm white + rose pink, overrides legacy marketplace styles */
+:root{color-scheme:light!important;--header-rose:#d60070;--header-rose-deep:#a80055;--header-blush:#fff0f7;--header-line:#f0cfe0}
+html,body{color-scheme:light!important}
+body .topbar,body .brand-rail{background:linear-gradient(90deg,#fff7fb,#fff)!important;color:#8f0049!important;border-color:#f2d6e5!important;box-shadow:none!important}
+body .topbar *{color:#8f0049!important}
+body .brand-rail{border-bottom:1px solid #f1d8e5!important}
+body .brand-rail-inner{background:transparent!important;display:flex;align-items:center;gap:9px;min-height:58px}
+body .brand-rail-label{color:#a80055!important;font-size:10px!important;font-weight:800;letter-spacing:1.7px}
+body .subbrand{display:flex!important;align-items:center;gap:9px;background:#fff!important;color:#a80055!important;border:1px solid #efc6dc!important;border-radius:12px!important;padding:6px 11px!important;box-shadow:0 3px 12px rgba(214,0,112,.06)!important;transition:background .18s ease,border-color .18s ease,transform .18s ease}
+body .subbrand:hover{background:#fff0f7!important;border-color:#d60070!important;transform:translateY(-1px)}
+body .subbrand span{color:#a80055!important;font-weight:700!important;font-size:12px!important}
+body .subbrand img{width:31px!important;height:31px!important;object-fit:contain!important;display:block!important;background:#fff0f7!important;border-radius:8px!important;padding:3px!important;mix-blend-mode:normal!important}
+body .header{background:rgba(255,255,255,.98)!important;color:#302334!important;border-top:1px solid #f4e1eb!important;border-bottom:1px solid #efd9e5!important;box-shadow:0 5px 22px rgba(100,24,66,.07)!important;backdrop-filter:blur(14px)}
+body .head1{background:transparent!important}
+body .logo{background:#fff!important;border:1px solid #f1d5e4!important;border-radius:14px!important;box-shadow:0 4px 16px rgba(214,0,112,.06)!important;padding:6px 10px!important}
+body .logo .brand-logo{background:transparent!important;object-fit:contain!important}
+body .search{background:#fff!important;border:1.5px solid #e8a9cb!important;border-radius:14px!important;box-shadow:0 0 0 3px rgba(214,0,112,.05)!important;overflow:hidden}
+body .search input{background:#fff!important;color:#302334!important;border:0!important;box-shadow:none!important;border-radius:12px!important}
+body .search input::placeholder{color:#8b7887!important;opacity:1!important}
+body .search button{background:linear-gradient(135deg,#e00078,#b0005c)!important;color:#fff!important;border:0!important;border-radius:0 10px 10px 0!important;font-weight:800!important}
+body .head-actions .action,body .head-actions a,body .head-actions button{color:#a80055!important;background:#fff!important;border-color:#efc6dc!important}
+body .head-actions .action span{color:#806a7b!important}
+body .head-actions .cart-btn .count{background:#d60070!important;color:#fff!important}
+body .menu{background:#fff!important;border-top:1px solid #f5e6ee!important;border-bottom:1px solid #f0d9e6!important;box-shadow:0 4px 12px rgba(100,24,66,.04)!important}
+body .menu>.wrap{background:transparent!important}
+body .menu a{color:#493647!important;font-weight:750!important}
+body .menu a:hover,body .menu a.active{color:#d60070!important;background:#fff0f7!important}
+body .hamb{background:#fff0f7!important;color:#a80055!important;border:1px solid #efc6dc!important;border-radius:10px!important}
+body .menu.open{background:#fff!important}
+body .menu.open a{color:#493647!important}
+body .menu-backdrop{background:rgba(64,15,42,.24)!important}
+@media(max-width:900px){body .brand-rail-inner{overflow-x:auto;justify-content:flex-start;padding-top:7px;padding-bottom:7px}body .brand-rail-label{flex:0 0 auto}body .subbrand{flex:0 0 auto}body .head1{background:#fff!important}}
+@media(max-width:650px){body .brand-rail-inner{gap:7px}body .subbrand{padding:5px 8px!important}body .subbrand img{width:27px!important;height:27px!important}body .subbrand span{font-size:11px!important}body .search{width:100%!important;min-width:0!important}body .search button{padding:0 13px!important}body .logo{max-width:60%!important}}
+@media(prefers-reduced-motion:reduce){body .subbrand{transition:none!important}}

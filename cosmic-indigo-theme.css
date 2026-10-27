@@ -1,0 +1,69 @@
+/* Lightroom Productions — Cosmic Indigo visual system */
+:root{color-scheme:light;--lp-indigo:#10132B;--lp-iris:#7065FF;--lp-rose:#FF568C;--lp-mint:#48E0D0;--lp-pearl:#F5F4FF;--lp-slate:#252946;--lp-champagne:#F4BD70;--lp-text:#252946;--lp-muted:#626783;--lp-border:#E0DFF4;--lp-white:#fff}
+html{background:var(--lp-pearl)!important;color-scheme:light!important}body{background:var(--lp-pearl)!important;color:var(--lp-text)!important}
+body,body p,body li,body label,body small,body .muted,body .desc,body .description{color:var(--lp-text)}
+/* Compact brand strip */
+body .topbar,body .brand-rail{background:var(--lp-indigo)!important;color:#fff!important;border-color:#343956!important;box-shadow:none!important}
+body .topbar *,body .brand-rail-label{color:#fff!important}
+body .brand-rail-inner{background:transparent!important;display:flex;align-items:center;gap:9px;min-height:54px}
+body .brand-rail-label{font-size:10px!important;font-weight:800;letter-spacing:1.8px;opacity:.9}
+body .subbrand{display:flex!important;align-items:center;gap:8px;background:var(--lp-slate)!important;color:#fff!important;border:1px solid #4b4f79!important;border-radius:10px!important;padding:5px 10px!important;box-shadow:inset 0 1px rgba(255,255,255,.04)!important;transition:transform .2s,border-color .2s,background .2s}
+body .subbrand:hover{background:#30365f!important;border-color:var(--lp-iris)!important;transform:translateY(-1px)}
+body .subbrand span{color:#fff!important;font-weight:700!important;font-size:12px!important}
+body .subbrand img{width:30px!important;height:30px!important;object-fit:contain!important;display:block!important;background:transparent!important;border-radius:7px!important;padding:2px!important;mix-blend-mode:normal!important}
+/* Header and logo: supplied logo artwork is white, so give it a dark indigo backing */
+body .header{background:rgba(245,244,255,.98)!important;color:var(--lp-indigo)!important;border-top:1px solid #e4e2fa!important;border-bottom:1px solid #dcdaf2!important;box-shadow:0 5px 22px rgba(16,19,43,.08)!important;backdrop-filter:blur(14px)}
+body .head1,body .menu>.wrap{background:transparent!important}
+body .logo{display:flex!important;align-items:center;justify-content:center;background:var(--lp-indigo)!important;border:1px solid #393e70!important;border-radius:13px!important;box-shadow:0 5px 16px rgba(16,19,43,.15)!important;padding:7px 10px!important;min-width:0}
+body .logo .brand-logo{display:block!important;width:205px!important;max-width:100%!important;height:auto!important;max-height:58px!important;object-fit:contain!important;object-position:center!important;background:transparent!important;border-radius:0!important;padding:0!important;filter:none!important;opacity:1!important;visibility:visible!important}
+body .search{background:#fff!important;border:1.5px solid #c9c7f8!important;border-radius:13px!important;box-shadow:0 0 0 3px rgba(112,101,255,.06)!important;overflow:hidden}
+body .search input{background:#fff!important;color:var(--lp-indigo)!important;border:0!important;box-shadow:none!important;border-radius:12px!important}
+body .search input::placeholder{color:#747792!important;opacity:1!important}
+body .search button,body .btn-primary,body button.primary,body .book-head{background:linear-gradient(120deg,var(--lp-iris),var(--lp-rose))!important;color:#fff!important;border:0!important;font-weight:800!important}
+body .head-actions .action,body .head-actions a,body .head-actions button{color:var(--lp-indigo)!important;background:#fff!important;border:1px solid #dedcf7!important;border-radius:9px!important}
+body .head-actions .action span{color:#696d88!important}
+body .head-actions .cart-btn .count{background:var(--lp-rose)!important;color:#fff!important}
+body .menu{background:var(--lp-pearl)!important;border-top:1px solid #e6e4f8!important;border-bottom:1px solid #dedcf7!important;box-shadow:0 4px 12px rgba(16,19,43,.04)!important}
+body .menu a{color:var(--lp-slate)!important;font-weight:750!important}
+body .menu a:hover,body .menu a.active{color:var(--lp-iris)!important;background:#eae9ff!important}
+body .hamb{background:#e9e8ff!important;color:var(--lp-indigo)!important;border:1px solid #cfccff!important;border-radius:10px!important}
+body .menu.open{background:var(--lp-pearl)!important}body .menu.open a{color:var(--lp-indigo)!important}body .menu-backdrop{background:rgba(16,19,43,.35)!important}
+/* Light content surfaces and accessible text */
+body main,body .section,body .pagehead,body .page-content,body .content,body .shop-layout,body .package-detail-wrap{background:transparent!important;color:var(--lp-text)!important}
+body .pagehead h1,body h1,body h2,body h3,body h4,body h5,body .section-head h2,body .page-title{color:var(--lp-indigo)!important}
+body p,body li,body label,body .crumb,body .eyebrow,body .section-head p,body .pagehead p,body .product-description,body .p-desc{color:var(--lp-muted)!important}
+body .eyebrow,body .crumb,body .v17-link,body .category-label{color:#6257c8!important}
+body .card,body .package,body .package-card,body .product-card,body .product-view,body .detail-panel,body .coverage-card,body .v17-category-card,body .lp-category-card,body .lp-brand-card,body .lp-shelf,body .filter,body .shop-filter,body .booking-panel,body .form-card,body .checkout-card,body .account-card,body .cart-panel,body .lp-product-card,body .product-detail,body .main-img,body .gallery{background:#fff!important;color:var(--lp-text)!important;border-color:var(--lp-border)!important;box-shadow:0 8px 28px rgba(37,41,70,.06)!important}
+body .lp-product-card *,body .product-card *,body .package *,body .package-card *,body .detail-panel *,body .coverage-card *,body .v17-category-card *{color:inherit}
+body .lp-product-card .p-title,body .product-card h3,body .package h3,body .package-card h3{color:var(--lp-indigo)!important}
+body .lp-product-card .p-desc,body .product-card p,body .package p,body .package-card p{color:var(--lp-muted)!important}
+body .price,body .product-price,body .package-price{color:var(--lp-indigo)!important}
+body .sale-badge,body .discount,body .badge.sale,body .lp-product-card .discount{background:var(--lp-rose)!important;color:#fff!important}
+body input,body select,body textarea{background:#fff!important;color:var(--lp-indigo)!important;border-color:#cfccf0!important}
+body input::placeholder,body textarea::placeholder{color:#777b95!important;opacity:1!important}
+body .btn,body button,body .button,body a.button,body .package-details-btn{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+body .btn-primary,body .btn:not(.btn-secondary):not(.cart-btn),body .package-details-btn,body .detail-cta .btn:first-child{background:linear-gradient(120deg,var(--lp-iris),var(--lp-rose))!important;color:#fff!important;border-color:transparent!important}
+body .btn-secondary,body .secondary,body .detail-cta .btn:last-child{background:#fff!important;color:var(--lp-iris)!important;border:1px solid var(--lp-iris)!important}
+body button:hover,body .btn:hover,body a.button:hover{box-shadow:0 7px 18px rgba(112,101,255,.2);transform:translateY(-1px)}
+/* Cosmic hero: clean pearl with subtle aqua/violet glow */
+body .hero,body .lp-hero,body .hero-grid,body .home-hero{background:radial-gradient(ellipse at 85% 25%,rgba(72,224,208,.16),transparent 38%),radial-gradient(ellipse at 8% 90%,rgba(112,101,255,.12),transparent 42%),var(--lp-pearl)!important;color:var(--lp-indigo)!important}
+body .hero h1,body .lp-hero h1,body .hero-grid h1{color:var(--lp-indigo)!important}
+body .hero h1 span,body .hero .highlight,body .lp-hero .highlight{background:linear-gradient(100deg,var(--lp-iris),var(--lp-rose));-webkit-background-clip:text;background-clip:text;color:transparent!important}
+/* Keep cinematic contrast only where intended */
+body .portfolio,body .portfolio-section,body .gallery-section,body .lp-portfolio,body .cinematic-band{background:var(--lp-indigo)!important;color:#fff!important}
+body .portfolio h1,body .portfolio h2,body .portfolio h3,body .portfolio p,body .portfolio-section h1,body .portfolio-section h2,body .portfolio-section h3,body .portfolio-section p,body .gallery-section h2,body .gallery-section h3,body .gallery-section p,body .lp-portfolio h2,body .lp-portfolio h3,body .lp-portfolio p{color:#fff!important}
+body .portfolio .card,body .portfolio-card,body .gallery-card,body .portfolio-section .card{background:var(--lp-slate)!important;color:#fff!important;border-color:#3a3f69!important}
+body .portfolio .card *,body .portfolio-card *,body .gallery-card *{color:#fff!important}
+body .portfolio .category,body .portfolio .eyebrow,body .portfolio-card .category{color:var(--lp-mint)!important}
+body .footer{background:var(--lp-indigo)!important;color:#fff!important;border-top:1px solid #343956!important}
+body .footer h1,body .footer h2,body .footer h3,body .footer h4,body .footer p,body .footer li,body .footer a,body .footer small{color:#c2c6df!important}
+body .footer h4,body .footer a:hover{color:var(--lp-mint)!important}
+body .footer .logo{background:var(--lp-indigo)!important;border-color:#3d4276!important}
+body .footer .brand-logo{background:transparent!important}
+body .float{background:var(--lp-mint)!important;color:var(--lp-indigo)!important;box-shadow:0 8px 24px rgba(72,224,208,.25)!important}
+body .available,body .status-available{color:#167d61!important}body .pending,body .status-pending{color:#8b5b00!important;background:#fff1d8!important}body .unavailable,body .status-unavailable{color:#7a7d95!important;background:#e5e5ef!important}
+body .mobile-bottom-nav{background:rgba(245,244,255,.97)!important;border-color:#dcdaf2!important;color:var(--lp-indigo)!important}body .mobile-bottom-nav a,body .mobile-bottom-nav button{color:var(--lp-indigo)!important}
+@media(max-width:900px){body .brand-rail-inner{overflow-x:auto;justify-content:flex-start;padding-top:7px;padding-bottom:7px}body .brand-rail-label,body .subbrand{flex:0 0 auto}body .head1{background:transparent!important}}
+@media(max-width:700px){body .logo{max-width:100%!important}body .logo .brand-logo{width:158px!important;max-height:47px!important}body .head1{gap:9px!important}body .search{width:100%!important;min-width:0!important}body .search button{padding:0 13px!important}body .brand-rail-inner{gap:7px!important}body .subbrand{padding:5px 8px!important}body .subbrand img{width:27px!important;height:27px!important}body .subbrand span{font-size:11px!important}body .package-grid,body .packages-grid,body #packageGrid{grid-template-columns:minmax(0,1fr)!important}body .product-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}body .product-view{grid-template-columns:minmax(0,1fr)!important}body .footgrid{grid-template-columns:1fr 1fr!important}}
+@media(max-width:420px){body .product-grid{grid-template-columns:minmax(0,1fr)!important}body .footgrid{grid-template-columns:1fr!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}

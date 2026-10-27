@@ -1,0 +1,94 @@
+/* Lightroom Productions — mobile viewport and overflow repair */
+:root{--lp-indigo:#10132B;--lp-iris:#7065FF;--lp-rose:#FF568C;--lp-mint:#48E0D0;--lp-pearl:#F5F4FF;--lp-slate:#252946;--lp-champagne:#F4BD70}
+html,body{width:100%!important;max-width:100%!important;min-width:0!important;margin-inline:0!important;overflow-x:hidden!important;position:relative}
+html{scrollbar-gutter:auto}
+body{left:0!important;right:0!important;transform:none!important}
+*,*::before,*::after{box-sizing:border-box}
+img,video,iframe,svg,canvas{max-width:100%}
+img{height:auto}
+.wrap,.container,.page-container,.content-wrap,main,section,header,footer{min-width:0}
+.wrap{width:min(1240px,calc(100% - 32px));max-width:100%;margin-inline:auto}
+p,h1,h2,h3,h4,h5,h6,a,button,label,small,span,li{overflow-wrap:break-word}
+input,select,textarea,button{max-width:100%;min-width:0}
+.grid,.product-grid,.package-grid,.booking-grid,.checkout-grid,.hero-v7-grid,.home-services,.home-package-feature,.featured-weddings,.footgrid{min-width:0}
+.grid>* ,.product-grid>* ,.package-grid>* ,.booking-grid>* ,.checkout-grid>* ,.hero-v7-grid>* ,.home-services>* ,.home-package-feature>* ,.featured-weddings>*{min-width:0;max-width:100%}
+table{max-width:100%}
+table:not(.no-scroll){display:block;overflow-x:auto}
+.header{width:100%;max-width:100%;left:0;right:0}
+.head1{min-width:0}
+.logo{min-width:0;max-width:100%;flex:0 1 auto}
+.logo .brand-logo{display:block;width:clamp(118px,18vw,205px);max-width:100%;height:auto;object-fit:contain}
+.search{min-width:0;max-width:100%}
+.search input{min-width:0;width:100%}
+.menu{max-width:100%}
+.menu>.wrap{min-width:0;max-width:100%}
+.home-hero-v7,.home-hero-v7 .wrap,.hero-v7-grid,.hero-v7-copy,.hero-v7-visual{min-width:0;max-width:100%}
+.hero-v7-copy h1{overflow-wrap:normal;word-break:normal}
+.mobile-bottom-nav{max-width:100vw;left:0!important;right:0!important;width:100%!important}
+body{padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(max-width:760px){
+  .wrap{width:calc(100% - 28px)!important;max-width:100%!important;margin-inline:auto!important}
+  .header{position:sticky;top:0;z-index:100}
+  .head1{display:grid!important;grid-template-columns:minmax(0,1fr) 42px auto!important;grid-template-rows:auto auto;gap:8px!important;padding:8px 0!important;align-items:center!important;width:100%;max-width:100%}
+  .head1>.logo{grid-column:1;grid-row:1;width:max-content;max-width:100%;padding:4px 7px!important}
+  .head1>.logo .brand-logo{width:clamp(112px,35vw,165px)!important;max-width:100%!important;max-height:46px!important}
+  .head1>.hamb{display:grid!important;grid-column:2;grid-row:1;width:40px;height:40px;place-items:center;justify-self:center}
+  .head1>.head-actions{grid-column:3;grid-row:1;display:flex!important;align-items:center;justify-content:flex-end;gap:5px!important;min-width:0}
+  .head-actions .action{font-size:9px!important;letter-spacing:.3px!important}
+  .head-actions .action span{font-size:8px!important}
+  .head-actions .book-head,.head-actions .account-head{display:none!important}
+  .head-actions .cart-btn{width:38px!important;height:38px!important;min-width:38px!important}
+  .head1>.search{grid-column:1/-1;grid-row:2;width:100%!important;min-width:0!important;height:42px;display:flex!important}
+  .head1>.search input{font-size:13px!important;padding:9px 10px!important;min-width:0!important}
+  .head1>.search button{padding-inline:12px!important;white-space:nowrap}
+  .brand-rail-inner{width:100%;max-width:100%;overflow-x:auto!important;overflow-y:hidden!important;justify-content:flex-start!important;scrollbar-width:none;overscroll-behavior-x:contain}
+  .brand-rail-inner::-webkit-scrollbar{display:none}
+  .subbrand{flex:0 0 auto!important}
+  .menu{display:none!important;width:100%;max-width:100%;position:absolute!important;left:0!important;right:0!important;top:100%!important;z-index:150}
+  .menu.open{display:block!important}
+  .menu.open .wrap{width:100%!important;max-width:100%!important;padding:8px 14px!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;overflow-y:auto!important;overflow-x:hidden!important}
+  .menu.open a{min-width:0;white-space:normal!important}
+  .home-hero-v7{padding:30px 0 24px!important;overflow:hidden!important}
+  .hero-v7-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:20px!important;width:100%!important}
+  .hero-v7-copy{width:100%;max-width:100%;padding:0!important}
+  .hero-v7-copy .eyebrow{font-size:9px!important;letter-spacing:2px!important;line-height:1.6;display:block}
+  .hero-v7-copy h1{font-size:clamp(38px,10vw,58px)!important;line-height:.98!important;letter-spacing:-1.8px!important;margin:12px 0 16px!important;max-width:100%;overflow-wrap:normal}
+  .hero-v7-copy p{font-size:15px!important;line-height:1.65!important;max-width:100%!important}
+  .hero-v7-actions{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:9px!important;margin-top:18px!important;width:100%}
+  .hero-v7-actions .btn{width:100%;max-width:100%;min-height:44px;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px 14px!important;white-space:normal!important;font-size:11px!important}
+  .hero-v7-proof{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;margin-top:22px!important}
+  .hero-v7-proof>div{padding-left:8px!important;min-width:0}
+  .hero-v7-proof b{font-size:clamp(15px,4vw,21px)!important}
+  .hero-v7-proof span{font-size:10px!important;line-height:1.35;display:block}
+  .hero-v7-visual{min-height:360px!important;width:100%;overflow:hidden}
+  .hero-v7-main{width:78%!important;height:300px!important;right:2%!important;top:0!important}
+  .hero-v7-card{width:44%!important;height:150px!important;left:1%!important;bottom:15px!important}
+  .hero-v7-mini{width:35%!important;height:115px!important;right:1%!important;bottom:0!important}
+  .mobile-bottom-nav{height:calc(62px + env(safe-area-inset-bottom,0px))!important;padding-bottom:env(safe-area-inset-bottom,0px)!important;z-index:250}
+  .mobile-bottom-nav a,.mobile-bottom-nav button{min-width:0!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;gap:4px;font-size:9px!important}
+  .mobile-bottom-nav span{font-size:17px!important}
+  .section{padding-block:30px!important}
+  .section-head h2{font-size:clamp(26px,7vw,36px)!important}
+  .product-grid,.package-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  .product-card,.package-card,.booking-package-card{min-width:0!important;max-width:100%!important}
+  .product-card img,.package-card img{width:100%;height:auto;object-fit:cover}
+  .product-view,.booking-grid,.checkout-grid{grid-template-columns:minmax(0,1fr)!important}
+  .gallery,.detail,.checkout-card,.summary-panel{min-width:0!important;max-width:100%!important}
+  .booking-service-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .booking-package-grid{grid-template-columns:minmax(0,1fr)!important}
+  .footer .footgrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .drawer{width:min(430px,100vw)!important;max-width:100vw!important}
+}
+@media(max-width:380px){
+  .wrap{width:calc(100% - 22px)!important}
+  .head1{grid-template-columns:minmax(0,1fr) 38px auto!important;gap:5px!important}
+  .head1>.logo .brand-logo{width:clamp(105px,32vw,125px)!important}
+  .head1>.hamb{width:36px;height:36px}
+  .head-actions .action{display:none!important}
+  .hero-v7-copy h1{font-size:clamp(35px,9.5vw,43px)!important;letter-spacing:-1.2px!important}
+  .product-grid,.package-grid{grid-template-columns:minmax(0,1fr)!important}
+  .footer .footgrid{grid-template-columns:minmax(0,1fr)!important}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
